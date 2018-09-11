@@ -3,85 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{90EDA028-4DF7-4E68-B16D-5E319D535B2A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Web", "JjOnlineStore.Web\JjOnlineStore.Web.csproj", "{A71F0D9E-9419-4257-9592-2DBA4E9C55CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Web.Infrastructure", "JjOnlineStore.Web.Infrastructure\JjOnlineStore.Web.Infrastructure.csproj", "{147F4DAF-1725-4408-A658-BD1E3AD4F30E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Common", "JjOnlineStore.Common\JjOnlineStore.Common.csproj", "{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CE2D11DF-73F9-4B78-9587-76A9B13CC5FD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Business", "JjOnlineStore.Services\JjOnlineStore.Services.Business.csproj", "{70AB2D2A-73A6-4014-AF20-6904F16C4047}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Data", "JjOnlineStore.Services.Data\JjOnlineStore.Services.Data.csproj", "{D065DDE2-6354-4382-AE46-91955D07DB7E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Core", "JjOnlineStore.Services.Core\JjOnlineStore.Services.Core.csproj", "{84383972-B000-450E-A417-97BA684FFCC5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{7F98A6FC-E230-4762-9724-E82612B85118}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data", "JjOnlineStore.Data\JjOnlineStore.Data.csproj", "{DE6D29E2-FF06-495A-8665-0EF87E67AF50}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data.EF", "JjOnlineStore.Data.EF\JjOnlineStore.Data.EF.csproj", "{A80C7A54-3FEB-4D9E-9421-86087A8CE107}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data.Entities", "JjOnlineStore.Data.Entities\JjOnlineStore.Data.Entities.csproj", "{B9057FF6-F091-40C7-A99C-566918E498D5}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A71F0D9E-9419-4257-9592-2DBA4E9C55CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A71F0D9E-9419-4257-9592-2DBA4E9C55CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A71F0D9E-9419-4257-9592-2DBA4E9C55CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A71F0D9E-9419-4257-9592-2DBA4E9C55CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{147F4DAF-1725-4408-A658-BD1E3AD4F30E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{147F4DAF-1725-4408-A658-BD1E3AD4F30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{147F4DAF-1725-4408-A658-BD1E3AD4F30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{147F4DAF-1725-4408-A658-BD1E3AD4F30E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70AB2D2A-73A6-4014-AF20-6904F16C4047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70AB2D2A-73A6-4014-AF20-6904F16C4047}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70AB2D2A-73A6-4014-AF20-6904F16C4047}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70AB2D2A-73A6-4014-AF20-6904F16C4047}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D065DDE2-6354-4382-AE46-91955D07DB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D065DDE2-6354-4382-AE46-91955D07DB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D065DDE2-6354-4382-AE46-91955D07DB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D065DDE2-6354-4382-AE46-91955D07DB7E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84383972-B000-450E-A417-97BA684FFCC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84383972-B000-450E-A417-97BA684FFCC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84383972-B000-450E-A417-97BA684FFCC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84383972-B000-450E-A417-97BA684FFCC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE6D29E2-FF06-495A-8665-0EF87E67AF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE6D29E2-FF06-495A-8665-0EF87E67AF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE6D29E2-FF06-495A-8665-0EF87E67AF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE6D29E2-FF06-495A-8665-0EF87E67AF50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A80C7A54-3FEB-4D9E-9421-86087A8CE107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A80C7A54-3FEB-4D9E-9421-86087A8CE107}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A80C7A54-3FEB-4D9E-9421-86087A8CE107}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A80C7A54-3FEB-4D9E-9421-86087A8CE107}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B9057FF6-F091-40C7-A99C-566918E498D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B9057FF6-F091-40C7-A99C-566918E498D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B9057FF6-F091-40C7-A99C-566918E498D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B9057FF6-F091-40C7-A99C-566918E498D5}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{A71F0D9E-9419-4257-9592-2DBA4E9C55CA} = {90EDA028-4DF7-4E68-B16D-5E319D535B2A}
-		{147F4DAF-1725-4408-A658-BD1E3AD4F30E} = {90EDA028-4DF7-4E68-B16D-5E319D535B2A}
-		{70AB2D2A-73A6-4014-AF20-6904F16C4047} = {CE2D11DF-73F9-4B78-9587-76A9B13CC5FD}
-		{D065DDE2-6354-4382-AE46-91955D07DB7E} = {CE2D11DF-73F9-4B78-9587-76A9B13CC5FD}
-		{84383972-B000-450E-A417-97BA684FFCC5} = {CE2D11DF-73F9-4B78-9587-76A9B13CC5FD}
-		{DE6D29E2-FF06-495A-8665-0EF87E67AF50} = {7F98A6FC-E230-4762-9724-E82612B85118}
-		{A80C7A54-3FEB-4D9E-9421-86087A8CE107} = {7F98A6FC-E230-4762-9724-E82612B85118}
-		{B9057FF6-F091-40C7-A99C-566918E498D5} = {7F98A6FC-E230-4762-9724-E82612B85118}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3928B1EB-0AD7-445B-8B06-7D4977031027}
