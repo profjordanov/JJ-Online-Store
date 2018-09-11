@@ -13,11 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Common", "JjO
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CE2D11DF-73F9-4B78-9587-76A9B13CC5FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services", "JjOnlineStore.Services\JjOnlineStore.Services.csproj", "{70AB2D2A-73A6-4014-AF20-6904F16C4047}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Business", "JjOnlineStore.Services\JjOnlineStore.Services.Business.csproj", "{70AB2D2A-73A6-4014-AF20-6904F16C4047}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Data", "JjOnlineStore.Services.Data\JjOnlineStore.Services.Data.csproj", "{D065DDE2-6354-4382-AE46-91955D07DB7E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Core", "JjOnlineStore.Services.Core\JjOnlineStore.Services.Core.csproj", "{84383972-B000-450E-A417-97BA684FFCC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{7F98A6FC-E230-4762-9724-E82612B85118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data", "JjOnlineStore.Data\JjOnlineStore.Data.csproj", "{DE6D29E2-FF06-495A-8665-0EF87E67AF50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{84383972-B000-450E-A417-97BA684FFCC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84383972-B000-450E-A417-97BA684FFCC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84383972-B000-450E-A417-97BA684FFCC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE6D29E2-FF06-495A-8665-0EF87E67AF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE6D29E2-FF06-495A-8665-0EF87E67AF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE6D29E2-FF06-495A-8665-0EF87E67AF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE6D29E2-FF06-495A-8665-0EF87E67AF50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +67,7 @@ Global
 		{70AB2D2A-73A6-4014-AF20-6904F16C4047} = {CE2D11DF-73F9-4B78-9587-76A9B13CC5FD}
 		{D065DDE2-6354-4382-AE46-91955D07DB7E} = {CE2D11DF-73F9-4B78-9587-76A9B13CC5FD}
 		{84383972-B000-450E-A417-97BA684FFCC5} = {CE2D11DF-73F9-4B78-9587-76A9B13CC5FD}
+		{DE6D29E2-FF06-495A-8665-0EF87E67AF50} = {7F98A6FC-E230-4762-9724-E82612B85118}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3928B1EB-0AD7-445B-8B06-7D4977031027}
