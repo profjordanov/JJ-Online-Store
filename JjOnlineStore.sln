@@ -27,8 +27,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data.EF", "Jj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data.Entities", "JjOnlineStore.Data.Entities\JjOnlineStore.Data.Entities.csproj", "{B9057FF6-F091-40C7-A99C-566918E498D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data.Common", "JjOnlineStore.Data.Common\JjOnlineStore.Data.Common.csproj", "{F9545D6F-125E-472A-90C4-1767BB9B61A6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,10 +69,6 @@ Global
 		{B9057FF6-F091-40C7-A99C-566918E498D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9057FF6-F091-40C7-A99C-566918E498D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9057FF6-F091-40C7-A99C-566918E498D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9545D6F-125E-472A-90C4-1767BB9B61A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9545D6F-125E-472A-90C4-1767BB9B61A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9545D6F-125E-472A-90C4-1767BB9B61A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9545D6F-125E-472A-90C4-1767BB9B61A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,7 +82,6 @@ Global
 		{DE6D29E2-FF06-495A-8665-0EF87E67AF50} = {7F98A6FC-E230-4762-9724-E82612B85118}
 		{A80C7A54-3FEB-4D9E-9421-86087A8CE107} = {7F98A6FC-E230-4762-9724-E82612B85118}
 		{B9057FF6-F091-40C7-A99C-566918E498D5} = {7F98A6FC-E230-4762-9724-E82612B85118}
-		{F9545D6F-125E-472A-90C4-1767BB9B61A6} = {7F98A6FC-E230-4762-9724-E82612B85118}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3928B1EB-0AD7-445B-8B06-7D4977031027}
