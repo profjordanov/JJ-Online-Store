@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Web", "JjOnli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Web.Infrastructure", "JjOnlineStore.Web.Infrastructure\JjOnlineStore.Web.Infrastructure.csproj", "{147F4DAF-1725-4408-A658-BD1E3AD4F30E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Common", "JjOnlineStore.Common\JjOnlineStore.Common.csproj", "{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{147F4DAF-1725-4408-A658-BD1E3AD4F30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{147F4DAF-1725-4408-A658-BD1E3AD4F30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{147F4DAF-1725-4408-A658-BD1E3AD4F30E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FB5AFD3-8E08-4916-BDB9-2186EFABA980}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
