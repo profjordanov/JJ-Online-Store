@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Web", "Web\JjOnlineStore.Web\JjOnlineStore.Web.csproj", "{3E33AF03-64C6-4179-BC53-575D1B12DF5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Web.Infrastructure", "Web\JjOnlineStore.Web.Infrastructure\JjOnlineStore.Web.Infrastructure.csproj", "{1DE722A5-61EB-47E9-9CDA-9EAD62109300}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3E33AF03-64C6-4179-BC53-575D1B12DF5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E33AF03-64C6-4179-BC53-575D1B12DF5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E33AF03-64C6-4179-BC53-575D1B12DF5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE722A5-61EB-47E9-9CDA-9EAD62109300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE722A5-61EB-47E9-9CDA-9EAD62109300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE722A5-61EB-47E9-9CDA-9EAD62109300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE722A5-61EB-47E9-9CDA-9EAD62109300}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
