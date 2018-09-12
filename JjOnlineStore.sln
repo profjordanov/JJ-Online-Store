@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Core", "Services\JjOnlineStore.Services.Core\JjOnlineStore.Services.Core.csproj", "{2E028C83-D298-4EED-9A51-EB4C697695D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data", "Data\JjOnlineStore.Data\JjOnlineStore.Data.csproj", "{5EA55C88-DAE2-4FC8-8730-EA00172DFD42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2E028C83-D298-4EED-9A51-EB4C697695D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E028C83-D298-4EED-9A51-EB4C697695D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E028C83-D298-4EED-9A51-EB4C697695D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EA55C88-DAE2-4FC8-8730-EA00172DFD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EA55C88-DAE2-4FC8-8730-EA00172DFD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EA55C88-DAE2-4FC8-8730-EA00172DFD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EA55C88-DAE2-4FC8-8730-EA00172DFD42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
