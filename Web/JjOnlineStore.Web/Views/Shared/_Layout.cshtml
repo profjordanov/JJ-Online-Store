@@ -3,11 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - JjOnlineStore.Web</title>
+    <title>@ViewData["Title"] - JJ </title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap-theme.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/jquery.fancybox.css">
+        <link rel="stylesheet" href="~/css/list-products.css">
+        <link rel="stylesheet" href="~/css/index-css.css">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -17,26 +21,127 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">JjOnlineStore.Web</a>
+    <header>
+        <section class="row upper-nav">
+            <div class="col-xs-6 col-md-2"><span>Welcome to SoftUnikum Gift Shop</span></div>
+            <div class="col-xs-6 col-md-2 pull-right">
+                <span>
+                    <a class="fancybox" href="#social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                    <a class="fancybox" href="#social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a class="fancybox" href="#social"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                    <a class="fancybox" href="#social"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a class="fancybox" href="#social"><i class="fa fa-vimeo" aria-hidden="true"></i></a>
+                </span>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+            <div class="col-md-2 placeholder"></div>
+            <div class="col-md-6">
+                <ul>
+                    <li><a class="fancybox" href="#login">Login/Register</a></li>
+                    <li><a class="fancybox" href="#location">Store Location</a></li>
+                    <li><a class="fancybox" href="#faq">FAQ</a></li>
+                    <li><a class="fancybox" href="#newsletter">Newsletter</a></li>
+                    <li>
+                        <a href="#">
+                            <select name="language">
+                                <option value="1">English</option>
+                                <option value="2">Russian</option>
+                                <option value="3">Bulgarian</option>
+                            </select>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <select name="currency">
+                                <option value="1">USD</option>
+                                <option value="2">RUB</option>
+                                <option value="3">BGN</option>
+                            </select>
+                        </a>
+                    </li>
                 </ul>
             </div>
-        </div>
-    </nav>
+        </section>
+        <section class="row search-bar-nav">
+            <div class="col-xs-7 col-sm-7 col-md-5">
+                <h1 class="logo"><img src="img/logo.png" width="70" height="35" alt="Logo" />SoftUnikum</h1>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-3 shopping-cart pull-right">
+                <div class="shopping-cart-wrapper">
+                    <p class="products">
+                        <span class="number-of-products">2</span>
+                        <span>My cart</span><br />2 items - $100.00
+                    </p>
+                    <div class="shopping-cart-details">
+                        <h1>You have <span>2</span> items</h1>
+                        <p>Check or edit your item below!</p>
+                        <div class="shopping-cart-item">
+                            <a href="#"><img src="img/homepage/6926CSS-ninja.jpg" alt="product" /></a>
+                            <a href="#"><p class="shopping-cart-product-details">CSS Puns Ninja</p></a> <br>
+                            <p class="shopping-cart-price">
+                                $25.95 <span class="shopping-cart-count-products">(x2)</span>
+                            </p>
+                        </div>
+                        <hr />
+                        <div class="shopping-cart-item">
+                            <a href="#"><img src="img/homepage/12018Matias_EP_DE_03.jpg" alt="product" /></a>
+                            <a href="#"><p class="shopping-cart-product-details">Matias Ergo Pro Keyboard</p></a> <br>
+                            <p class="shopping-cart-price-2">
+                                $299.95 <span class="shopping-cart-count-products">(x2)</span>
+                            </p>
+                        </div>
+                        <hr />
+                        <h2 class="shopping-cart-total-price">Grand total: <span>$651.80</span></h2>
+                        <div class="shopping-cart-buttons">
+                            <button class="shopping-cart-btn-go">
+                                <a href="pages/shopping-cart.html">Go Shopping Cart</a>
+                            </button>
+                            <button class="shopping-cart-btn-checkout"><a href="#">Check Out</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-7 col-sm-6 col-md-4 search-bar">
+                <select name="search-bar">
+                    <option value="1">All Categories</option>
+                    <option value="2">Gadgets</option>
+                    <option value="3">T-Shirts</option>
+                    <option value="4">Hats</option>
+                    <option value="5">Key Rings</option>
+                </select>
+                <input type="text" placeholder="Search entire store here..." />
+                <button><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+        </section>
+        <nav class="flex-box-container navbar">
+            <a href="#" id="responsive-icon"><i class="fa fa-bars" aria-hidden="true"></i></a>
+            <div class="flex-item-main-nav nav-ul">
+                <ul>
+                    <li class="flex-item-nav-li">
+                        <a href="pages/gadgets.html" title="SoftUnikum Gadgets">Gadgets</a>
+                    </li>
+                    <li class="flex-item-nav-li">
+                        <a href="pages/t-shirts.html" title="SoftUnikum T-Shirts">T-Shirts</a>
+                    </li>
+                    <li class="flex-item-nav-li"><a href="pages/hats.html" title="SoftUnikum Hats">Hats</a></li>
+                    <li class="flex-item-nav-li">
+                        <a href="pages/key-rings.html" title="SoftUnikum Key Rings">
+                            Key
+                            Rings
+                        </a>
+                    </li>
+                    <li class="flex-item-nav-li">
+                        <a href="pages/random-stuff.html" title="SoftUnikum Random Stuff">
+                            Random
+                            Stuff
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-item-hotline nav-hotline">
+                <span class="hot-line">Hotline: (+359) 666</span>
+            </div>
+        </nav>
+    </header>
 
     <partial name="_CookieConsentPartial" />
 
@@ -44,13 +149,85 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - JjOnlineStore.Web</p>
+            <section class="row newsletter-bar">
+                <div class="col-md-6">
+                    <span class="food-span-left">Subscribe to our newsletter</span>
+                    <span class="foot-span-right">Get as much <span class="discount-price">spam</span> as possible!</span>
+                </div>
+                <div class="col-md-6">
+                    <form class="subscribe-email">
+                        <input type="email" placeholder="Your email here..." />
+                        <button class="foot-subscribe-btn">Subscribe</button>
+                    </form>
+                </div>
+            </section>
+            <section class="row foot-bottom">
+                <section class="col-md-3">
+                    <h1>Contact SoftUnikum!</h1>
+                    <p>Address: Sofia, Izgrev residential area, 15-17 Tintyava str, fl. 1</p>
+                    <p>Phone: (+359) 666</p>
+                    <p>Support: no-reply@softunikum.com</p>
+                    <p>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a>
+                    </p>
+                </section>
+                <section class="col-md-3 footer-categories">
+                    <h1>Categories</h1>
+                    <ul>
+                        <li class="flex-item-nav-li">
+                            <a href="pages/gadgets.html" title="SoftUnikum Gadgets">Gadgets</a>
+                        </li>
+                        <li class="flex-item-nav-li">
+                            <a href="pages/t-shirts.html" title="SoftUnikum T-Shirts">T-Shirts</a>
+                        </li>
+                        <li class="flex-item-nav-li"><a href="pages/hats.html" title="SoftUnikum Hats">Hats</a></li>
+                        <li class="flex-item-nav-li">
+                            <a href="pages/key-rings.html" title="SoftUnikum Key Rings">
+                                Key
+                                Rings
+                            </a>
+                        </li>
+                        <li class="flex-item-nav-li">
+                            <a href="pages/random-stuff.html" title="SoftUnikum Random Stuff">
+                                Random
+                                Stuff
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <section class="col-md-3 footer-customer-service">
+                    <h1>Customer Service</h1>
+                    <ul>
+                        <li><a class="fancybox" href="#non-existent">Non-Existent</a></li>
+                        <li><a class="fancybox" href="#non-existent">Dream about it</a></li>
+                        <li><a class="fancybox" href="#non-existent">Leads to nowhere</a></li>
+                        <li><a class="fancybox" href="#non-existent">We put that just for fun</a></li>
+                        <li><a class="fancybox" href="#non-existent">Clickable and useless</a></li>
+                    </ul>
+                </section>
+                <section class="col-md-3 footer-information">
+                    <h1>Information</h1>
+                    <ul>
+                        <li><a class="fancybox" href="#non-existent">Non-Existent</a></li>
+                        <li><a class="fancybox" href="#non-existent">Dream about it</a></li>
+                        <li><a class="fancybox" href="#non-existent">Leads to nowhere</a></li>
+                        <li><a class="fancybox" href="#non-existent">We put that just for fun</a></li>
+                        <li><a class="fancybox" href="#non-existent">Clickable and useless</a></li>
+                    </ul>
+                </section>
+            </section>
         </footer>
     </div>
 
     <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jquery-3.1.1.min.js"></script>
+        <script src="~/lib/jquery-ui.min.js"></script>
+        <script src="~/js/jquery.fancybox.pack.js"></script>
+        <script src="~/js/index-script.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
