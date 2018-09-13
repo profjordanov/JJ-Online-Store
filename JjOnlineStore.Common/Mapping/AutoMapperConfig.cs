@@ -106,4 +106,3 @@ namespace JjOnlineStore.Common.Mapping
         }
     }
 }
-}
