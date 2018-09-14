@@ -176,6 +176,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Serilog" Version="2.7.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -351,6 +353,11 @@
     <None Include="wwwroot\lib\jquery-ui.min.js" />
     <None Include="wwwroot\lib\modernizr.js" />
     <None Include="wwwroot\lib\velocity.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\JjOnlineStore.Data.EF\JjOnlineStore.Data.EF.csproj" />
+    <ProjectReference Include="..\JjOnlineStore.Web.Infrastructure\JjOnlineStore.Web.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
