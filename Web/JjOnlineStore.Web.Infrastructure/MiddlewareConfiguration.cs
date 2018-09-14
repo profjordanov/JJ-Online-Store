@@ -8,6 +8,7 @@ namespace JjOnlineStore.Web.Infrastructure
 	{
 		public static void AddLogging(this ILoggerFactory loggerFactory , IConfigurationSection loggingConfiguration)
 		{
+            //TODO: Implement 
 		}
 	}
 }
