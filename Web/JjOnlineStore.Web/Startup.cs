@@ -30,6 +30,7 @@ namespace JjOnlineStore.Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+            //TODO: Seed database
 			services.AddDbContext(Configuration.GetConnectionString("DefaultConnection"));
 
 			services.AddIdentity();
@@ -63,7 +64,7 @@ namespace JjOnlineStore.Web
                 app.UseHsts();
             }
 
-	        loggerFactory.AddLogging(Configuration.GetSection("Logging"));
+	        loggerFactory.AddLogging(Configuration.GetSection("Logging")); //TODO: Looging section
 
 			app.UseHttpsRedirection();
             app.UseStaticFiles();
