@@ -17,10 +17,10 @@ namespace JjOnlineStore.Web.Infrastructure
 				throw new ArgumentException(nameof(connectionString));
 			}
 
-			services
-				.AddDbContext<JjOnlineStoreDbContext>(opts => opts.UseSqlServer(connectionString))
-				.AddEntityFrameworkSqlServer();
-		}
+		    services
+		        .AddDbContext<JjOnlineStoreDbContext>(opts => opts.UseSqlServer(connectionString))
+		        .AddEntityFrameworkSqlServer();
+        }
 
 		public static void AddIdentity(this IServiceCollection services)
 		{
