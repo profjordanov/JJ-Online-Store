@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\JjOnlineStore.Common\JjOnlineStore.Common.csproj" />
     <ProjectReference Include="..\JjOnlineStore.Data.Entities\JjOnlineStore.Data.Entities.csproj" />
   </ItemGroup>
 
