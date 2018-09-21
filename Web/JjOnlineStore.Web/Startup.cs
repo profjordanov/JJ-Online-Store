@@ -1,15 +1,12 @@
-﻿using AspNetCoreTemplate.Data.Models;
-using JjOnlineStore.Data.EF;
-using JjOnlineStore.Data.Entities;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using JjOnlineStore.Web.Infrastructure;
 using Microsoft.Extensions.Logging;
+using JjOnlineStore.Web.Infrastructure;
+using JjOnlineStore.Data.EF;
 
 namespace JjOnlineStore.Web
 {
@@ -34,8 +31,9 @@ namespace JjOnlineStore.Web
 			services.AddDbContext(Configuration.GetConnectionString("DefaultConnection"));
 
 			services.AddIdentity();
+		    services.AddIdentityStores();
 
-			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 			services.Configure<CookiePolicyOptions>(options =>
             {
