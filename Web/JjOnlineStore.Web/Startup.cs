@@ -34,10 +34,12 @@ namespace JjOnlineStore.Web
 
             services.AddIdentity();
 		    services.AddIdentityStores();
+		    services.AddApplicationServices();
 
-		    // External Authentication with Facebook & Google
-		    services
-		        .AddAuthentication()
+
+            // External Authentication with Facebook & Google
+            services
+                .AddAuthentication()
 		        .AddFacebook(options =>
 		        {
 		            options.AppId = this.Configuration["Authentication:Facebook:AppId"];
@@ -49,9 +51,7 @@ namespace JjOnlineStore.Web
 		            options.ClientSecret = this.Configuration["Authentication:Google:ClientSecret"];
 		        });
 
-		    // Application services
             services.AddRouting(routing => routing.LowercaseUrls = true);
-		    services.AddApplicationServices();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
