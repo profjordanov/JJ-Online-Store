@@ -1,0 +1,13 @@
+﻿using System.ComponentModel.DataAnnotations;
+using JjOnlineStore.Data.Entities.Base;
+
+namespace JjOnlineStore.Data.Entities
+{
+    public class Category : BaseDeletableModel<long>
+    {
+        [Required(ErrorMessage = "You must specify a category name.")]
+        [MinLength(3, ErrorMessage = "Name must be at least 3 characters.")]
+        [MaxLength(100, ErrorMessage = "Name can not be longer than 100 characters.")]
+        public string Name { get; set; }
+    }
+}

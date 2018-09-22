@@ -21,8 +21,10 @@ namespace JjOnlineStore.Data.EF
 
 		private IDbContextTransaction currentTransaction;
 
+	    public DbSet<Category> Categories { get; set; }
 
-		public virtual void BeginTransaction()
+
+        public virtual void BeginTransaction()
 		{
 			if(this.currentTransaction != null)
 			{
