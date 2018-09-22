@@ -23,6 +23,7 @@ namespace JjOnlineStore.Data.EF
 
 	    public DbSet<Category> Categories { get; set; }
 
+	    public DbSet<Product> Products { get; set; }
 
         public virtual void BeginTransaction()
 		{
@@ -94,9 +95,20 @@ namespace JjOnlineStore.Data.EF
 			base.OnModelCreating(builder);
 
 			ConfigureUserIdentityRelations(builder);
+		    ConfigureProductCategoryRelations(builder);
 		}
 
-		private static void ConfigureUserIdentityRelations(ModelBuilder builder)
+	    private static void ConfigureProductCategoryRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<Product>()
+	            .HasOne(a => a.Category)
+	            .WithMany(a => a.Products)
+	            .HasForeignKey(a => a.CategoryId);
+        }
+
+
+        private static void ConfigureUserIdentityRelations(ModelBuilder builder)
 		{
 			builder.Entity<ApplicationUser>()
 				.HasMany(e => e.Claims)
