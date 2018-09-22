@@ -44,5 +44,10 @@ namespace JjOnlineStore.Web.Infrastructure
 			services.AddTransient<IUserStore<ApplicationUser> , ApplicationUserStore>();
 			services.AddTransient<IRoleStore<ApplicationRole> , ApplicationRoleStore>();
 		}
-	}
+
+	    public static void AddApplicationServices(this IServiceCollection services)
+	    {
+
+	    }
+    }
 }

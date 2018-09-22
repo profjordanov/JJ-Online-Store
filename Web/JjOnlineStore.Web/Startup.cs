@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using JjOnlineStore.Web.Infrastructure;
 using JjOnlineStore.Data.EF;
+using JjOnlineStore.Web.Infrastructure.Extensions;
 
 namespace JjOnlineStore.Web
 {
@@ -27,28 +29,51 @@ namespace JjOnlineStore.Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-            //TODO: Seed database
 			services.AddDbContext(Configuration.GetConnectionString("DefaultConnection"));
+		    services.AddAutoMapper();
 
-			services.AddIdentity();
+            services.AddIdentity();
 		    services.AddIdentityStores();
+
+		    // External Authentication with Facebook & Google
+		    services
+		        .AddAuthentication()
+		        .AddFacebook(options =>
+		        {
+		            options.AppId = this.Configuration["Authentication:Facebook:AppId"];
+		            options.AppSecret = this.Configuration["Authentication:Facebook:AppSecret"];
+		        })
+		        .AddGoogle(options =>
+		        {
+		            options.ClientId = this.Configuration["Authentication:Google:ClientId"];
+		            options.ClientSecret = this.Configuration["Authentication:Google:ClientSecret"];
+		        });
+
+		    // Application services
+            services.AddRouting(routing => routing.LowercaseUrls = true);
+		    services.AddApplicationServices();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-			services.Configure<CookiePolicyOptions>(options =>
+		    services.AddMvc(options =>
+		    {
+		        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                //TODO: ADD ExceptionFilter, ModelStateFilter
+            });
+
+            services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory , JjOnlineStoreDbContext dbContext)
         {
-			//TODO: ADD automapper
+            // Database migrations
+            app.UseDatabaseMigration();
 
             if (env.IsDevelopment())
             {
