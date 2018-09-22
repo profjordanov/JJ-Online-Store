@@ -3,23 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Web", "Web\JjOnlineStore.Web\JjOnlineStore.Web.csproj", "{3E33AF03-64C6-4179-BC53-575D1B12DF5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Web", "Web\JjOnlineStore.Web\JjOnlineStore.Web.csproj", "{3E33AF03-64C6-4179-BC53-575D1B12DF5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Web.Infrastructure", "Web\JjOnlineStore.Web.Infrastructure\JjOnlineStore.Web.Infrastructure.csproj", "{1DE722A5-61EB-47E9-9CDA-9EAD62109300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Web.Infrastructure", "Web\JjOnlineStore.Web.Infrastructure\JjOnlineStore.Web.Infrastructure.csproj", "{1DE722A5-61EB-47E9-9CDA-9EAD62109300}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Business", "Services\JjOnlineStore.Services.Business\JjOnlineStore.Services.Business.csproj", "{912FF92A-0CC9-4EF2-B530-5EEC475D279B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Services.Business", "Services\JjOnlineStore.Services.Business\JjOnlineStore.Services.Business.csproj", "{912FF92A-0CC9-4EF2-B530-5EEC475D279B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Data", "Services\JjOnlineStore.Services.Data\JjOnlineStore.Services.Data.csproj", "{D80F6320-4F95-4C90-9D98-209E5A217C54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Services.Data", "Services\JjOnlineStore.Services.Data\JjOnlineStore.Services.Data.csproj", "{D80F6320-4F95-4C90-9D98-209E5A217C54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Services.Core", "Services\JjOnlineStore.Services.Core\JjOnlineStore.Services.Core.csproj", "{2E028C83-D298-4EED-9A51-EB4C697695D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Services.Core", "Services\JjOnlineStore.Services.Core\JjOnlineStore.Services.Core.csproj", "{2E028C83-D298-4EED-9A51-EB4C697695D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data", "Data\JjOnlineStore.Data\JjOnlineStore.Data.csproj", "{5EA55C88-DAE2-4FC8-8730-EA00172DFD42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Data", "Data\JjOnlineStore.Data\JjOnlineStore.Data.csproj", "{5EA55C88-DAE2-4FC8-8730-EA00172DFD42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data.Entities", "Data\JjOnlineStore.Data.Entities\JjOnlineStore.Data.Entities.csproj", "{BA34AC7D-4245-43DC-89D3-11D266E5FFCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Data.Entities", "Data\JjOnlineStore.Data.Entities\JjOnlineStore.Data.Entities.csproj", "{BA34AC7D-4245-43DC-89D3-11D266E5FFCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Data.EF", "Data\JjOnlineStore.Data.EF\JjOnlineStore.Data.EF.csproj", "{0310B62A-69E3-446E-87A7-2306A8BBB989}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Data.EF", "Data\JjOnlineStore.Data.EF\JjOnlineStore.Data.EF.csproj", "{0310B62A-69E3-446E-87A7-2306A8BBB989}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Common", "JjOnlineStore.Common\JjOnlineStore.Common.csproj", "{B4DA717D-8CA4-4308-A0F7-A9E44E597BE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Common", "JjOnlineStore.Common\JjOnlineStore.Common.csproj", "{B4DA717D-8CA4-4308-A0F7-A9E44E597BE3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{2510A053-557B-4570-AA7D-E5FE59DDE22C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{EC1D2F3E-0DE6-4831-8F4C-3E9C09429DF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{C272C167-4809-4178-880B-3435B4CF1579}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +72,16 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E33AF03-64C6-4179-BC53-575D1B12DF5A} = {2510A053-557B-4570-AA7D-E5FE59DDE22C}
+		{1DE722A5-61EB-47E9-9CDA-9EAD62109300} = {2510A053-557B-4570-AA7D-E5FE59DDE22C}
+		{912FF92A-0CC9-4EF2-B530-5EEC475D279B} = {EC1D2F3E-0DE6-4831-8F4C-3E9C09429DF7}
+		{D80F6320-4F95-4C90-9D98-209E5A217C54} = {EC1D2F3E-0DE6-4831-8F4C-3E9C09429DF7}
+		{2E028C83-D298-4EED-9A51-EB4C697695D2} = {EC1D2F3E-0DE6-4831-8F4C-3E9C09429DF7}
+		{5EA55C88-DAE2-4FC8-8730-EA00172DFD42} = {C272C167-4809-4178-880B-3435B4CF1579}
+		{BA34AC7D-4245-43DC-89D3-11D266E5FFCB} = {C272C167-4809-4178-880B-3435B4CF1579}
+		{0310B62A-69E3-446E-87A7-2306A8BBB989} = {C272C167-4809-4178-880B-3435B4CF1579}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3928B1EB-0AD7-445B-8B06-7D4977031027}
