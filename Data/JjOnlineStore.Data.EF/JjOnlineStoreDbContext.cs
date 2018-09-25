@@ -28,7 +28,7 @@ namespace JjOnlineStore.Data.EF
 
         public DbSet<Cart> Carts { get; set; }
 
-        //TODO: Implement order
+        public DbSet<Order> Orders { get; set; }
 
         public virtual void BeginTransaction()
 		{
@@ -103,8 +103,16 @@ namespace JjOnlineStore.Data.EF
 		    ConfigureProductCategoryRelations(builder);
 		    ConfigureCartItemRelations(builder);
 		    ConfigureCartRelations(builder);
-
+		    ConfigureOrderRelations(builder);
 		}
+
+	    private static void ConfigureOrderRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<Order>()
+	            .HasOne(o => o.Cart)
+	            .WithOne(c => c.Order);
+        }
 
         private static void ConfigureCartItemRelations(ModelBuilder builder)
 	    {
