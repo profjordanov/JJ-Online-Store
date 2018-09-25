@@ -34,5 +34,7 @@ namespace JjOnlineStore.Data.Entities
 
         [Required(ErrorMessage = "Please, specify a category.")]
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<CartItem> CartItems { get; set; } = new HashSet<CartItem>();
     }
 }

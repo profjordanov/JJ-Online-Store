@@ -3,7 +3,6 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AspNetCoreTemplate.Data.Models;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Data.Entities.Base;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -24,6 +23,12 @@ namespace JjOnlineStore.Data.EF
 	    public DbSet<Category> Categories { get; set; }
 
 	    public DbSet<Product> Products { get; set; }
+
+	    public DbSet<CartItem> CartItems { get; set; }
+
+        public DbSet<Cart> Carts { get; set; }
+
+        //TODO: Implement order
 
         public virtual void BeginTransaction()
 		{
@@ -96,9 +101,37 @@ namespace JjOnlineStore.Data.EF
 
 			ConfigureUserIdentityRelations(builder);
 		    ConfigureProductCategoryRelations(builder);
+		    ConfigureCartItemRelations(builder);
+		    ConfigureCartRelations(builder);
+
 		}
 
-	    private static void ConfigureProductCategoryRelations(ModelBuilder builder)
+        private static void ConfigureCartItemRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<CartItem>()
+	            .HasOne(ci => ci.Product)
+	            .WithMany(p => p.CartItems)
+	            .HasForeignKey(ci => ci.ProductId);
+
+	        builder
+	            .Entity<CartItem>()
+	            .HasOne(ci => ci.Cart)
+	            .WithMany(c => c.OrderedItems)
+	            .HasForeignKey(ci => ci.CartId);
+	    }
+
+	    private static void ConfigureCartRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<Cart>()
+	            .HasOne(c => c.User)
+	            .WithMany(u => u.Carts)
+	            .HasForeignKey(c => c.UserId);
+
+	    }
+
+        private static void ConfigureProductCategoryRelations(ModelBuilder builder)
 	    {
 	        builder
 	            .Entity<Product>()
