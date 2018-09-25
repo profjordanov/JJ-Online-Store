@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using JjOnlineStore.Data.Entities.Base;
+using JjOnlineStore.Data.Entities.Enumeration;
 
 namespace JjOnlineStore.Data.Entities
 {
@@ -46,6 +47,8 @@ namespace JjOnlineStore.Data.Entities
 
         [Required(ErrorMessage = "Please enter a CW.")]
         public string Cvv { get; set; }
+
+        public TransportationType TransportationType { get; set; }
 
         [ForeignKey(nameof(Cart))]
         public long CartId { get; set; }
