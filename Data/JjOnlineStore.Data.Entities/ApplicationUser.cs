@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using JjOnlineStore.Data.Entities.Base;
-
 using Microsoft.AspNetCore.Identity;
 
-namespace AspNetCoreTemplate.Data.Models
+namespace JjOnlineStore.Data.Entities
 {
 	public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
 	{
@@ -26,7 +25,9 @@ namespace AspNetCoreTemplate.Data.Models
 
 		public DateTime? DeletedOn { get; set; }
 
-		public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
+	    public virtual ICollection<Cart> Carts { get; set; } = new HashSet<Cart>();
+
+        public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
 		public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 

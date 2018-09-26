@@ -1,5 +1,4 @@
 ﻿using System.Security.Claims;
-using AspNetCoreTemplate.Data.Models;
 using JjOnlineStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

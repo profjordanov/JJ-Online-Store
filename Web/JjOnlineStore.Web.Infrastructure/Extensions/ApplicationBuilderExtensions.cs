@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using AspNetCoreTemplate.Data.Models;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
 using Microsoft.AspNetCore.Builder;

@@ -1,5 +1,4 @@
 ﻿using System;
-using AspNetCoreTemplate.Data.Models;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;

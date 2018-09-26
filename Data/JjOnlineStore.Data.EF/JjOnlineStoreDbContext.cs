@@ -3,7 +3,6 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AspNetCoreTemplate.Data.Models;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Data.Entities.Base;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -21,8 +20,17 @@ namespace JjOnlineStore.Data.EF
 
 		private IDbContextTransaction currentTransaction;
 
+	    public DbSet<Category> Categories { get; set; }
 
-		public virtual void BeginTransaction()
+	    public DbSet<Product> Products { get; set; }
+
+	    public DbSet<CartItem> CartItems { get; set; }
+
+        public DbSet<Cart> Carts { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public virtual void BeginTransaction()
 		{
 			if(this.currentTransaction != null)
 			{
@@ -92,9 +100,56 @@ namespace JjOnlineStore.Data.EF
 			base.OnModelCreating(builder);
 
 			ConfigureUserIdentityRelations(builder);
+		    ConfigureProductCategoryRelations(builder);
+		    ConfigureCartItemRelations(builder);
+		    ConfigureCartRelations(builder);
+		    ConfigureOrderRelations(builder);
 		}
 
-		private static void ConfigureUserIdentityRelations(ModelBuilder builder)
+	    private static void ConfigureOrderRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<Order>()
+	            .HasOne(o => o.Cart)
+	            .WithOne(c => c.Order);
+        }
+
+        private static void ConfigureCartItemRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<CartItem>()
+	            .HasOne(ci => ci.Product)
+	            .WithMany(p => p.CartItems)
+	            .HasForeignKey(ci => ci.ProductId);
+
+	        builder
+	            .Entity<CartItem>()
+	            .HasOne(ci => ci.Cart)
+	            .WithMany(c => c.OrderedItems)
+	            .HasForeignKey(ci => ci.CartId);
+	    }
+
+	    private static void ConfigureCartRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<Cart>()
+	            .HasOne(c => c.User)
+	            .WithMany(u => u.Carts)
+	            .HasForeignKey(c => c.UserId);
+
+	    }
+
+        private static void ConfigureProductCategoryRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<Product>()
+	            .HasOne(a => a.Category)
+	            .WithMany(a => a.Products)
+	            .HasForeignKey(a => a.CategoryId);
+        }
+
+
+        private static void ConfigureUserIdentityRelations(ModelBuilder builder)
 		{
 			builder.Entity<ApplicationUser>()
 				.HasMany(e => e.Claims)

@@ -4,14 +4,16 @@ using JjOnlineStore.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JjOnlineStore.Data.EF.Migrations
 {
     [DbContext(typeof(JjOnlineStoreDbContext))]
-    partial class JjOnlineStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180922115141_AddCategories")]
+    partial class AddCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,39 +21,7 @@ namespace JjOnlineStore.Data.EF.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.ApplicationRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime?>("DeletedOn");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("AspNetCoreTemplate.Data.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -110,48 +80,36 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.Cart", b =>
+            modelBuilder.Entity("JjOnlineStore.Data.Entities.ApplicationRole", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<DateTime?>("ModifiedOn");
+                    b.Property<DateTime?>("DeletedOn");
 
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.CartItem", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("CartId");
-
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<long>("ProductId");
+                    b.Property<string>("Name")
+                        .HasMaxLength(256);
 
-                    b.Property<short>("Quantity");
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartId");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItems");
+                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("JjOnlineStore.Data.Entities.Category", b =>
@@ -175,112 +133,6 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.Order", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address");
-
-                    b.Property<string>("CardNumber")
-                        .IsRequired();
-
-                    b.Property<string>("CardholderName")
-                        .IsRequired();
-
-                    b.Property<long>("CartId");
-
-                    b.Property<string>("City")
-                        .IsRequired();
-
-                    b.Property<string>("Country")
-                        .IsRequired();
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Cvv")
-                        .IsRequired();
-
-                    b.Property<DateTime?>("DeletedOn");
-
-                    b.Property<string>("Email");
-
-                    b.Property<DateTime>("ExpireDate");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired();
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("Phone");
-
-                    b.Property<bool>("Shipped");
-
-                    b.Property<string>("State")
-                        .IsRequired();
-
-                    b.Property<int>("TransportationType");
-
-                    b.Property<string>("Zip");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId")
-                        .IsUnique();
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.Product", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Base64Image")
-                        .IsRequired();
-
-                    b.Property<long>("CategoryId");
-
-                    b.Property<string>("Color");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime?>("DeletedOn");
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<string>("Details");
-
-                    b.Property<bool>("IsAvailable");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<int>("Size");
-
-                    b.Property<int>("Type");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -369,42 +221,6 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.Cart", b =>
-                {
-                    b.HasOne("JjOnlineStore.Data.Entities.ApplicationUser", "User")
-                        .WithMany("Carts")
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.CartItem", b =>
-                {
-                    b.HasOne("JjOnlineStore.Data.Entities.Cart", "Cart")
-                        .WithMany("OrderedItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("JjOnlineStore.Data.Entities.Product", "Product")
-                        .WithMany("CartItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.Order", b =>
-                {
-                    b.HasOne("JjOnlineStore.Data.Entities.Cart", "Cart")
-                        .WithOne("Order")
-                        .HasForeignKey("JjOnlineStore.Data.Entities.Order", "CartId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.Product", b =>
-                {
-                    b.HasOne("JjOnlineStore.Data.Entities.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("JjOnlineStore.Data.Entities.ApplicationRole")
@@ -415,7 +231,7 @@ namespace JjOnlineStore.Data.EF.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("JjOnlineStore.Data.Entities.ApplicationUser")
+                    b.HasOne("AspNetCoreTemplate.Data.Models.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -423,7 +239,7 @@ namespace JjOnlineStore.Data.EF.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("JjOnlineStore.Data.Entities.ApplicationUser")
+                    b.HasOne("AspNetCoreTemplate.Data.Models.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -436,7 +252,7 @@ namespace JjOnlineStore.Data.EF.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("JjOnlineStore.Data.Entities.ApplicationUser")
+                    b.HasOne("AspNetCoreTemplate.Data.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -444,7 +260,7 @@ namespace JjOnlineStore.Data.EF.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("JjOnlineStore.Data.Entities.ApplicationUser")
+                    b.HasOne("AspNetCoreTemplate.Data.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -4,14 +4,16 @@ using JjOnlineStore.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JjOnlineStore.Data.EF.Migrations
 {
     [DbContext(typeof(JjOnlineStoreDbContext))]
-    partial class JjOnlineStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180924144934_AddCartNeededClasses")]
+    partial class AddCartNeededClasses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,68 +179,6 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.Order", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address");
-
-                    b.Property<string>("CardNumber")
-                        .IsRequired();
-
-                    b.Property<string>("CardholderName")
-                        .IsRequired();
-
-                    b.Property<long>("CartId");
-
-                    b.Property<string>("City")
-                        .IsRequired();
-
-                    b.Property<string>("Country")
-                        .IsRequired();
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Cvv")
-                        .IsRequired();
-
-                    b.Property<DateTime?>("DeletedOn");
-
-                    b.Property<string>("Email");
-
-                    b.Property<DateTime>("ExpireDate");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired();
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("Phone");
-
-                    b.Property<bool>("Shipped");
-
-                    b.Property<string>("State")
-                        .IsRequired();
-
-                    b.Property<int>("TransportationType");
-
-                    b.Property<string>("Zip");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId")
-                        .IsUnique();
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("JjOnlineStore.Data.Entities.Product", b =>
                 {
                     b.Property<long>("Id")
@@ -386,14 +326,6 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.HasOne("JjOnlineStore.Data.Entities.Product", "Product")
                         .WithMany("CartItems")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.Order", b =>
-                {
-                    b.HasOne("JjOnlineStore.Data.Entities.Cart", "Cart")
-                        .WithOne("Order")
-                        .HasForeignKey("JjOnlineStore.Data.Entities.Order", "CartId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
