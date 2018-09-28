@@ -4,4 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Optional" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\JjOnlineStore.Common\JjOnlineStore.Common.csproj" />
+    <ProjectReference Include="..\JjOnlineStore.Services.Data\JjOnlineStore.Services.Data.csproj" />
+  </ItemGroup>
+
 </Project>

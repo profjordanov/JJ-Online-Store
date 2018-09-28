@@ -1,9 +1,11 @@
 ﻿using System;
-using JjOnlineStore.Data.EF;
-using JjOnlineStore.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using JjOnlineStore.Data.EF;
+using JjOnlineStore.Data.Entities;
+using JjOnlineStore.Services.Business;
+using JjOnlineStore.Services.Core;
 
 namespace JjOnlineStore.Web.Infrastructure
 {
@@ -46,7 +48,7 @@ namespace JjOnlineStore.Web.Infrastructure
 
 	    public static void AddApplicationServices(this IServiceCollection services)
 	    {
-
-	    }
+	        services.AddTransient<IUsersService, UsersService>();
+        }
     }
 }

@@ -18,6 +18,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\JjOnlineStore.Data.EF\JjOnlineStore.Data.EF.csproj" />
     <ProjectReference Include="..\..\Data\JjOnlineStore.Data.Entities\JjOnlineStore.Data.Entities.csproj" />
+    <ProjectReference Include="..\..\Services\JjOnlineStore.Services.Business\JjOnlineStore.Services.Business.csproj" />
+    <ProjectReference Include="..\..\Services\JjOnlineStore.Services.Core\JjOnlineStore.Services.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
