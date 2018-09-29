@@ -54,6 +54,6 @@ namespace JjOnlineStore.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
             => (await _usersService.Register(model))
-                .Match(RedirectToLocal, Error);
+                .Match(RedirectToLocal, RedirectToError);
     }
 }

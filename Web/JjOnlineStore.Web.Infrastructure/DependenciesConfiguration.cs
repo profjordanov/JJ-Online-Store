@@ -40,7 +40,7 @@ namespace JjOnlineStore.Web.Infrastructure
 				.AddDefaultTokenProviders();
 		}
 
-		public static void AddIdentityStores(this IServiceCollection services)
+        public static void AddIdentityStores(this IServiceCollection services)
 		{
 			services.AddTransient<IUserStore<ApplicationUser> , ApplicationUserStore>();
 			services.AddTransient<IRoleStore<ApplicationRole> , ApplicationRoleStore>();

@@ -1,17 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JjOnlineStore.Common.ViewModels
 {
     public struct Error
     {
-        public Error(string message)
+        public Error(IEnumerable<string> messages)
+            : this(messages.ToArray())
         {
-            this.Message = message;
-            this.Date = DateTime.Now;
         }
 
-        public string Message { get; }
+        public Error(params string[] messages)
+        {
+            Messages = messages;
+            Date = DateTime.Now;
+        }
+
+        public IReadOnlyList<string> Messages { get; }
 
         public DateTime Date { get; }
     }
+
 }

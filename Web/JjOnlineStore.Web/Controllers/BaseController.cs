@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using JjOnlineStore.Common.ViewModels;
-using JjOnlineStore.Web.Models;
+﻿using JjOnlineStore.Common.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+
+using static Newtonsoft.Json.JsonConvert;
 
 namespace JjOnlineStore.Web.Controllers
 {
     public class BaseController : Controller
     {
-        protected IActionResult Error(Error error)
+        protected IActionResult RedirectToError(Error error)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var currentError = SerializeObject(error);
+            TempData["Error"] = currentError;
+            return RedirectToAction(nameof(BaseController.Error), "Base");
+        }
+
+        protected IActionResult Error()
+        {
+            var error = DeserializeObject<Error>(TempData["Error"].ToString());
+            return View(error);
         }
 
         protected IActionResult RedirectToLocal(object baseObject)

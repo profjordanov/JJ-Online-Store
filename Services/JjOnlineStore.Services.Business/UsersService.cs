@@ -35,14 +35,14 @@ namespace JjOnlineStore.Services.Business
             };
             var creationResult = await _userManager.CreateAsync(user, model.Password);
 
-            if (creationResult.Succeeded)
+            if (!creationResult.Succeeded)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return Mapper.Map<RegisterServiceModel>(user).Some<RegisterServiceModel, Error>();
+                return Option.None<RegisterServiceModel, Error>(
+                    new Error(creationResult.Errors.Select(e => e.Description)));
             }
 
-            var creationResultErrors = string.Join(";", creationResult.Errors.Select(e => e.Description));
-            return Option.None<RegisterServiceModel, Error>(new Error(creationResultErrors));
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            return _mapper.Map<RegisterServiceModel>(user).Some<RegisterServiceModel, Error>();
         }
     }
 }
