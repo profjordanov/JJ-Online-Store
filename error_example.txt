@@ -1,0 +1,85 @@
+JS:
+
+jQuery(document).ready(function () {
+    var message, type;
+    if ($("#message_body").val()) {
+        message = $("#message_body").val();
+        type = $("#message_type").val();
+    } else {
+        message = "";
+        type = 0;
+    }
+    //alert("current err message is : " + message + "with type=" + type);
+    if (message == "")
+        return;
+
+    if (type == 1) {
+        $("#errStat").removeClass();
+        $("#errStat").addClass("alert-danger");
+    } else {
+        $("#errStat").removeClass();
+        $("#errStat").addClass("alert-success");
+    }
+
+    $("#errorDialogLabel").text(message);
+    $("#errorModal").modal({ show: true, backdrop: 'static', keyboard: false });
+});
+
+function clearValidationErrors() {
+    $('.field-validation-error').removeClass('field-validation-error').empty()
+        .addClass('field-validation-valid');
+}
+
+// First, checks if it isn't implemented yet.
+if (!String.prototype.format) {
+    String.prototype.format = function () {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function (match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number]
+                : match
+                ;
+        });
+    };
+}
+
+
+@* ---------- Params for error ---------- *@
+@Html.Partial("_ErrorParamsPartial")
+
+@using Resources
+
+@if (TempData[Global.MessageType] != null)
+{@Html.Hidden("message_type", TempData[Global.MessageType])}
+
+@if (TempData[Global.ErrorMessage] != null)
+{@Html.Hidden("message_body", TempData[Global.ErrorMessage])}
+
+
+
+
+
+@Html.Partial("_ErrorDialogPartial")
+
+<div class="modal fade in" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-header-custom">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="errorModalLabel"><span class="fa fa-info-circle fa-2x modal-icon"></span>Message</h4>
+            </div>
+            <div class="modal-body" id="errStat" style="text-align: center">
+                <br />
+                <label id="errorDialogLabel" class="fa-2x"></label>
+                <br />
+                <div class="row"></div>
+                <br />
+            </div>
+            <div class="modal-footer">
+                <div class="input-group-sm">
+                    <button type="button" class="btn imBtn orange" data-dismiss="modal">Close</button>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
