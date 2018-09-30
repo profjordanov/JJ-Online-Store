@@ -1,12 +1,13 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using JjOnlineStore.Common.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using JjOnlineStore.Services.Core;
-using JjOnlineStore.Services.Data;
+
+using static JjOnlineStore.Web.ViewPaths;
+using static JjOnlineStore.Common.GlobalConstants;
 
 namespace JjOnlineStore.Web.Controllers
 {
@@ -39,32 +40,28 @@ namespace JjOnlineStore.Web.Controllers
         /// </summary>
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
-        {
-            this.ViewData["ReturnUrl"] = returnUrl;
-            return this.View();
-        }
+        public IActionResult Register()
+            => View();
 
         /// POST: /Account/Login
         /// <summary>
         /// Register.
         /// </summary>
         /// <param name="model">The user model.</param>
-        /// <param name="returnUrl">Return Url</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register(RegisterViewModel model)
             => (await _usersService.Register(model))
                 .Match(RedirectToLocal, ErrorRegister);
 
         /// <summary>
         /// Shows errors from register action in fancybox.
         /// </summary>
-        /// <param name="error">Error.</param>
+        /// <param name="error">Error model</param>
         private IActionResult ErrorRegister(Error error)
         {
-            TempData["ErrorMessage"] = error.Messages.First();
-            return View("~/Views/Account/Register.cshtml");
+            TempData[ErrorMessage] = error.ToString();
+            return View(RegisterView);
         }
     }
 }

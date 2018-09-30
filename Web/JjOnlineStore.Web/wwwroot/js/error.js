@@ -11,6 +11,16 @@
         return;
     }
 
-    $("#errorDialog").text(message);
+    const messages = message.split(";");
+    const messageDiv = document.getElementById("messageDiv");
+    messageDiv.innerHTML = "";
+
+    for (let i = 0; i < messages.length; i++) {
+        const paragraph = document.createElement("P");
+        const currentMessage = document.createTextNode(messages[i]);
+        paragraph.appendChild(currentMessage);
+        messageDiv.appendChild(paragraph);
+    }
+
     $.fancybox("#error");
 });

@@ -1,4 +1,5 @@
-﻿@if (TempData["ErrorMessage"] != null)
+﻿@using static JjOnlineStore.Common.GlobalConstants;
+@if (TempData[ErrorMessage] != null)
 {
-    @Html.Hidden("MessageBody", TempData["ErrorMessage"])
+    @Html.Hidden("MessageBody", TempData[ErrorMessage])
 }

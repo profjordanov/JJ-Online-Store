@@ -20,6 +20,9 @@ namespace JjOnlineStore.Common.ViewModels
         public IReadOnlyList<string> Messages { get; }
 
         public DateTime Date { get; }
+
+        public override string ToString()
+            => string.Join(";", Messages);
     }
 
 }
