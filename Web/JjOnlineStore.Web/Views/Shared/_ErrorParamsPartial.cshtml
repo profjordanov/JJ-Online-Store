@@ -1,0 +1,4 @@
+﻿@if (TempData["ErrorMessage"] != null)
+{
+    @Html.Hidden("MessageBody", TempData["ErrorMessage"])
+}

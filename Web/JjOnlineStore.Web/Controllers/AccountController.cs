@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using JjOnlineStore.Common.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -54,6 +55,16 @@ namespace JjOnlineStore.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
             => (await _usersService.Register(model))
-                .Match(RedirectToLocal, RedirectToError);
+                .Match(RedirectToLocal, ErrorRegister);
+
+        /// <summary>
+        /// Shows errors from register action in fancybox.
+        /// </summary>
+        /// <param name="error">Error.</param>
+        private IActionResult ErrorRegister(Error error)
+        {
+            TempData["ErrorMessage"] = error.Messages.First();
+            return View("~/Views/Account/Register.cshtml");
+        }
     }
 }

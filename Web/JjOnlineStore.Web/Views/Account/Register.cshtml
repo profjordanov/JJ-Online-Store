@@ -6,6 +6,10 @@
 
 <h2>@this.ViewData["Title"].</h2>
 
+@* ---------- Params for error ---------- *@
+<partial name="_ErrorParamsPartial" />
+<partial name="_ErrorDialogPartial" />
+
 <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@this.ViewData["ReturnUrl"]" method="post" class="form-horizontal">
     <h4>Create a new account.</h4>
     <hr />
@@ -40,4 +44,5 @@
 
 @section Scripts {
     @{ await this.Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="~/js/error.js" asp-append-version="true"></script>
 }
