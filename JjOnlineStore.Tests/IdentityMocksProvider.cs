@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using JjOnlineStore.Data.Entities;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Moq;
 
 namespace JjOnlineStore.Tests
@@ -12,5 +16,14 @@ namespace JjOnlineStore.Tests
             return new Mock<UserManager<ApplicationUser>>(
                 userStoreMock.Object, null, null, null, null, null, null, null, null);
         }
+
+        public static Mock<SignInManager<ApplicationUser>> GetMockSignInManager()
+            => new Mock<SignInManager<ApplicationUser>>(
+                GetMockUserManager(),
+                new Mock<IHttpContextAccessor>().Object,
+                new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object,
+                new Mock<IOptions<IdentityOptions>>().Object,
+                new Mock<ILogger<SignInManager<ApplicationUser>>>().Object,
+                new Mock<IAuthenticationSchemeProvider>().Object);
     }
 }
