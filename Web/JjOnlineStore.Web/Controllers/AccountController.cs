@@ -57,7 +57,7 @@ namespace JjOnlineStore.Web.Controllers
         /// <summary>
         /// Shows errors from register action in fancybox.
         /// </summary>
-        /// <param name="error">Error model</param>
+        /// <param name="error">Error model.</param>
         private IActionResult ErrorRegister(Error error)
         {
             TempData[ErrorMessage] = error.ToString();
