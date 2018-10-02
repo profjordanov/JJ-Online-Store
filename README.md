@@ -15,8 +15,15 @@
 │   ├───JjOnlineStore.Services.Business
 │   ├───JjOnlineStore.Services.Data
 │   └───JjOnlineStore.Services.Core
-├───Services
-│   ├───JjOnlineStore.Services.Business
-│   ├───JjOnlineStore.Services.Data
-│   └───JjOnlineStore.Services.Core
+├───Data
+│   ├───JjOnlineStore.Data.EF
+│   ├───JjOnlineStore.Data.Entities
+│   └───JjOnlineStore.Data
+├───Data
+│   ├───JjOnlineStore.Data.EF
+│   ├───JjOnlineStore.Data.Entities
+│   └───JjOnlineStore.Data
+├───JjOnlineStore.Common
+└───Tests
+    └───JjOnlineStore.Tests
 ```
