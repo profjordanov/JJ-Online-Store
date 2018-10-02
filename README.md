@@ -19,10 +19,6 @@
 │   ├───JjOnlineStore.Data.EF
 │   ├───JjOnlineStore.Data.Entities
 │   └───JjOnlineStore.Data
-├───Data
-│   ├───JjOnlineStore.Data.EF
-│   ├───JjOnlineStore.Data.Entities
-│   └───JjOnlineStore.Data
 ├───JjOnlineStore.Common
 └───Tests
     └───JjOnlineStore.Tests
