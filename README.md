@@ -15,4 +15,8 @@
 │   ├───JjOnlineStore.Services.Business
 │   ├───JjOnlineStore.Services.Data
 │   └───JjOnlineStore.Services.Core
+├───Services
+│   ├───JjOnlineStore.Services.Business
+│   ├───JjOnlineStore.Services.Data
+│   └───JjOnlineStore.Services.Core
 ```
