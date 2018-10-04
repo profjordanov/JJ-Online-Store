@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using JjOnlineStore.Data.Entities;
+﻿using JjOnlineStore.Data.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
@@ -19,7 +19,7 @@ namespace JjOnlineStore.Tests
 
         public static Mock<SignInManager<ApplicationUser>> GetMockSignInManager()
             => new Mock<SignInManager<ApplicationUser>>(
-                GetMockUserManager(),
+                null,
                 new Mock<IHttpContextAccessor>().Object,
                 new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,

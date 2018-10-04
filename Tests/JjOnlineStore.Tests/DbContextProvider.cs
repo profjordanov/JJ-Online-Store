@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using JjOnlineStore.Data.EF;
+﻿using JjOnlineStore.Data.EF;
+using Microsoft.EntityFrameworkCore;
 
 namespace JjOnlineStore.Tests
 {
