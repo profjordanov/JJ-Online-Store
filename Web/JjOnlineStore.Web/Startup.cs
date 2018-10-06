@@ -87,7 +87,7 @@ namespace JjOnlineStore.Web
                 app.UseHsts();
             }
 
-	        loggerFactory.AddLogging(Configuration.GetSection("Logging")); //TODO: Looging section
+	        loggerFactory.AddLogging(Configuration.GetSection("Logging"));
 
 			app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -97,6 +97,11 @@ namespace JjOnlineStore.Web
 
 			app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=BaseAdmin}/{action=Index}/{id?}"
+                );
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
