@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using JjOnlineStore.Common.ViewModels;
+using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
+using JjOnlineStore.Services.Business._Base;
 using JjOnlineStore.Services.Core;
 using JjOnlineStore.Services.Data;
 using Microsoft.AspNetCore.Identity;
@@ -10,21 +12,23 @@ using Optional;
 
 namespace JjOnlineStore.Services.Business
 {
-    public class UsersService : IUsersService
+    public class UsersService : BaseService, IUsersService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IMapper _mapper;
-
         public UsersService(
+            JjOnlineStoreDbContext dbContext,
             UserManager<ApplicationUser> userManager, 
             SignInManager<ApplicationUser> signInManager, 
-            IMapper mapper)
+            IMapper mapper) 
+            : base(dbContext)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _mapper = mapper;
+            UserManager = userManager;
+            SignInManager = signInManager;
+            Mapper = mapper;
         }
+
+        protected UserManager<ApplicationUser> UserManager;
+        protected SignInManager<ApplicationUser> SignInManager;
+        protected IMapper Mapper;
 
         public async Task<Option<RegisterServiceModel, Error>> Register(RegisterViewModel model)
         {
@@ -33,7 +37,7 @@ namespace JjOnlineStore.Services.Business
                 UserName = model.Email,
                 Email = model.Email
             };
-            var creationResult = await _userManager.CreateAsync(user, model.Password);
+            var creationResult = await UserManager.CreateAsync(user, model.Password);
 
             if (!creationResult.Succeeded)
             {
@@ -41,8 +45,8 @@ namespace JjOnlineStore.Services.Business
                     new Error(creationResult.Errors.Select(e => e.Description)));
             }
 
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            return _mapper.Map<RegisterServiceModel>(user).Some<RegisterServiceModel, Error>();
+            await SignInManager.SignInAsync(user, isPersistent: false);
+            return Mapper.Map<RegisterServiceModel>(user).Some<RegisterServiceModel, Error>();
         }
     }
 }
