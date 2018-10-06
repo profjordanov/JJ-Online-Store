@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Business;
+using JjOnlineStore.Services.Business.Admin;
 using JjOnlineStore.Services.Core;
+using JjOnlineStore.Services.Core.Admin;
 
 namespace JjOnlineStore.Web.Infrastructure
 {
@@ -49,6 +51,7 @@ namespace JjOnlineStore.Web.Infrastructure
 	    public static void AddApplicationServices(this IServiceCollection services)
 	    {
 	        services.AddTransient<IUsersService, UsersService>();
+	        services.AddTransient<IAdminCategoryService, AdminCategoryService>();
         }
     }
 }

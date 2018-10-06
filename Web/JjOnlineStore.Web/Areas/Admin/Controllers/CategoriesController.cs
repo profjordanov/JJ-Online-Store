@@ -8,6 +8,6 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
 {
     public class CategoriesController : BaseAdminController
     {
-
+        //AdminCategoryService
     }
 }
