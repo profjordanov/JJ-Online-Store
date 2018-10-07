@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CategoryViewModel>
+
+@{
+    ViewBag.Title = "All";
+}
+
+@Html.ActionLink("Add Category", "Create")
+
+<h2>All Categories</h2>
+
+<hr />
+<br />
+
+<table class="table table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.Id)</th>
+        <th>@Html.DisplayNameFor(m => m.Name)</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Name)
+            </td>
+            <td>
+                <button class="btn btn-warning btn-sm"></button>
+            </td>
+            <td>
+                <button class="btn btn-danger btn-sm"></button>
+            </td>
+        </tr>
+    }
+</table>

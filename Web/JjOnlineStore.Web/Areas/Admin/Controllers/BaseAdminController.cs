@@ -11,5 +11,12 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
         {
             return View();
         }
-    }
+
+        /// <summary>
+        /// Redirects to /Admin/Categories/All
+        /// </summary>
+        /// <param name="baseObject">Some object</param>
+        protected IActionResult RedirectToCategoryLocal(object baseObject)
+            => RedirectToAction(nameof(CategoriesController.All), "Categories", new { Area = AdminArea });
+}
 }
