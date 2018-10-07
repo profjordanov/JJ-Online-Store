@@ -10,6 +10,8 @@ using Moq;
 using Shouldly;
 using Xunit;
 
+using static JjOnlineStore.Tests.DbContextProvider;
+
 namespace JjOnlineStore.Tests.Services
 {
     public class UsersServiceTests
@@ -26,6 +28,7 @@ namespace JjOnlineStore.Tests.Services
             _signInManagerMock = IdentityMocksProvider.GetMockSignInManager();
 
             _usersService = new UsersService(
+                GetInMemoryDbContext(),
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
                 _mapperMock.Object);

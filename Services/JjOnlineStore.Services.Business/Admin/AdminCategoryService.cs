@@ -1,7 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Threading.Tasks;
+using AutoMapper;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Services.Business._Base;
 using JjOnlineStore.Services.Core.Admin;
+using Microsoft.EntityFrameworkCore;
 
 namespace JjOnlineStore.Services.Business.Admin
 {
@@ -14,5 +16,10 @@ namespace JjOnlineStore.Services.Business.Admin
         }
 
         protected IMapper Mapper { get; }
+
+        private async Task<bool> ExistsByName(string name)
+            => await DbContext
+                .Categories
+                .AnyAsync(c => c.Name == name);
     }
 }
