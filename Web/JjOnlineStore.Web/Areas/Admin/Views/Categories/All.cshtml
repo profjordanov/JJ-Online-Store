@@ -4,7 +4,9 @@
     ViewBag.Title = "All";
 }
 
-@Html.ActionLink("Add Category", "Create")
+<br />
+
+@Html.ActionLink("Add Category", "Create","Categories" , null, new { @class = "btn btn-primary btn-lg" })
 
 <h2>All Categories</h2>
 
@@ -28,10 +30,10 @@
                 @Html.DisplayFor(m => item.Name)
             </td>
             <td>
-                <button class="btn btn-warning btn-sm"></button>
+                <button class="btn btn-warning btn-sm">EDIT</button>
             </td>
             <td>
-                <button class="btn btn-danger btn-sm"></button>
+                <button class="btn btn-danger btn-sm">DELETE</button>
             </td>
         </tr>
     }
