@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Optional;
 
-namespace JjOnlineStore.Web.Infrastructure.Extensions
+namespace JjOnlineStore.Extensions
 {
     public static class OptionExtensions
     {

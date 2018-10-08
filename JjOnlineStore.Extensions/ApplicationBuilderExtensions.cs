@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using JjOnlineStore.Data.EF;
-using JjOnlineStore.Data.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using JjOnlineStore.Data.EF;
+using JjOnlineStore.Data.Entities;
 
 using static JjOnlineStore.Common.GlobalConstants;
 
-namespace JjOnlineStore.Web.Infrastructure.Extensions
+namespace JjOnlineStore.Extensions
 {
     public static class ApplicationBuilderExtensions
     {
