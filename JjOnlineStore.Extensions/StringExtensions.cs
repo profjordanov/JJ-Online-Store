@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using JjOnlineStore.Common.ViewModels;
 
-namespace JjOnlineStore.Web.Infrastructure.Extensions
+namespace JjOnlineStore.Extensions
 {
     public static class StringExtensions
     {

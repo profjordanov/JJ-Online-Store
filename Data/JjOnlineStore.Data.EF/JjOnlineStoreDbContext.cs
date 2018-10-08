@@ -3,11 +3,11 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using JjOnlineStore.Data.Entities;
-using JjOnlineStore.Data.Entities.Base;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using JjOnlineStore.Data.Entities;
+using JjOnlineStore.Data.Entities.Base;
 
 namespace JjOnlineStore.Data.EF
 {

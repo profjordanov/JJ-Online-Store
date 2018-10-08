@@ -359,6 +359,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\JjOnlineStore.Data.EF\JjOnlineStore.Data.EF.csproj" />
+    <ProjectReference Include="..\..\JjOnlineStore.Extensions\JjOnlineStore.Extensions.csproj" />
     <ProjectReference Include="..\JjOnlineStore.Web.Infrastructure\JjOnlineStore.Web.Infrastructure.csproj" />
   </ItemGroup>
 

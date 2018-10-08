@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using JjOnlineStore.Web.Infrastructure;
 using JjOnlineStore.Data.EF;
-using JjOnlineStore.Web.Infrastructure.Extensions;
+using JjOnlineStore.Extensions;
 
 namespace JjOnlineStore.Web
 {
@@ -70,7 +70,11 @@ namespace JjOnlineStore.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory , JjOnlineStoreDbContext dbContext)
+        public void Configure(
+            IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory , 
+            JjOnlineStoreDbContext dbContext)
         {
             // Database migrations
             app.UseDatabaseMigration();
