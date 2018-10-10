@@ -6,7 +6,7 @@
 
 <br />
 
-@Html.ActionLink("Add Category", "Create","Categories" , null, new { @class = "btn btn-primary btn-lg" })
+@Html.ActionLink("Add Category", "Create", "Categories", null, new { @class = "btn btn-primary btn-lg" })
 
 <h2>All Categories</h2>
 
@@ -38,3 +38,9 @@
         </tr>
     }
 </table>
+
+@section Scripts {
+    @{await this.Html.RenderPartialAsync("_DeleteWarningPartial");
+      await this.Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    <script src="~/js/error.js" asp-append-version="true"></script>
+}
