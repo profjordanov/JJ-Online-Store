@@ -1,8 +1,12 @@
 ﻿@model IEnumerable<CategoryViewModel>
 
 @{
-    ViewBag.Title = "All";
+    ViewBag.Title = "All Categories";
 }
+
+<script>
+    var deleteCategoryUrl = "@Url.Action("Delete", "Categories", new { Area = "Admin" })";
+</script>
 
 <br />
 

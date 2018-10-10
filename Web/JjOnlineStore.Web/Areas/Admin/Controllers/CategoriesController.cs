@@ -40,6 +40,13 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
             => (await _adminCategoryService.CreateCategoryAsync(model.Name))
                 .Match(RedirectToCategoryLocal, ErrorCreate);
 
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromQuery] long categoryId)
+        {
+            var x = categoryId; //TODO: SET TO DELETED
+            return null;
+        }
+
         /// <summary>
         /// Shows errors from create action in fancybox.
         /// </summary>
