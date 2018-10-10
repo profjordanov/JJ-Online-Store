@@ -33,7 +33,9 @@
                 <button class="btn btn-warning btn-sm">EDIT</button>
             </td>
             <td>
-                <button class="btn btn-danger btn-sm">DELETE</button>
+                <button class="btn btn-danger btn-sm" onclick="showDeleteWarning(@item.Id)">
+                    DELETE
+                </button>
             </td>
         </tr>
     }
@@ -42,5 +44,5 @@
 @section Scripts {
     @{await this.Html.RenderPartialAsync("_DeleteWarningPartial");
       await this.Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-    <script src="~/js/error.js" asp-append-version="true"></script>
+    <script src="~/js/Business/delete.category.js" asp-append-version="true"></script>
 }

@@ -184,7 +184,6 @@
 
   <ItemGroup>
     <Folder Include="CustomTemplate\" />
-    <Folder Include="wwwroot\js\Business\" />
   </ItemGroup>
 
   <ItemGroup>
