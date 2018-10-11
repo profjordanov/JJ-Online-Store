@@ -11,7 +11,13 @@
             method: "DELETE",
             url: deleteUrl
         };
-
-        $.ajax(request);
+        $.fancybox.close();
+        $.ajax(request)
+            .then(() => {
+                location.reload(true);
+            });
+    });
+    $("#cancelBtn").click(() => {
+        $.fancybox.close();
     });
 })(deleteCategoryUrl);

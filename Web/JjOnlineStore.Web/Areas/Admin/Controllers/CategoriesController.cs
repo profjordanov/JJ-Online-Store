@@ -44,7 +44,7 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Delete([FromQuery] long categoryId)
         {
             var x = categoryId; //TODO: SET TO DELETED
-            return null;
+            return RedirectToAction("Create");
         }
 
         /// <summary>
