@@ -1,5 +1,4 @@
 Encode Query Data Example:
-
 =====================================================================================
 function getKeyValueDataByAjax(keyImplementationId, callback) {
 	const querydata = {
