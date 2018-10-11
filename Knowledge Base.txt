@@ -1,0 +1,21 @@
+Encode Query Data Example:
+
+=====================================================================================
+function getKeyValueDataByAjax(keyImplementationId, callback) {
+	const querydata = {
+		keyImplementationId: keyImplementationId
+	};
+
+	const url = getValuesByKeyImplementationIdUrl + encodeQueryData(querydata);
+
+	$.ajax({
+		type: "GET",
+		async: true,
+		url: url,
+		contentType: "application/json",
+		dataType: "json",
+		success: callback,
+		error: onError
+	});
+};
+=====================================================================================
