@@ -29,7 +29,7 @@ namespace JjOnlineStore.Services.Business.Admin
         public async Task<IEnumerable<CategoryViewModel>> AllAsync()
             => await DbContext
                 .Categories
-                .ProjectTo<CategoryViewModel>(Mapper.ConfigurationProvider)
+                .ProjectTo<CategoryViewModel>(Mapper.ConfigurationProvider) //TODO: Without deleted
                 .ToListAsync();
 
         public async Task<Option<CategoryViewModel, Error>> CreateCategoryAsync(string name)
