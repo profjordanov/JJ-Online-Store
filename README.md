@@ -20,6 +20,7 @@
 │   ├───JjOnlineStore.Data.Entities
 │   └───JjOnlineStore.Data
 ├───JjOnlineStore.Common
+├───JjOnlineStore.Extensions
 └───Tests
     └───JjOnlineStore.Tests
 ```
