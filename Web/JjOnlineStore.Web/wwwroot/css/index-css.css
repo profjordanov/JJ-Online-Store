@@ -541,8 +541,8 @@ header{
 /*END .foot-bottom*/
 
 /*START .main-slider*/
-.main-slider{
-    background: url("../img/homepage/main-banner.png") no-repeat;
+.main-slider {
+    background: url("../images/homepage/main-banner.png") no-repeat;
     background-size: cover;
     height: 500px;
 }
@@ -595,7 +595,7 @@ header{
 
 /*START .top-product*/
 .top-product{
-    background: url("../img/homepage/main-banner-2.png");
+    background: url("../images/homepage/main-banner-2.png");
     background-repeat: no-repeat;
     width: 100%;
     height: 250px;
