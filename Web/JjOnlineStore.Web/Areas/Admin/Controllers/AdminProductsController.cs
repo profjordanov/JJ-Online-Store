@@ -24,12 +24,12 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
             _adminProductsService = adminProductsService;
         }
 
-        // GET: Admin/AdminProducts
+        /// GET: Admin/AdminProducts
+        /// <summary>
+        /// Returns all products without deleted.
+        /// </summary>
         public async Task<IActionResult> Index()
-        {
-            var data = await _adminProductsService.AllWithoutDeletedAsync();
-            return View(data);
-        }
+            => View(await _adminProductsService.AllWithoutDeletedAsync());
 
         // GET: Admin/AdminProducts/Details/5
         public async Task<IActionResult> Details(long? id)

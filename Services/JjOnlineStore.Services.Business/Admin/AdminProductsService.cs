@@ -23,16 +23,11 @@ namespace JjOnlineStore.Services.Business.Admin
         protected IMapper Mapper { get; }
 
         public async Task<IEnumerable<ProductViewModel>> AllWithoutDeletedAsync()
-        {
-            var query = await DbContext
+            => await DbContext
                 .Products
                 .Where(p => !p.IsDeleted)
                 .Include(p => p.Category)
+                .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
                 .ToListAsync();
-
-            var result = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query);
-
-            return result;
-        }
     }
 }
