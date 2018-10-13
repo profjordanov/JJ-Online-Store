@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace JjOnlineStore.Common.Enumeration
+﻿namespace JjOnlineStore.Common.Enumeration
 {
-    [Flags]
     public enum Size
     {
         S  = 1,

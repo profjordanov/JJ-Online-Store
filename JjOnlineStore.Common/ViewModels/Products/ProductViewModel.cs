@@ -34,6 +34,7 @@ namespace JjOnlineStore.Common.ViewModels.Products
 
         public string Details { get; set; }
 
+        [Display(Name = "Category")]
         public long CategoryId { get; set; }
 
         [Required(ErrorMessage = "Please, specify a category.")]

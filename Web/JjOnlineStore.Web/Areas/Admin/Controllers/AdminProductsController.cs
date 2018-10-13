@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JjOnlineStore.Common.ViewModels.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -15,13 +16,16 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
     {
         private readonly JjOnlineStoreDbContext _context;
         private readonly IAdminProductsService _adminProductsService;
+        private readonly IAdminCategoryService _adminCategoryService;
 
         public AdminProductsController(
             JjOnlineStoreDbContext context, 
-            IAdminProductsService adminProductsService)
+            IAdminProductsService adminProductsService,
+            IAdminCategoryService adminCategoryService)
         {
             _context = context;
             _adminProductsService = adminProductsService;
+            _adminCategoryService = adminCategoryService;
         }
 
         /// GET: Admin/AdminProducts
@@ -51,9 +55,9 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminProducts/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["Categories"] = new SelectList(await _adminCategoryService.AllAsync(), "Id", "Name");
             return View();
         }
 
@@ -62,7 +66,7 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Price,Base64Image,IsAvailable,Size,Color,Type,Details,CategoryId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Product product)
+        public async Task<IActionResult> Create([Bind("Name,Description,Price,Base64Image,IsAvailable,Size,Color,Type,Details,CategoryId")] ProductViewModel product)
         {
             if (!ModelState.IsValid)
             {
