@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using JjOnlineStore.Common.Enumeration;
-using JjOnlineStore.Data.Entities.Base;
+using JjOnlineStore.Common.ViewModels.Admin.Categories;
 
-namespace JjOnlineStore.Data.Entities
+namespace JjOnlineStore.Common.ViewModels.Products
 {
-    public class Product : BaseDeletableModel<long>
+    public class ProductViewModel
     {
+        public long Id { get; set; }
+
         [Required(ErrorMessage = "Please enter a name.")]
         public string Name { get; set; }
 
@@ -33,8 +34,6 @@ namespace JjOnlineStore.Data.Entities
         public long CategoryId { get; set; }
 
         [Required(ErrorMessage = "Please, specify a category.")]
-        public virtual Category Category { get; set; }
-
-        public virtual ICollection<CartItem> CartItems { get; set; } = new HashSet<CartItem>();
+        public virtual CategoryViewModel Category { get; set; }
     }
 }

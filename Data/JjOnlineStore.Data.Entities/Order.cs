@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using JjOnlineStore.Common.Enumeration;
 using JjOnlineStore.Data.Entities.Base;
-using JjOnlineStore.Data.Entities.Enumeration;
 
 namespace JjOnlineStore.Data.Entities
 {

@@ -7,23 +7,28 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
+using JjOnlineStore.Services.Core.Admin;
 
 namespace JjOnlineStore.Web.Areas.Admin.Controllers
 {
     public class AdminProductsController : BaseAdminController
     {
         private readonly JjOnlineStoreDbContext _context;
+        private readonly IAdminProductsService _adminProductsService;
 
-        public AdminProductsController(JjOnlineStoreDbContext context)
+        public AdminProductsController(
+            JjOnlineStoreDbContext context, 
+            IAdminProductsService adminProductsService)
         {
             _context = context;
+            _adminProductsService = adminProductsService;
         }
 
         // GET: Admin/AdminProducts
         public async Task<IActionResult> Index()
         {
-            var jjOnlineStoreDbContext = _context.Products.Include(p => p.Category);
-            return View(await jjOnlineStoreDbContext.ToListAsync());
+            var data = await _adminProductsService.AllWithoutDeletedAsync();
+            return View(data);
         }
 
         // GET: Admin/AdminProducts/Details/5
