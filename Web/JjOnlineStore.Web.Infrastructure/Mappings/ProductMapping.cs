@@ -8,7 +8,8 @@ namespace JjOnlineStore.Web.Infrastructure.Mappings
     {
         public ProductMapping()
         {
-            CreateMap<Product, ProductViewModel>(MemberList.Destination);
+            CreateMap<Product, ProductViewModel>(MemberList.Destination)
+                .ForMember(dest => dest.ShortDescription, src => src.Ignore());
         }
     }
 }

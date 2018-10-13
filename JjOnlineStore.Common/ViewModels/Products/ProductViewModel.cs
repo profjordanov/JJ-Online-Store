@@ -14,6 +14,9 @@ namespace JjOnlineStore.Common.ViewModels.Products
         [Required(ErrorMessage = "Please enter a description.")]
         public string Description { get; set; }
 
+        public string ShortDescription
+            => $"{Description.Substring(0, 20)}...";
+
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Please, enter a positive price.")]
         public decimal Price { get; set; }
