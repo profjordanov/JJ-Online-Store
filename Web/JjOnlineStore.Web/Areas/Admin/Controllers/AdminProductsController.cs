@@ -68,14 +68,8 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Name,Description,Price,Base64Image,IsAvailable,Size,Color,Type,Details,CategoryId")] ProductViewModel product)
         {
-            if (!ModelState.IsValid)
-            {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
-            return View(product);
+            await _adminProductsService.CreateAsync(product);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Admin/AdminProducts/Edit/5

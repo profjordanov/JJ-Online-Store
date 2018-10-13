@@ -10,6 +10,8 @@ namespace JjOnlineStore.Web.Infrastructure.Mappings
         {
             CreateMap<Product, ProductViewModel>(MemberList.Destination)
                 .ForMember(dest => dest.ShortDescription, src => src.Ignore());
+
+            CreateMap<ProductViewModel, Product>(MemberList.Source);
         }
     }
 }

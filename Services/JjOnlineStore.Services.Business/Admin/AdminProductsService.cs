@@ -29,5 +29,12 @@ namespace JjOnlineStore.Services.Business.Admin
                 .Include(p => p.Category)
                 .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
                 .ToListAsync();
+
+        public async Task CreateAsync(ProductViewModel model)
+        {
+            var product = Mapper.Map<Product>(model);
+            await DbContext.Products.AddAsync(product);
+            await DbContext.SaveChangesAsync();
+        }
     }
 }

@@ -7,5 +7,7 @@ namespace JjOnlineStore.Services.Core.Admin
     public interface IAdminProductsService
     {
         Task<IEnumerable<ProductViewModel>> AllWithoutDeletedAsync();
+
+        Task CreateAsync(ProductViewModel model);
     }
 }
