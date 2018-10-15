@@ -1,8 +1,5 @@
-﻿using System;
-
-namespace JjOnlineStore.Data.Entities.Enumeration
+﻿namespace JjOnlineStore.Common.Enumeration
 {
-    [Flags]
     public enum ProductType
     {
         Ordinary = 1,

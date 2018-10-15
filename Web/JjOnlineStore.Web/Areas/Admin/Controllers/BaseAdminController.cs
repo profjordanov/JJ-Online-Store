@@ -7,7 +7,7 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
     [Area(AdminArea)]
     public class BaseAdminController : Controller
     {
-        public IActionResult Index()
+        public IActionResult BaseIndex()
         {
             return View();
         }
