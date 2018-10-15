@@ -92,37 +92,19 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
         // POST: Admin/AdminProducts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost] //HTTPPUT
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Name,Description,Price,Base64Image,IsAvailable,Size,Color,Type,Details,CategoryId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Product product)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,Description,Price,Base64Image,IsAvailable,Size,Color,Type,Details,CategoryId")] Product product)
         {
             if (id != product.Id)
             {
                 return NotFound();
             }
+            product.ModifiedOn = DateTime.UtcNow;
+            _context.Update(product);
+            await _context.SaveChangesAsync();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
-            return View(product);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Admin/AdminProducts/Delete/5
