@@ -1,6 +1,6 @@
-﻿namespace JjOnlineStore.Services.Data
+﻿namespace JjOnlineStore.Services.Data.Users
 {
-    public class RegisterServiceModel
+    public class UserServiceModel
     {
         public string Id { get; set; }
 

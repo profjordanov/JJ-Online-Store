@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Data;
+using JjOnlineStore.Services.Data.Users;
 
 namespace JjOnlineStore.Web.Infrastructure.Mappings
 {
@@ -8,7 +9,7 @@ namespace JjOnlineStore.Web.Infrastructure.Mappings
     {
         public UsersMapping()
         {
-            CreateMap<ApplicationUser, RegisterServiceModel>(MemberList.Destination);
+            CreateMap<ApplicationUser, UserServiceModel>(MemberList.Destination);
         }
     }
 }

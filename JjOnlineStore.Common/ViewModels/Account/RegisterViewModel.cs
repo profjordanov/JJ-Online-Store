@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JjOnlineStore.Common.ViewModels
+namespace JjOnlineStore.Common.ViewModels.Account
 {
     public class RegisterViewModel
     {
