@@ -11,5 +11,6 @@ namespace JjOnlineStore.Services.Core
     {
         Task<Option<UserServiceModel, Error>> LoginAsync(CredentialsModel model);
         Task<Option<UserServiceModel, Error>> Register(RegisterViewModel model);
+        Task SignOutAsync();
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
-using JjOnlineStore.Common.ViewModels;
-using JjOnlineStore.Common.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using JjOnlineStore.Services.Core;
+using JjOnlineStore.Common.ViewModels;
+using JjOnlineStore.Common.ViewModels.Account;
 
 using static JjOnlineStore.Web.ViewPaths;
 using static JjOnlineStore.Common.GlobalConstants;
@@ -82,6 +82,17 @@ namespace JjOnlineStore.Web.Controllers
         {
             TempData[ErrorMessage] = error.ToString();
             return View(RegisterView);
+        }
+
+        /// <summary>
+        /// Logout
+        /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _usersService.SignOutAsync();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

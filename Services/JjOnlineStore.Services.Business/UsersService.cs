@@ -1,17 +1,16 @@
-﻿using System.Linq;
+﻿using AutoMapper;
+using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Optional;
 using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Common.ViewModels.Account;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
-using JjOnlineStore.Extensions;
 using JjOnlineStore.Services.Business._Base;
 using JjOnlineStore.Services.Core;
-using JjOnlineStore.Services.Data;
 using JjOnlineStore.Services.Data.Users;
-using Microsoft.AspNetCore.Identity;
-using Optional;
+using JjOnlineStore.Extensions;
 
 namespace JjOnlineStore.Services.Business
 {
@@ -47,7 +46,7 @@ namespace JjOnlineStore.Services.Business
         {
             var user = new ApplicationUser
             {
-                UserName = model.Email,
+                UserName = model.UserName,
                 Email = model.Email
             };
             var creationResult = await UserManager.CreateAsync(user, model.Password);
@@ -61,5 +60,8 @@ namespace JjOnlineStore.Services.Business
             await SignInManager.SignInAsync(user, isPersistent: false);
             return Mapper.Map<UserServiceModel>(user).Some<UserServiceModel, Error>();
         }
+
+        public async Task SignOutAsync()
+            => await SignInManager.SignOutAsync();
     }
 }
