@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JjOnlineStore.Common.ViewModels
+namespace JjOnlineStore.Common.ViewModels.Account
 {
-    public class RegisterViewModel
+    public class CredentialsModel
     {
         [Required]
         [EmailAddress]
@@ -14,10 +14,5 @@ namespace JjOnlineStore.Common.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
     }
 }

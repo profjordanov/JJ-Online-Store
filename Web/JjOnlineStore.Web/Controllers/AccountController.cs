@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
-using JjOnlineStore.Common.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using JjOnlineStore.Services.Core;
+using JjOnlineStore.Common.ViewModels;
+using JjOnlineStore.Common.ViewModels.Account;
 
 using static JjOnlineStore.Web.ViewPaths;
 using static JjOnlineStore.Common.GlobalConstants;
@@ -29,9 +30,28 @@ namespace JjOnlineStore.Web.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
-            this.ViewData["ReturnUrl"] = returnUrl;
-            return this.View();
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+
+        /// POST: /Account/Login
+        /// <summary>
+        /// Login.
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> Login(CredentialsModel model)
+            => (await _usersService.LoginAsync(model))
+                .Match(RedirectToLocal, ErrorLogin);
+
+        /// <summary>
+        /// Shows possible errors from login action in fancybox.
+        /// </summary>
+        /// <param name="error">Error model.</param>
+        private IActionResult ErrorLogin(Error error)
+        {
+            TempData[ErrorMessage] = error.ToString();
+            return View(LoginView);
         }
 
         /// GET: /Account/Register
@@ -62,6 +82,17 @@ namespace JjOnlineStore.Web.Controllers
         {
             TempData[ErrorMessage] = error.ToString();
             return View(RegisterView);
+        }
+
+        /// <summary>
+        /// Logout
+        /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _usersService.SignOutAsync();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using AutoFixture.Xunit2;
 using AutoMapper;
 using JjOnlineStore.Common.ViewModels;
+using JjOnlineStore.Common.ViewModels.Account;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Business;
 using Microsoft.AspNetCore.Identity;
