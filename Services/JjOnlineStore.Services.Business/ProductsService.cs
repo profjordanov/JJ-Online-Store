@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Optional;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using JjOnlineStore.Common.ViewModels.Products;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Services.Business._Base;
 using JjOnlineStore.Services.Core;
-using Microsoft.EntityFrameworkCore;
+using JjOnlineStore.Common.ViewModels;
+using JjOnlineStore.Extensions;
 
 namespace JjOnlineStore.Services.Business
 {
@@ -28,5 +31,14 @@ namespace JjOnlineStore.Services.Business
                 .Include(p => p.Category)
                 .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
                 .ToListAsync();
+
+        public async Task<Option<ProductViewModel, Error>> GetByIdAsync(long id)
+            => await DbContext
+            .Products
+            .Include(p => p.Category)
+            .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
+            .FirstOrDefaultAsync(p => p.Id == id)
+            .SomeNotNull($"There is no product with id = {id}.".ToError());
+
     }
 }

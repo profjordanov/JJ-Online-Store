@@ -5,7 +5,13 @@
 
 @section Scripts{
     <script src="~/js/slider.js"></script>
+    <script src="~/js/error.js" asp-append-version="true"></script>
 }
+
+@* ---------- Params for error ---------- *@
+@await Html.PartialAsync("_ErrorParamsPartial")
+@await Html.PartialAsync("_ErrorDialogPartial")
+
 
 <main class="row">
     <p><span>Home &rsaquo; </span>@ViewBag.Title</p>
@@ -143,7 +149,7 @@
 
                 <div class="item-description col-md-6 col-sm-6 col-xs-12">
                     <p class="item-type">@product.Category.Name</p>
-                    <p class="item-name">@product.Name</p>
+                    <a asp-action="Details" asp-route-id="@product.Id" class="item-name">@product.Name</a>
                     <p class="item-rating">
                         <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span>
                         <span class="item-reviews">5 Review(s)</span>
