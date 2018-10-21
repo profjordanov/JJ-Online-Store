@@ -53,6 +53,7 @@ namespace JjOnlineStore.Web.Infrastructure
 	        services.AddTransient<IUsersService, UsersService>();
 	        services.AddTransient<IAdminCategoryService, AdminCategoryService>();
 	        services.AddTransient<IAdminProductsService, AdminProductsService>();
+	        services.AddTransient<IProductsService, ProductsService>();
 	    }
     }
 }
