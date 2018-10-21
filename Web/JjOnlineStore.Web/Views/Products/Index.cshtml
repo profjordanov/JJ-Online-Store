@@ -3,6 +3,10 @@
     ViewData["Title"] = "Products";
 }
 
+@section Scripts{
+    <script src="~/js/slider.js"></script>
+}
+
 <main class="row">
     <p><span>Home &rsaquo; </span>@ViewBag.Title</p>
 
@@ -13,19 +17,19 @@
                 <li>
                     <label for="all-t-shirts">
                         <input type="checkbox" id="all-t-shirts" name="all-t-shirts"
-                        checked="checked">All T-shirts
+                               checked="checked">All T-shirts
                     </label>
                 </li>
                 <li>
                     <label for="t-shirts-for-men">
                         <input type="checkbox" id="t-shirts-for-men"
-                        name="t-shirts-for-men">T-shirts for Men
+                               name="t-shirts-for-men">T-shirts for Men
                     </label>
                 </li>
                 <li>
                     <label for="t-shirts-for-women">
                         <input type="checkbox" id="t-shirts-for-women"
-                        name="t-shirts-for-women">T-shirts for Women
+                               name="t-shirts-for-women">T-shirts for Women
                     </label>
                 </li>
                 <li>
@@ -40,6 +44,7 @@
                         T-shirts
                     </label>
                 </li>
+            </ul>
         </div>
         <div id="price" class="col-md-12 col-sm-4 col-xs-6">
             <h4>Price</h4>
@@ -81,13 +86,13 @@
                 <li>
                     <label for="yellow">
                         <input type="checkbox" id="yellow"
-                        name="yellow">Yellow
+                               name="yellow">Yellow
                     </label><span>(9)</span>
                 </li>
                 <li>
                     <label for="black">
                         <input type="checkbox" id="black"
-                        name="black">Black
+                               name="black">Black
                     </label><span>(24)</span>
                 </li>
                 <li>
@@ -102,13 +107,13 @@
                 <li>
                     <label for="white">
                         <input type="checkbox" id="white"
-                        name="white">White
+                               name="white">White
                     </label><span>(8)</span>
                 </li>
                 <li>
                     <label for="green">
                         <input type="checkbox" id="green"
-                        name="green">Green
+                               name="green">Green
                     </label><span>(10)</span>
                 </li>
             </ul>
@@ -116,4 +121,52 @@
         </div>
     </aside>
 
+    <section id="products" class="col-md-9 col-sm-12 col-xs-12">
+        <header>
+            <h3>Be Soft-Unique With Our T-Shirts</h3>
+            <p>
+                <span>Showing 1-6 of 103 results</span>
+                <span>Show 06<i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                <span>Sort by Default<i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                <span>
+                    <a href="#"><i class="fa fa-list" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-th" aria-hidden="true"></i></a>
+                </span>
+            </p>
+        </header>
+        @foreach (var product in Model)
+        {
+            <article class="col-md-12 col-sm-12 col-xs-12">
+                <div class="img-container col-md-3 col-sm-3 col-xs-6">
+                    <img src="@product.Base64Image" alt="ProductImg" />
+                </div>
+
+                <div class="item-description col-md-6 col-sm-6 col-xs-12">
+                    <p class="item-type">@product.Category.Name</p>
+                    <p class="item-name">@product.Name</p>
+                    <p class="item-rating">
+                        <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span>
+                        <span class="item-reviews">5 Review(s)</span>
+                    </p>
+                    <ul class="item-info">
+                        @foreach (var itemInfo in product.Details.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <li>@itemInfo</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="actions col-md-3 col-sm-3 col-xs-6">
+                    <p class="heart"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></p>
+                    <p class="bars"><a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a></p>
+                    <p class="item-price">$@product.Price</p>
+                    <p class="availability">Availability: <span>In stock</span></p>
+                    <button>
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        <a class="button" href="#"> Add to Cart</a>
+                    </button>
+                </div>
+            </article>
+        }
+    </section>
 </main>
