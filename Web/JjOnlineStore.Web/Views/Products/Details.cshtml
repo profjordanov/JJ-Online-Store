@@ -1,7 +1,115 @@
 ﻿@model ProductViewModel
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Name;
 }
 
-<h2>Details</h2>
+<link href="~/css/logo-fix.css" rel="stylesheet" />
+<link href="~/css/quickview.css" rel="stylesheet" />
+<link href="~/css/product-details.css" rel="stylesheet" />`
 
+@section Scripts{
+    <script src="~/js/slider.js"></script>
+    <script src="~/lib/modernizr.js"></script>
+    <script src="~/lib/velocity.min.js"></script>
+    <script src="~/js/list-products-quickview.js"></script>
+    <script src="~/js/slider.js"></script>
+}
+
+<main>
+    <p class="breadcrumb">
+        <span class="breadcrumb-home">Home</span>
+        <span class="breadcrumb-devider">&rsaquo;</span>
+        <span class="breadcrumb-category">@Model.Category.Name</span>
+        <span class="breadcrumb-devider">&rsaquo;</span>
+        <span class="breadcrumb-current-page">@Model.Name</span>
+    </p>
+    <div class="product-view">
+        <div class="product-view-left">
+            <div class="product-main-image">
+                <img src="@Model.Base64Image"
+                     alt="@Model.Name Image" />
+            </div>
+            <div class="product-additional-images">
+                <span><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></span>
+                <div class="additional-image-container">
+                    <a href="@Model.Base64Image">
+                        <img src="@Model.Base64Image"
+                             alt="Nakov's practical hat" />
+                    </a>
+                </div>
+                <span><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+        <div class="product-view-right">
+            <div class="selected-item-type">@Model.Category.Name</div>
+            <h1 class="selected-item-name">@Model.Name</h1>
+            <div class="selected-item-rating">
+                <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span>
+                <span class="item-reviews">12 Review(s)</span>
+            </div>
+            <div class="selected-item-price">$@Model.Price</div>
+            <div class="selected-item-availability">Availability:<span class="in-stock"> In stock</span></div>
+            <div class="selected-item-description">
+                <p>@Model.Description</p>
+            </div>
+            <div class="choose-size">
+                <span class="size">S</span>
+                <span class="size selected">M</span>
+                <span class="size">L</span>
+                <span class="size">XL</span>
+            </div>
+            <ul class="selected-item-actions">
+                <li class="wishlist">
+                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Add to Wishlist</a>
+                </li>
+                <li class="compare">
+                    <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> Add to Compare</a>
+                </li>
+                <li class="send-via-email">
+                    <a href="#">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> Email to a
+                        friend
+                    </a>
+                </li>
+            </ul>
+            <div class="place-order">
+                <input type="text" name="choose-quantity" id="choose-quantity" value="1">
+                <button class="add-to-cart">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to Cart
+                </button>
+            </div>
+        </div>
+        <div class="product-view-tabs">
+            <div id="product-tabs">
+                <ul>
+                    <li><a href="#tabs-1">Product Details</a></li>
+                    <li><a href="#tabs-2">Customer Reviews</a></li>
+                    <li><a href="#tabs-3">Shipping &amp; Payment</a></li>
+                </ul>
+                <div id="tabs-1" class="product-details-tab">
+                    <ul>
+                        @foreach(var detail in Model.Details.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                        {
+                            <li>@detail</li>
+                        }
+                    </ul>
+                </div>
+                <div id="tabs-2" class="customer-reviews-tab">
+                    <p>Qko e.</p>
+                    <p class="reviews-devider">&diamondsuit;&diamondsuit;&diamondsuit;</p>
+                    <p>БегАй у левО, не е яко, тъпо е, ти си педе... лош човек....</p>
+                </div>
+                <div id="tabs-3" class="shipping-and-payment-tab">
+                    <p>
+                        We ship only to the address of the Software University via "Reketyori Ltd." courier
+                        company.
+                    </p>
+                    <p>
+                        Please note that you have to bear all the costs for the shipment which are 50% of the total
+                        sum of your order + a tip for the courier.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
