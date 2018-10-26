@@ -11,10 +11,12 @@ using JjOnlineStore.Services.Data.CartItems;
 using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Extensions;
 
+using static JjOnlineStore.Services.Data.ServiceConstants;
+
 namespace JjOnlineStore.Services.Business
 {
     public class CartItemsService : BaseService, ICartItemsService
-    {
+    {     
         public CartItemsService(JjOnlineStoreDbContext dbContext, IMapper mapper) 
             : base(dbContext)
         {
@@ -25,7 +27,7 @@ namespace JjOnlineStore.Services.Business
 
         public async Task<Option<CartItemServiceModel, Error>> CreateOrError(CartItemBm cartItem)
             => await Exists(cartItem) ?
-            Option.None<CartItemServiceModel, Error>("Cart Item already exists.".ToError()) :
+            Option.None<CartItemServiceModel, Error>(CartItemExistsErrMsg.ToError()) :
             (await CreateAsync(cartItem)).Some<CartItemServiceModel, Error>();
 
         public async Task<CartItemServiceModel> CreateAsync(CartItemBm cartItem)

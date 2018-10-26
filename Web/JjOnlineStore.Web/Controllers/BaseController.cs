@@ -11,5 +11,8 @@ namespace JjOnlineStore.Web.Controllers
         /// <param name="baseObject">Some object</param>
         protected IActionResult RedirectToLocal(object baseObject)
             => RedirectToAction(nameof(HomeController.Index), "Home");
+
+        protected IActionResult Error(Error error) =>
+            new BadRequestObjectResult(error);
     }
 }
