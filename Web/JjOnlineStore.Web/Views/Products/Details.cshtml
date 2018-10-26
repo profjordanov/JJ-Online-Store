@@ -13,7 +13,16 @@
     <script src="~/lib/velocity.min.js"></script>
     <script src="~/js/list-products-quickview.js"></script>
     <script src="~/js/slider.js"></script>
+    <script src="~/js/Business/add.to.shopping.cart.js"></script>
 }
+
+<script type="text/javascript">
+    var createShoppingCartUrl = "@Url.Action("Create", "ShoppingCart")";
+    var createCartItemUrl = "@Url.Action("Create", "CartItems")";
+</script>
+
+@*Tokens*@
+<input type="hidden" value="@Model.Id" id="product-id" />
 
 <main>
     <p class="breadcrumb">
@@ -74,7 +83,7 @@
             </ul>
             <div class="place-order">
                 <input type="text" name="choose-quantity" id="choose-quantity" value="1">
-                <button class="add-to-cart">
+                <button class="add-to-cart" id="add-to-cart">
                     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to Cart
                 </button>
             </div>
@@ -88,7 +97,7 @@
                 </ul>
                 <div id="tabs-1" class="product-details-tab">
                     <ul>
-                        @foreach(var detail in Model.Details.Split(';', StringSplitOptions.RemoveEmptyEntries))
+                        @foreach (var detail in Model.Details.Split(';', StringSplitOptions.RemoveEmptyEntries))
                         {
                             <li>@detail</li>
                         }

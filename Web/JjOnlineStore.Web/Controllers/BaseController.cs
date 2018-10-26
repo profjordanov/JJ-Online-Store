@@ -12,7 +12,11 @@ namespace JjOnlineStore.Web.Controllers
         protected IActionResult RedirectToLocal(object baseObject)
             => RedirectToAction(nameof(HomeController.Index), "Home");
 
-        protected IActionResult Error(Error error) =>
-            new BadRequestObjectResult(error);
+        /// <summary>
+        /// Error messages split by ';'.
+        /// </summary>
+        /// <param name="error">Error struct.</param>
+        protected IActionResult ErrorContent(Error error) =>
+            Content(error.ToString());
     }
 }

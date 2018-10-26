@@ -39,7 +39,7 @@ namespace JjOnlineStore.Web.Controllers
 
         /// <summary>
         /// Redirects to /--/-- 
-        /// and displays "user not found" error in fancybox.
+        /// and displays "user not found" error in fancy box.
         /// </summary>
         private IActionResult CreateError(Error error)
         {
