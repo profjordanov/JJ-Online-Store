@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Optional;
+﻿using Optional;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Common.ViewModels.CartItems;
