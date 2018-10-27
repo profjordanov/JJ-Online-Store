@@ -14,9 +14,6 @@ namespace JjOnlineStore.Data.Entities
 
         public virtual Order Order { get; set; }
 
-        public virtual ICollection<CartItem> OrderedItems { get; set; } = new HashSet<CartItem>();
-
-        public decimal TotalSum()
-            => this.OrderedItems.Sum(oi => oi.Product.Price * oi.Quantity);
+        public ICollection<CartItem> OrderedItems { get; set; } = new HashSet<CartItem>();
     }
 }

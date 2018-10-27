@@ -1,0 +1,117 @@
+﻿@model CartVm
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+@section Styles{
+    <link href="~/css/shopping-cart.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/js/Business/shopping.cart.index.js"></script>
+}
+
+<main>
+
+    <ul id="steps" class="col-md-12 col-sm-12 col-xs-12">
+        <li class="col-md-3 current col-sm-3 col-xs-12">
+            <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+            <span>Step 1</span>
+            <h5>Shopping Cart</h5>
+        </li>
+        <li class="col-md-3 col-sm-3 col-xs-12">
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+            <span>Step 2</span>
+            <h5>Payment Methods</h5>
+        </li>
+        <li class="col-md-3 col-sm-3 col-xs-12">
+            <i class="fa fa-truck" aria-hidden="true"></i>
+            <span>Step 3</span>
+            <h5>Delivery Methods</h5>
+        </li>
+        <li class="col-md-3 col-sm-3 col-xs-12">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            <span>Step 4</span>
+            <h5>Confirmation</h5>
+        </li>
+    </ul>
+
+    <table class="col-md-12 col-sm-12 col-xs-12">
+        <thead>
+            <tr>
+                <th class="col-md-5 col-sm-5 col-xs-12">
+                    Items
+                </th>
+                <th class="col-md-2 col-sm-2">
+                    Price
+                </th>
+                <th class="col-md-2 col-sm-2">
+                    Quantity
+                </th>
+                <th class="col-md-2 col-sm-2">
+                    Total Price
+                </th>
+                <th class="col-md-1 col-sm-1">
+                    &nbsp;
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var cartItem in Model.CartItems)
+            {
+                <tr>
+                    <td data-label="Item">
+                        <div class="img-container">
+                            <img src="@cartItem.Product.Base64Image" alt="@cartItem.Product.Name">
+                        </div>
+                        <p>@cartItem.Product.Name</p>
+                    </td>
+                    <td data-label="Price">$@cartItem.Product.Price</td>
+                    <td data-label="Quantity">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[@cartItem.Id]">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                </button>
+                            </span>
+                            <input type="text" name="quant[@cartItem.Id]" class="form-control input-number" value="@cartItem.Quantity">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[@cartItem.Id]">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </td>
+                    <td data-label="Total Price">$</td>
+                    <td>
+                        <button class="remove-item">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    <p>
+                        Promotion Code
+                    </p>
+                    <div id="promo-code">
+                        <input type="text" name="promo-code" placeholder="Your code here">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </div>
+                </td>
+                <td colspan="2">
+                    Grand total: $@Model.TotalSum
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
+        <a href="">Continue Shopping</a>
+        <a href="">Go Payment Methods</a>
+    </div>
+</main>

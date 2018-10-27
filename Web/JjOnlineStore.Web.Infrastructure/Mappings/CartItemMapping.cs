@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JjOnlineStore.Common.BindingModels.CartItems;
+using JjOnlineStore.Common.ViewModels.CartItems;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Data.CartItems;
 
@@ -11,6 +12,7 @@ namespace JjOnlineStore.Web.Infrastructure.Mappings
         {
             CreateMap<CartItemBm, CartItem>(MemberList.Source);
             CreateMap<CartItem, CartItemServiceModel>(MemberList.Destination);
+            CreateMap<CartItem, CartItemVm>(MemberList.Destination);
         }
     }
 }
