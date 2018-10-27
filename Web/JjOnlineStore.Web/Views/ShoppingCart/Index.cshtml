@@ -1,0 +1,14 @@
+﻿@model CartVm
+@{
+    ViewData["Title"] = "ShoppingCart";
+}
+
+<h3>@Model.Id</h3>
+<h3>Items</h3>
+@foreach (var item in Model.CartItems)
+{
+    <h3>@item.Id</h3>
+    <h4>@item.Product.Name</h4>
+}
+
+    <h4>Total SUM: @Model.TotalSum</h4>

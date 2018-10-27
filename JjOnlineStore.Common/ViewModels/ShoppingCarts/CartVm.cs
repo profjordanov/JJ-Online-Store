@@ -9,6 +9,6 @@ namespace JjOnlineStore.Common.ViewModels.ShoppingCarts
 
         public IEnumerable<CartItemVm> CartItems { get; set; }
 
-        public decimal TotalSum { get; }
+        public decimal TotalSum { get; set; }
     }
 }

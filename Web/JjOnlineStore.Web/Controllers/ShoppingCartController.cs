@@ -20,6 +20,12 @@ namespace JjOnlineStore.Web.Controllers
             _shoppingCartService = shoppingCartService;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var result = await _shoppingCartService.GetById(9);
+            return View(result);
+        }
+
         /// POST: /ShoppingCart/Create
         /// <summary>
         /// Creates new Shopping Cart for current user.
