@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Optional;
+using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
-using Optional;
 using JjOnlineStore.Extensions;
-using Microsoft.EntityFrameworkCore;
 
 namespace JjOnlineStore.Services.Business._Base
 {

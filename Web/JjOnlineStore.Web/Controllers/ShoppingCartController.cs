@@ -20,11 +20,12 @@ namespace JjOnlineStore.Web.Controllers
             _shoppingCartService = shoppingCartService;
         }
 
-        /// GET: /ShoppingCart/Create
+        /// POST: /ShoppingCart/Create
         /// <summary>
         /// Creates new Shopping Cart for current user.
         /// </summary>
         /// <returns>Option of Shopping Cart Id or Error.</returns>
+        [HttpPost]
         public async Task<IActionResult> Create()
             => (await _shoppingCartService.CreateByUsernameAsync(User.Identity.Name))
                 .Match(IdContent, CreateError);
@@ -38,7 +39,7 @@ namespace JjOnlineStore.Web.Controllers
 
         /// <summary>
         /// Redirects to /--/-- 
-        /// and displays "user not found" error in fancybox.
+        /// and displays "user not found" error in fancy box.
         /// </summary>
         private IActionResult CreateError(Error error)
         {
