@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CustomTemplate\**" />
+    <Content Remove="CustomTemplate\**" />
+    <EmbeddedResource Remove="CustomTemplate\**" />
+    <None Remove="CustomTemplate\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\css\checkout-successful.css" />
     <Content Remove="wwwroot\css\confirmation.css" />
     <Content Remove="wwwroot\css\delivery-methods.css" />
@@ -180,10 +187,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Serilog" Version="2.7.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CustomTemplate\" />
   </ItemGroup>
 
   <ItemGroup>
