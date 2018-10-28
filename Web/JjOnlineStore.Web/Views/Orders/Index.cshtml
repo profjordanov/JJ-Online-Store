@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "Order";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/shopping-cart.css">
+    <link rel="stylesheet" href="~/css/payment-methods.css">
+    <link rel="stylesheet" href="~/css/delivery-methods.css">
+}
+
+@section Scripts{
+}
+
+<form method="post" class="form-horizontal" id="submit-order-form">
+    <div id="payment-methods-partial">
+        <partial name="_PaymentMethodsPartial.cshtml" />
+    </div>
+    <div id="delivery-methods-partial" style="display: none;">
+        <partial name="_DeliveryMethodsPartial.cshtml" />
+    </div>
+</form>

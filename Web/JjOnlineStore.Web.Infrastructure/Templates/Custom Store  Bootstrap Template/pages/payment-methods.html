@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width"/>
-    <title>Payment Methods</title>  <!--TODO: name-->
+    <meta name="viewport" content="width=device-width" />
+    <title>Payment Methods</title>
+    <!--TODO: name-->
     <script src="../scripts/lib/jquery-3.1.1.min.js"></script>
     <script src="../scripts/lib/jquery-ui.min.js"></script>
     <script src="../scripts/jquery.fancybox.pack.js"></script>
@@ -14,6 +16,7 @@
     <link rel="stylesheet" href="../css/index-css.css">
     <link rel="stylesheet" href="../css/payment-methods.css">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -36,52 +39,56 @@
                         <li><a class="fancybox" href="#faq">FAQ</a></li>
                         <li><a class="fancybox" href="#newsletter">Newsletter</a></li>
                         <li><a href="#">
-                            <select name="language">
-                                <option value="1">English</option>
-                                <option value="2">Russian</option>
-                                <option value="3">Bulgarian</option>
-                            </select>
-                        </a></li>
+                                <select name="language">
+                                    <option value="1">English</option>
+                                    <option value="2">Russian</option>
+                                    <option value="3">Bulgarian</option>
+                                </select>
+                            </a></li>
                         <li><a href="#">
-                            <select name="currency">
-                                <option value="1">USD</option>
-                                <option value="2">RUB</option>
-                                <option value="3">BGN</option>
-                            </select>
-                        </a></li>
+                                <select name="currency">
+                                    <option value="1">USD</option>
+                                    <option value="2">RUB</option>
+                                    <option value="3">BGN</option>
+                                </select>
+                            </a></li>
                     </ul>
                 </div>
             </section>
             <section class="row search-bar-nav">
                 <div class="col-xs-7 col-sm-7 col-md-5">
-                    <h1 class="logo"><a href="../index.html"><img src="../img/logo.png" width="70" height="35" alt="Logo"/></a>SoftUnikum</h1>
+                    <h1 class="logo"><a href="../index.html"><img src="../img/logo.png" width="70" height="35" alt="Logo" /></a>SoftUnikum</h1>
                 </div>
                 <div class="col-xs-5 col-sm-5 col-md-3 shopping-cart pull-right">
                     <div class="shopping-cart-wrapper">
                         <p class="products">
                             <span class="number-of-products">2</span>
-                            <span>My cart</span><br/>2 items - $100.00
+                            <span>My cart</span><br />2 items - $100.00
                         </p>
                         <div class="shopping-cart-details">
                             <h1>You have <span>2</span> items</h1>
                             <p>Check or edit your item below!</p>
                             <div class="shopping-cart-item">
-                                <a href="#"><img src="../img/homepage/6926CSS-ninja.jpg" alt="product"/></a>
-                                <a href="#"><p class="shopping-cart-product-details">CSS Puns Ninja</p></a> <br>
+                                <a href="#"><img src="../img/homepage/6926CSS-ninja.jpg" alt="product" /></a>
+                                <a href="#">
+                                    <p class="shopping-cart-product-details">CSS Puns Ninja</p>
+                                </a> <br>
                                 <p class="shopping-cart-price">$25.95 <span class="shopping-cart-count-products">(x2)</span>
                                 </p>
                             </div>
-                            <hr/>
+                            <hr />
                             <div class="shopping-cart-item">
-                                <a href="#"><img src="../img/homepage/12018Matias_EP_DE_03.jpg" alt="product"/></a>
-                                <a href="#"><p class="shopping-cart-product-details">Matias Ergo Pro Keyboard</p></a> <br>
-                                <p class="shopping-cart-price-2">$299.95 <span
-                                        class="shopping-cart-count-products">(x2)</span></p>
+                                <a href="#"><img src="../img/homepage/12018Matias_EP_DE_03.jpg" alt="product" /></a>
+                                <a href="#">
+                                    <p class="shopping-cart-product-details">Matias Ergo Pro Keyboard</p>
+                                </a> <br>
+                                <p class="shopping-cart-price-2">$299.95 <span class="shopping-cart-count-products">(x2)</span></p>
                             </div>
-                            <hr/>
+                            <hr />
                             <h2 class="shopping-cart-total-price">Grand total: <span>$651.80</span></h2>
                             <div class="shopping-cart-buttons">
-                                <button class="shopping-cart-btn-go"><a href="../pages/shopping-cart.html">Go Shopping Cart</a>
+                                <button class="shopping-cart-btn-go"><a href="../pages/shopping-cart.html">Go Shopping
+                                        Cart</a>
                                 </button>
                                 <button class="shopping-cart-btn-checkout"><a href="#">Check Out</a></button>
                             </div>
@@ -96,7 +103,7 @@
                         <option value="4">Hats</option>
                         <option value="5">Key Rings</option>
                     </select>
-                    <input type="text" placeholder="Search entire store here..."/>
+                    <input type="text" placeholder="Search entire store here..." />
                     <button><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
             </section>
@@ -110,9 +117,9 @@
                         </li>
                         <li class="flex-item-nav-li"><a href="../pages/hats.html" title="SoftUnikum Hats">Hats</a></li>
                         <li class="flex-item-nav-li"><a href="../pages/key-rings.html" title="SoftUnikum Key Rings">Key
-                            Rings</a></li>
+                                Rings</a></li>
                         <li class="flex-item-nav-li"><a href="../pages/random-stuff.html" title="SoftUnikum Random Stuff">Random
-                            Stuff</a></li>
+                                Stuff</a></li>
                     </ul>
                 </div>
                 <div class="flex-item-hotline nav-hotline">
@@ -148,7 +155,7 @@
             <section class="row" id="payment-method">
                 <div class="col-md-5 col-sm-12 col-xs-12">
                     <h1>Select Your Card</h1>
-                    <hr/>
+                    <hr />
                     <ul>
                         <li id="discover-card"><a href="#"></a></li>
                         <li id="paypal-card"><a href="#"></a></li>
@@ -159,13 +166,13 @@
                 </div>
                 <div class="col-md-7">
                     <h1>Your Information</h1>
-                    <hr/>
+                    <hr />
                     <form action="POST" id="payment-form">
                         <div class="row">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="cardholder-name">
                                     <p>Cardholder Name</p>
-                                    <input type="text"/>
+                                    <input type="text" />
                                 </div>
                                 <div class="expired-date">
                                     <p>Expire Date</p>
@@ -201,11 +208,11 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="card-number">
                                     <p>Card number</p>
-                                    <input type="text"/>
+                                    <input type="text" />
                                 </div>
                                 <div class="cvv">
                                     <p>CVV</p>
-                                    <input type="text"/>
+                                    <input type="text" />
                                 </div>
                             </div>
                         </div>
@@ -227,7 +234,7 @@
                 </div>
                 <div class="col-md-6">
                     <form class="subscribe-email">
-                        <input type="email" placeholder="Your email here..."/>
+                        <input type="email" placeholder="Your email here..." />
                         <button class="foot-subscribe-btn">Subscribe</button>
                     </form>
                 </div>
@@ -255,9 +262,9 @@
                         </li>
                         <li class="flex-item-nav-li"><a href="../pages/hats.html" title="SoftUnikum Hats">Hats</a></li>
                         <li class="flex-item-nav-li"><a href="../pages/key-rings.html" title="SoftUnikum Key Rings">Key
-                            Rings</a></li>
+                                Rings</a></li>
                         <li class="flex-item-nav-li"><a href="../pages/random-stuff.html" title="SoftUnikum Random Stuff">Random
-                            Stuff</a></li>
+                                Stuff</a></li>
                     </ul>
                 </section>
                 <section class="col-md-3 footer-customer-service">
@@ -355,4 +362,5 @@
         </div>
     </div>
 </body>
+
 </html>
