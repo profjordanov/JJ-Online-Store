@@ -1,4 +1,6 @@
-﻿<main>
+﻿@model OrderVm
+
+<main>
     <section class="row">
         <ul id="steps" class="col-md-12">
             <li class="col-md-3 col-sm-3 col-xs-12">
@@ -27,61 +29,54 @@
         <div class="col-md-8">
             <h1>Your Information</h1>
             <hr />
-            <form action="POST" id="payment-form">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p>First name</p>
-                        <input type="text" required />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p>Last name</p>
-                        <input type="text" required />
-                    </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>First name</p>
+                    <input type="text" asp-for="FirstName" required />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                        <p>Country</p>
-                        <select id="delivery-country">
-                            <option value="1">USA</option>
-                            <option value="2">Bulgaria</option>
-                            <option value="1">Russia</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                        <p>City</p>
-                        <select id="delivery-city">
-                            <option value="0"></option>
-                            <option value="1">Washington</option>
-                            <option value="2">Sofia</option>
-                            <option value="3">Moscow</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p>State</p>
-                        <input type="text" />
-                    </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>Last name</p>
+                    <input type="text" asp-for="LastName" required />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
-                <div class="row">
-                    <div class="col-md-5 col-sm-5 col-xs-12">
-                        <p>ZIP</p>
-                        <input type="text" required />
-                    </div>
-                    <div class="col-md-7  col-sm-7 col-xs-12">
-                        <p>Address</p>
-                        <input type="text" required />
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <p>Country</p>
+                    <input type="text" asp-for="Country" required />
+                    <span asp-validation-for="Country" class="text-danger"></span>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p>Phone</p>
-                        <input type="text" required />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p>Email</p>
-                        <input type="text" required />
-                    </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <p>City</p>
+                    <input type="text" asp-for="City" />
                 </div>
-            </form>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>State</p>
+                    <input type="text" asp-for="State" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                    <p>ZIP</p>
+                    <input type="text" asp-for="Zip" required />
+                </div>
+                <div class="col-md-7  col-sm-7 col-xs-12">
+                    <p>Address</p>
+                    <input type="text" asp-for="Address" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>Phone</p>
+                    <input type="text" asp-for="Phone" required />
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p>Email</p>
+                    <input type="email" asp-for="Email" required />
+                </div>
+            </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
             <h1>Select Your Transportation</h1>
@@ -116,7 +111,7 @@
     <section class="row">
         <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
             <a href="payment-methods.html">Back to Payment</a>
-            <a href="confirmation.html">Go Confirmation</a>
+            <button type="submit">Go Confirmation</button>
         </div>
     </section>
 </main>

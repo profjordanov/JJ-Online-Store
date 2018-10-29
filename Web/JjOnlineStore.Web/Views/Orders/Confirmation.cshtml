@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<main>
+    <div class="row">
+        <ul id="steps" class="col-md-12 col-sm-12 col-xs-12">
+            <li class="col-md-3 col-sm-3 col-xs-12">
+                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                <span>Step 1</span>
+                <h5>Shopping Cart</h5>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-12">
+                <i class="fa fa-credit-card" aria-hidden="true"></i>
+                <span>Step 2</span>
+                <h5>Payment Methods</h5>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-12">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                <span>Step 3</span>
+                <h5>Delivery Methods</h5>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-12 current">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                <span>Step 4</span>
+                <h5>Confirmation</h5>
+            </li>
+        </ul>
+    </div>
+    <div class="wrapper">
+        <h1>Shopping Cart</h1>
+        <hr />
+        <section class="row">
+            <div class="col-md-6 col-sm-6 col-xs-5">
+                <p>E-book reader bla</p>
+            </div>
+            <!--TODO-->
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <p>$200.00</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-3">
+                <p>02 items</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <p>$400.00</p>
+            </div>
+        </section>
+        <hr />
+        <section class="row">
+            <div class="col-md-6 col-sm-6 col-xs-5">
+                <p>E-book reader bla</p>
+            </div>
+            <!--TODO-->
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <p>$200.00</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-3">
+                <p>02 items</p>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <p>$400.00</p>
+            </div>
+        </section>
+        <h1>Payment Information</h1>
+        <hr />
+        <section class="row">
+            <div class="col-md-2 col-sm-2 col-xs 2">
+                <div id="cart-type"><a href="#"></a></div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs 6">
+                <p>Visa Cart</p>
+            </div>
+            <!--TODO-->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <p>Cart number: XXX-XXX-XXX-686</p>
+            </div>
+        </section>
+        <h1>Delivery Information</h1>
+        <hr />
+        <section class="row delivery-info">
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <p class="system-info">Name</p>
+                <p>Svetlin Nakov</p>
+                <p class="system-info">City</p>
+                <p>Banishora</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <p class="system-info">Phone</p>
+                <p>+359 00000002</p>
+                <p class="system-info">State</p>
+                <p>Shopsko</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <p class="system-info">Country</p>
+                <p>Nashata</p>
+                <p class="system-info">Zipcode</p>
+                <p>0000</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6">
+                <p class="system-info">Email</p>
+                <p>nakov@bira.bg</p>
+                <p class="system-info">Address</p>
+                <p>Bracigovo</p>
+            </div>
+        </section>
+        <hr />
+        <section class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <p>Express Delivery</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <p class="system-info">24-48 Hours</p>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <p class="extra-price-confirmation">+$25</p>
+            </div>
+        </section>
+        <hr />
+        <section class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <p>Total price: <span class="total-price-confirmation">$525.00</span></p>
+            </div>
+        </section>
+    </div>
+    <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
+        <a href="delivery-methods.html">Back to Delivery</a>
+        <a href="checkout-successful.html">Proceed Checkout</a>
+    </div>
+</main>
+

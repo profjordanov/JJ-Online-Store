@@ -29,26 +29,26 @@
     cursor: pointer;
 }
 
-#discover-card, #dinners-club-card, #master-card, #paypal-card, #visa-card{
+#discover-card, #dinners-club-card, #master-card, #paypal-card, #visa-card {
     width: 50px;
     height: 35px;
-    background: url("../img/payment-methods/payment-sprite.png") -5px -5px;
+    background: url("../images/payment-methods/payment-sprite.png") -5px -5px;
 }
 
-#dinners-club-card{
-    background: url("../img/payment-methods/payment-sprite.png") -5px -50px;
+#dinners-club-card {
+    background: url("../images/payment-methods/payment-sprite.png") -5px -50px;
 }
 
-#master-card{
-    background: url("../img/payment-methods/payment-sprite.png") -5px -95px;
+#master-card {
+    background: url("../images/payment-methods/payment-sprite.png") -5px -95px;
 }
 
-#paypal-card{
-    background: url("../img/payment-methods/payment-sprite.png") -5px -140px;
+#paypal-card {
+    background: url("../images/payment-methods/payment-sprite.png") -5px -140px;
 }
 
-#visa-card{
-    background: url("../img/payment-methods/payment-sprite.png") -5px -185px;
+#visa-card {
+    background: url("../images/payment-methods/payment-sprite.png") -5px -185px;
 }
 
 /*END payment-method*/

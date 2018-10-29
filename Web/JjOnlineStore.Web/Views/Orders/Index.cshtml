@@ -1,4 +1,4 @@
-﻿
+﻿@model OrderVm
 @{
     ViewData["Title"] = "Order";
 }
@@ -9,13 +9,18 @@
 }
 
 @section Scripts{
+    <script src="~/js/Business/orders.index.page.js"></script>
 }
 
-<form method="post" class="form-horizontal" id="submit-order-form">
+<form asp-action="Create" asp-controller="Orders" method="post" class="form-horizontal" id="submit-order-form">
     <div id="payment-methods-partial">
-        <partial name="_PaymentMethodsPartial.cshtml" />
+        @{
+            @(await Html.PartialAsync("_PaymentMethodsPartial.cshtml", Model))
+        }
     </div>
-    <div id="delivery-methods-partial" style="display: none;">
-        <partial name="_DeliveryMethodsPartial.cshtml" />
+    <div id="delivery-methods-partial" class="hidden">
+        @{
+            @(await Html.PartialAsync("_DeliveryMethodsPartial.cshtml", Model))
+        }
     </div>
 </form>

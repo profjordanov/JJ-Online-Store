@@ -1,4 +1,6 @@
-﻿<main>
+﻿@model OrderVm
+
+<main>
     <section class="row">
         <ul id="steps" class="col-md-12">
             <li class="col-md-3 col-sm-3 col-xs-12">
@@ -38,62 +40,64 @@
         <div class="col-md-7">
             <h1>Your Information</h1>
             <hr />
-            <form action="POST" id="payment-form">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="cardholder-name">
-                            <p>Cardholder Name</p>
-                            <input type="text" />
-                        </div>
-                        <div class="expired-date">
-                            <p>Expire Date</p>
-                            <select id="expire-date-month">
-                                <option value="0">MM</option>
-                                <option value="1">January</option>
-                                <option value="2">February</option>
-                                <option value="3">March</option>
-                                <option value="4">April</option>
-                                <option value="5">May</option>
-                                <option value="6">June</option>
-                                <option value="7">July</option>
-                                <option value="8">August</option>
-                                <option value="9">September</option>
-                                <option value="10">October</option>
-                                <option value="11">November</option>
-                                <option value="12">December</option>
-                            </select>
-                            <select id="expire-date-year">
-                                <option value="0">YYYY</option>
-                                <option value="1">2017</option>
-                                <option value="2">2018</option>
-                                <option value="3">2019</option>
-                                <option value="4">2020</option>
-                                <option value="5">2021</option>
-                                <option value="6">2022</option>
-                                <option value="7">2023</option>
-                                <option value="8">2024</option>
-                                <option value="9">2025</option>
-                            </select>
-                        </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="cardholder-name">
+                        <p>Cardholder Name</p>
+                        <input type="text" asp-for="CardholderName" required />
+                        <span asp-validation-for="CardholderName" class="text-danger"></span>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="card-number">
-                            <p>Card number</p>
-                            <input type="text" />
-                        </div>
-                        <div class="cvv">
-                            <p>CVV</p>
-                            <input type="text" />
-                        </div>
+                    <div class="expired-date">
+                        <p>Expire Date</p>
+                        <input asp-for="ExpireDate" />
+                        @*<select id="expire-date-month">
+            <option value="0">MM</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        <select id="expire-date-year">
+            <option value="0">YYYY</option>
+            <option value="1">2017</option>
+            <option value="2">2018</option>
+            <option value="3">2019</option>
+            <option value="4">2020</option>
+            <option value="5">2021</option>
+            <option value="6">2022</option>
+            <option value="7">2023</option>
+            <option value="8">2024</option>
+            <option value="9">2025</option>
+        </select>*@
                     </div>
                 </div>
-            </form>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="card-number">
+                        <p>Card number</p>
+                        <input type="text" asp-for="CardNumber" />
+                        <span asp-validation-for="CardNumber" class="text-danger"></span>
+                    </div>
+                    <div class="cvv">
+                        <p>CVV</p>
+                        <input type="text" asp-for="Cvv" required />
+                        <span asp-validation-for="Cvv" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <section class="row">
         <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
-            <a href="shopping-cart.html">Check Out</a>
-            <a href="delivery-methods.html">Go To Delivery Methods</a>
+            <button>Check Out</button>
+            <button id="show-delivery-methods">Go To Delivery Methods</button>
         </div>
     </section>
 </main>
