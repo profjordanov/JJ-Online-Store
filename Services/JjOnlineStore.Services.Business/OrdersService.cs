@@ -53,7 +53,7 @@ namespace JjOnlineStore.Services.Business
         public async Task<long> CreateAsync(OrderVm model)
         {
             var entity = Mapper.Map<OrderVm, Order>(model);
-            entity.CartId = 9;
+            entity.CartId = 10;
             await DbContext.Orders.AddAsync(entity);
             await DbContext.SaveChangesAsync();
 
