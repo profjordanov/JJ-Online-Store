@@ -1,6 +1,12 @@
-﻿
+﻿@model OrderVm
+
 @{
     ViewData["Title"] = "Confirmation";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/shopping-cart.css">
+    <link rel="stylesheet" href="~/css/confirmation.css">
 }
 
 <main>
@@ -122,10 +128,10 @@
                 <p>Total price: <span class="total-price-confirmation">$525.00</span></p>
             </div>
         </section>
-    </div>
+    </div> 
     <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
-        <a href="delivery-methods.html">Back to Delivery</a>
-        <a href="checkout-successful.html">Proceed Checkout</a>
+        <a href="#">Back to Delivery</a>
+        <a asp-action="SuccessfulCheckout" asp-controller="Orders">Proceed Checkout</a>
     </div>
 </main>
 

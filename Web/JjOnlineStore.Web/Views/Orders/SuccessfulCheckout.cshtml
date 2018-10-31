@@ -3,12 +3,17 @@
     ViewData["Title"] = "Successful Checkout";
 }
 
+@section Styles{
+    <link rel="stylesheet" href="~/css/list-products.css">
+    <link rel="stylesheet" href="~/css/checkout-successful.css">
+}
+
 <main>
     <div class="checkout-success-message">
         <div class="success-sign"><i class="fa fa-check" aria-hidden="true"></i></div>
         <h3>Congratulations! Your order has been processed.</h3>
         <p>Our courier company "Reketyori Ltd." will contact you soon. Be prepared with a big tip.</p>
-        <button class="return-to-shop"><a href="../index.html">Return to Shop</a></button>
+        <button class="return-to-shop"><a asp-action="Index" asp-controller="Home">Return to Shop</a></button>
     </div>
 </main>
 
