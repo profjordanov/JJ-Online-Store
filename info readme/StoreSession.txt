@@ -1,0 +1,12 @@
+ public static class StoreSession
+ {
+     public static string ShoppingCartId => HttpContext.Current.Session[GlobalConstants.ShoppingCartId]?.ToString();
+ }
+ 
+ ShoppingCartController
+ {
+   private void SetShoppingCartIdInternal(long shoppingCartId)
+   {
+      HttpContext.Session[GlobalConstants.ShoppingCartId] = shoppingCartId != default(long) ? shoppingCartId.ToString() : default(string);
+   }
+ }
