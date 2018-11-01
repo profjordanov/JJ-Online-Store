@@ -1,0 +1,103 @@
+﻿@model OrderVm
+
+<main>
+    <section class="row">
+        <ul id="steps" class="col-md-12">
+            <li class="col-md-3 col-sm-3 col-xs-12">
+                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                <span>Step 1</span>
+                <h5>Shopping Cart</h5>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-12 current">
+                <i class="fa fa-credit-card" aria-hidden="true"></i>
+                <span>Step 2</span>
+                <h5>Payment Methods</h5>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-12">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                <span>Step 3</span>
+                <h5>Delivery Methods</h5>
+            </li>
+            <li class="col-md-3 col-sm-3 col-xs-12">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                <span>Step 4</span>
+                <h5>Confirmation</h5>
+            </li>
+        </ul>
+    </section>
+    <section class="row" id="payment-method">
+        <div class="col-md-5 col-sm-12 col-xs-12">
+            <h1>Select Your Card</h1>
+            <hr />
+            <ul>
+                <li id="discover-card"><a href="#"></a></li>
+                <li id="paypal-card"><a href="#"></a></li>
+                <li id="visa-card"><a href="#"></a></li>
+                <li id="dinners-club-card"><a href="#"></a></li>
+                <li id="master-card"><a href="#"></a></li>
+            </ul>
+        </div>
+        <div class="col-md-7">
+            <h1>Your Information</h1>
+            <hr />
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="cardholder-name">
+                        <p>Cardholder Name</p>
+                        <input type="text" asp-for="CardholderName" required />
+                        <span asp-validation-for="CardholderName" class="text-danger"></span>
+                    </div>
+                    <div class="expired-date">
+                        <p>Expire Date</p>
+                        <input asp-for="ExpireDate" />
+                        @*<select id="expire-date-month">
+            <option value="0">MM</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+        <select id="expire-date-year">
+            <option value="0">YYYY</option>
+            <option value="1">2017</option>
+            <option value="2">2018</option>
+            <option value="3">2019</option>
+            <option value="4">2020</option>
+            <option value="5">2021</option>
+            <option value="6">2022</option>
+            <option value="7">2023</option>
+            <option value="8">2024</option>
+            <option value="9">2025</option>
+        </select>*@
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="card-number">
+                        <p>Card number</p>
+                        <input type="text" asp-for="CardNumber" />
+                        <span asp-validation-for="CardNumber" class="text-danger"></span>
+                    </div>
+                    <div class="cvv">
+                        <p>CVV</p>
+                        <input type="text" asp-for="Cvv" required />
+                        <span asp-validation-for="Cvv" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row">
+        <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
+            <button>Check Out</button>
+            <button id="show-delivery-methods">Go To Delivery Methods</button>
+        </div>
+    </section>
+</main>

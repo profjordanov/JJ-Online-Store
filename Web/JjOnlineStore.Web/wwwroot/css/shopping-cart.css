@@ -63,10 +63,10 @@ td, th {
 }
 
 
-td p {
-    float: left;
-    margin-top: 30px;
-}
+    td p {
+        float: left;
+        margin-top: 30px;
+    }
 
 table {
     font-size: 1.2em;
@@ -79,9 +79,9 @@ thead th {
     color: black;
 }
 
-thead th:first-of-type {
-    text-align: left;
-}
+    thead th:first-of-type {
+        text-align: left;
+    }
 
 .input-group {
     width: 120px;
@@ -137,18 +137,18 @@ tfoot input {
     float: left;
 }
 
-#promo-code i {
-    position: absolute;
-    bottom: 11px;
-    right: 10px;
-    font-size: 0.8em;
-    width: 1.2em;
-    height: 1.2em;
-    line-height: 1.2em;
-    background-color: #cccccc;
-    color: white;
-    border-radius: 50%;
-}
+    #promo-code i {
+        position: absolute;
+        bottom: 11px;
+        right: 10px;
+        font-size: 0.8em;
+        width: 1.2em;
+        height: 1.2em;
+        line-height: 1.2em;
+        background-color: #cccccc;
+        color: white;
+        border-radius: 50%;
+    }
 
 tfoot td:first-of-type {
     border-right: none;
@@ -163,26 +163,42 @@ tfoot td:last-of-type {
     text-align: center;
 }
 
-#buttons a {
-    padding: 8px 25px;
-    color: white;
-    display: inline-block;
-    border-radius: 25px;
-    font-size: 1.15em;
-    margin-right: 10px;
-}
+    #buttons a {
+        padding: 8px 25px;
+        color: white;
+        display: inline-block;
+        border-radius: 25px;
+        font-size: 1.15em;
+        margin-right: 10px;
+    }
 
-#buttons a:last-of-type {
-    background-color: #0088cc;
-}
+        #buttons a:last-of-type {
+            background-color: #0088cc;
+        }
 
-#buttons a:first-of-type {
-    background-color: #BBBBBB;
-}
+        #buttons a:first-of-type {
+            background-color: #BBBBBB;
+        }
+
+    #buttons button {
+        padding: 8px 25px;
+        color: white;
+        display: inline-block;
+        border-radius: 25px;
+        font-size: 1.15em;
+        margin-right: 10px;
+    }
+
+        #buttons button:last-of-type {
+            background-color: #0088cc;
+        }
+
+        #buttons button:first-of-type {
+            background-color: #BBBBBB;
+        }
 
 
-
-@media screen and (max-width: 991px){
+@media screen and (max-width: 991px) {
     #steps h5 {
         font-size: 12px;
     }
@@ -193,9 +209,9 @@ tfoot td:last-of-type {
 }
 
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 767px) {
     main > ul li i,
-    main section ul li i{
+    main section ul li i {
         margin-left: calc(50% - 110px);
     }
 
@@ -214,7 +230,7 @@ tfoot td:last-of-type {
         border-radius: 10px;
     }
 
-    #steps li.current i{
+    #steps li.current i {
         color: white;
         border-color: white;
     }
@@ -235,9 +251,9 @@ tfoot td:last-of-type {
         left: -99999px;
     }
 
-    thead th:not(:first-of-type) {
-        display: none;
-    }
+        thead th:not(:first-of-type) {
+            display: none;
+        }
 
     table {
         border: 0;
@@ -264,9 +280,9 @@ tfoot td:last-of-type {
         border-bottom: 1px solid #ccc;
     }
 
-    tbody td:last-child {
-        border-bottom: 0;
-    }
+        tbody td:last-child {
+            border-bottom: 0;
+        }
 
     td .img-container {
         float: right;

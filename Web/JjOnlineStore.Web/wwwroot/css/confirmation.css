@@ -19,10 +19,10 @@
     margin-top: 20px;
 }
 
-#cart-type{
+#cart-type {
     width: 50px;
     height: 35px;
-    background: url("../img/payment-methods/payment-sprite.png") -5px -95px;
+    background: url("../images/payment-methods/payment-sprite.png") -5px -95px;
 }
 
 #cart-type:hover{

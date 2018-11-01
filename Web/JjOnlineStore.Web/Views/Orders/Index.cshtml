@@ -1,0 +1,26 @@
+﻿@model OrderVm
+@{
+    ViewData["Title"] = "Order";
+}
+@section Styles{
+    <link rel="stylesheet" href="~/css/shopping-cart.css">
+    <link rel="stylesheet" href="~/css/payment-methods.css">
+    <link rel="stylesheet" href="~/css/delivery-methods.css">
+}
+
+@section Scripts{
+    <script src="~/js/Business/orders.index.page.js"></script>
+}
+
+<form asp-action="Create" asp-controller="Orders" method="post" class="form-horizontal" id="submit-order-form">
+    <div id="payment-methods-partial">
+        @{
+            @(await Html.PartialAsync("_PaymentMethodsPartial.cshtml", Model))
+        }
+    </div>
+    <div id="delivery-methods-partial" class="hidden">
+        @{
+            @(await Html.PartialAsync("_DeliveryMethodsPartial.cshtml", Model))
+        }
+    </div>
+</form>
