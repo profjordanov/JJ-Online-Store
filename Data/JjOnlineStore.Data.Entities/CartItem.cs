@@ -2,7 +2,7 @@
 
 namespace JjOnlineStore.Data.Entities
 {
-    public class CartItem : BaseModel<long>
+    public class CartItem : BaseDeletableModel<long>
     {
         public long ProductId { get; set; }
 
