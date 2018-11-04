@@ -34,12 +34,12 @@ namespace JjOnlineStore.Data.EF
 
         public virtual void BeginTransaction()
 		{
-			if(this.currentTransaction != null)
+			if(currentTransaction != null)
 			{
 				return;
 			}
 
-			this.currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
+			currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
 		}
 
 		public virtual async Task CommitTransactionAsync()
@@ -48,7 +48,7 @@ namespace JjOnlineStore.Data.EF
 			{
 				await SaveChangesAsync();
 
-				this.currentTransaction?.Commit();
+				currentTransaction?.Commit();
 			}
 			catch(Exception)
 			{
@@ -56,10 +56,10 @@ namespace JjOnlineStore.Data.EF
 			}
 			finally
 			{
-				if(this.currentTransaction != null)
+				if(currentTransaction != null)
 				{
-					this.currentTransaction.Dispose();
-					this.currentTransaction = null;
+					currentTransaction.Dispose();
+					currentTransaction = null;
 				}
 			}
 		}
@@ -68,26 +68,26 @@ namespace JjOnlineStore.Data.EF
 		{
 			try
 			{
-				this.currentTransaction?.Rollback();
+				currentTransaction?.Rollback();
 			}
 			finally
 			{
-				if(this.currentTransaction != null)
+				if(currentTransaction != null)
 				{
-					this.currentTransaction.Dispose();
-					this.currentTransaction = null;
+					currentTransaction.Dispose();
+					currentTransaction = null;
 				}
 			}
 		}
 
 		public override int SaveChanges(bool acceptAllChangesOnSuccess)
 		{
-			this.ApplyAuditInfoRules();
+			ApplyAuditInfoRules();
 			return base.SaveChanges(acceptAllChangesOnSuccess);
 		}
 
 		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
-			this.SaveChangesAsync(true , cancellationToken);
+			SaveChangesAsync(true , cancellationToken);
 
 		public override Task<int> SaveChangesAsync(
 			bool acceptAllChangesOnSuccess ,
@@ -202,7 +202,9 @@ namespace JjOnlineStore.Data.EF
 		private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
 			where T : class, IDeletableEntity
 		{
-			builder.Entity<T>().HasQueryFilter(e => !e.IsDeleted);
+			builder
+			    .Entity<T>()
+			    .HasQueryFilter(e => !e.IsDeleted);
 		}
 
 		private void ApplyAuditInfoRules()
