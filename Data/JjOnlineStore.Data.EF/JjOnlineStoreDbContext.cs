@@ -93,7 +93,7 @@ namespace JjOnlineStore.Data.EF
 			bool acceptAllChangesOnSuccess ,
 			CancellationToken cancellationToken = default)
 		{
-			this.ApplyAuditInfoRules();
+			ApplyAuditInfoRules();
 			return base.SaveChangesAsync(acceptAllChangesOnSuccess , cancellationToken);
 		}
 
@@ -104,17 +104,36 @@ namespace JjOnlineStore.Data.EF
 			ConfigureUserIdentityRelations(builder);
 		    ConfigureProductCategoryRelations(builder);
 		    ConfigureCartItemRelations(builder);
-		    ConfigureCartRelations(builder);
+		    ConfigureCartUserRelations(builder);
 		    ConfigureOrderRelations(builder);
+		    ConfigureOrderItemRelations(builder);
 		}
 
-	    private static void ConfigureOrderRelations(ModelBuilder builder)
+	    private static void ConfigureOrderItemRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<OrderItem>()
+	            .HasOne(oi => oi.Product)
+	            .WithMany(p => p.OrderItems)
+	            .HasForeignKey(oi => oi.ProductId);
+
+	        builder
+	            .Entity<OrderItem>()
+	            .HasOne(oi => oi.Order)
+	            .WithMany(o => o.OrderedItems)
+	            .HasForeignKey(oi => oi.OrderId);
+
+        }
+
+
+        private static void ConfigureOrderRelations(ModelBuilder builder)
 	    {
 	        builder
 	            .Entity<Order>()
-	            .HasOne(o => o.Cart)
-	            .WithOne(c => c.Order);
-        }
+	            .HasOne(o => o.User)
+	            .WithMany(u => u.Orders)
+	            .HasForeignKey(o => o.UserId);
+	    }
 
         private static void ConfigureCartItemRelations(ModelBuilder builder)
 	    {
@@ -131,14 +150,19 @@ namespace JjOnlineStore.Data.EF
 	            .HasForeignKey(ci => ci.CartId);
 	    }
 
-	    private static void ConfigureCartRelations(ModelBuilder builder)
+	    private static void ConfigureCartUserRelations(ModelBuilder builder)
 	    {
 	        builder
 	            .Entity<Cart>()
 	            .HasOne(c => c.User)
-	            .WithMany(u => u.Carts)
-	            .HasForeignKey(c => c.UserId);
+	            .WithOne(u => u.Cart)
+	            .HasForeignKey<ApplicationUser>(u => u.CartId);
 
+	        builder
+	            .Entity<ApplicationUser>()
+	            .HasOne(u => u.Cart)
+	            .WithOne(c => c.User)
+	            .HasForeignKey<Cart>(c => c.UserId);
 	    }
 
         private static void ConfigureProductCategoryRelations(ModelBuilder builder)

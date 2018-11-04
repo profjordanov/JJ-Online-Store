@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JjOnlineStore.Data.Entities
 {
@@ -13,6 +14,7 @@ namespace JjOnlineStore.Data.Entities
 
         public short Quantity { get; set; }
 
+        [ForeignKey(nameof(Order))]
         public long OrderId { get; set; }
 
         public Order Order { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using JjOnlineStore.Common.Enumeration;
@@ -8,6 +9,21 @@ namespace JjOnlineStore.Data.Entities
 {
     public class Order : BaseDeletableModel<long>
     {
+        //Payment Methods
+        [Required(ErrorMessage = "Please enter a Cardholder Name.")]
+        public string CardholderName { get; set; }
+
+        [Required(ErrorMessage = "Please enter a Card Number.")]
+        public string CardNumber { get; set; }
+
+        [Required(ErrorMessage = "Please enter a Expire Date.")]
+        public DateTime ExpireDate { get; set; }
+
+        [Required(ErrorMessage = "Please enter a CW.")]
+        public string Cvv { get; set; }
+
+        public TransportationType TransportationType { get; set; }
+
         //Delivery Methods
         [Required(ErrorMessage = "Please enter your first name.")]
         public string FirstName { get; set; }
@@ -34,24 +50,12 @@ namespace JjOnlineStore.Data.Entities
 
         public bool Shipped { get; set; }
 
-        //Payment Methods
-        [Required(ErrorMessage = "Please enter a Cardholder Name.")]
-        public string CardholderName { get; set; }
+        //Relations
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; }
 
-        [Required(ErrorMessage = "Please enter a Card Number.")]
-        public string CardNumber { get; set; }
+        public ApplicationUser User { get; set; }
 
-        [Required(ErrorMessage = "Please enter a Expire Date.")]
-        public DateTime ExpireDate { get; set; }
-
-        [Required(ErrorMessage = "Please enter a CW.")]
-        public string Cvv { get; set; }
-
-        public TransportationType TransportationType { get; set; }
-
-        [ForeignKey(nameof(Cart))]
-        public long CartId { get; set; }
-
-        public virtual Cart Cart { get; set; }
+        public ICollection<OrderItem> OrderedItems { get; set; } = new HashSet<OrderItem>();
     }
 }
