@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using JjOnlineStore.Services.Core;
+﻿using JjOnlineStore.Services.Core;
 using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Common.ViewModels.Account;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 using static JjOnlineStore.Web.ViewPaths;
 using static JjOnlineStore.Common.GlobalConstants;
@@ -65,27 +66,27 @@ namespace JjOnlineStore.Web.Controllers
 
         /// POST: /Account/Login
         /// <summary>
-        /// Register.
+        /// Register new user and create it's shopping cart.
         /// </summary>
         /// <param name="model">The user model.</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
-            => (await _usersService.Register(model))
+            => (await _usersService.RegisterAsync(model))
                 .Match(RedirectToLocal, ErrorRegister);
 
         /// <summary>
-        /// Shows errors from register action in fancybox.
+        /// Shows errors from register action in fancy-box.
         /// </summary>
         /// <param name="error">Error model.</param>
-        private IActionResult ErrorRegister(Error error)
+        public IActionResult ErrorRegister(Error error)
         {
             TempData[ErrorMessage] = error.ToString();
             return View(RegisterView);
         }
 
         /// <summary>
-        /// Logout
+        /// Logout.
         /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]

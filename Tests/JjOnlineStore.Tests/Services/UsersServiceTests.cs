@@ -1,16 +1,20 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Moq;
+using Shouldly;
+using Xunit;
 using AutoFixture.Xunit2;
-using AutoMapper;
-using JjOnlineStore.Common.ViewModels;
+
+using System.Linq;
+using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Identity;
+
 using JjOnlineStore.Common.ViewModels.Account;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Business;
 using JjOnlineStore.Services.Core;
-using Microsoft.AspNetCore.Identity;
-using Moq;
-using Shouldly;
-using Xunit;
+using JjOnlineStore.Services.Data.Users;
+using JjOnlineStore.Tests.Attributes;
 
 using static JjOnlineStore.Tests.DbContextProvider;
 
@@ -40,6 +44,34 @@ namespace JjOnlineStore.Tests.Services
         }
 
         [Theory]
+        [CustomAutoData]
+        public async Task Register_Should_Register_User(
+            RegisterViewModel model,
+            ApplicationUser userToRegister,
+            UserServiceModel userToReturn)
+        {
+            // Arrange
+            userToRegister = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email
+            };
+
+            MockMapper(userToRegister, userToReturn);
+
+            _userManagerMock.Setup(userManager => userManager
+                    .CreateAsync(userToRegister, model.Password))
+                .ReturnsAsync(IdentityResult.Success);
+
+            // Act
+            var result = await _usersService.RegisterAsync(model);
+
+            // Assert
+            result.Exists(u => u.Email == userToReturn.Email)
+                .ShouldBeTrue();
+        }
+
+        [Theory]
         [AutoData]
         public async Task Register_Should_Return_Validation_Errors(
             RegisterViewModel model,
@@ -58,7 +90,7 @@ namespace JjOnlineStore.Tests.Services
                 .ReturnsAsync(IdentityResult.Failed(expectedErrors));
 
             // Act
-            var result = await _usersService.Register(model);
+            var result = await _usersService.RegisterAsync(model);
 
             // Assert
             result.HasValue.ShouldBeFalse();
@@ -66,5 +98,10 @@ namespace JjOnlineStore.Tests.Services
                 .ShouldAllBe(message => expectedErrors
                     .Any(expectedError => expectedError.Description == message)));
         }
+
+        private void MockMapper<T, TExpected>(T model, TExpected expected) =>
+            _mapperMock.Setup(mapper => mapper
+                    .Map<TExpected>(model))
+                .Returns(expected);
     }
 }

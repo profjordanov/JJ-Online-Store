@@ -1,9 +1,4 @@
-﻿using Optional;
-using AutoMapper;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using JjOnlineStore.Common.ViewModels;
+﻿using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Common.ViewModels.Account;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
@@ -11,6 +6,17 @@ using JjOnlineStore.Services.Business._Base;
 using JjOnlineStore.Services.Core;
 using JjOnlineStore.Services.Data.Users;
 using JjOnlineStore.Extensions;
+
+using Microsoft.AspNetCore.Identity;
+
+using Optional;
+
+using AutoMapper;
+
+using System.Linq;
+using System.Threading.Tasks;
+
+
 
 namespace JjOnlineStore.Services.Business
 {
@@ -46,7 +52,7 @@ namespace JjOnlineStore.Services.Business
                     return result;
                 });
 
-        public async Task<Option<UserServiceModel, Error>> Register(RegisterViewModel model)
+        public async Task<Option<UserServiceModel, Error>> RegisterAsync(RegisterViewModel model)
         {
             var user = new ApplicationUser
             {
@@ -64,7 +70,8 @@ namespace JjOnlineStore.Services.Business
             await _shoppingCartService.CreateForUserByItsId(user.Id);
 
             await SignInManager.SignInAsync(user, isPersistent: false);
-            return Mapper.Map<UserServiceModel>(user).Some<UserServiceModel, Error>();
+            return Mapper.Map<UserServiceModel>(user)
+                .Some<UserServiceModel, Error>();
         }
 
         public async Task SignOutAsync() =>
