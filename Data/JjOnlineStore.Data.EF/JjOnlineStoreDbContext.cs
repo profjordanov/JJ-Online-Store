@@ -30,6 +30,8 @@ namespace JjOnlineStore.Data.EF
 
         public DbSet<Order> Orders { get; set; }
 
+	    public DbSet<OrderItem> OrderItems { get; set; }
+
         public virtual void BeginTransaction()
 		{
 			if(this.currentTransaction != null)
