@@ -45,7 +45,7 @@ namespace JjOnlineStore.Web.Controllers
                 .Match(RedirectToLocal, ErrorLogin);
 
         /// <summary>
-        /// Shows possible errors from login action in fancybox.
+        /// Shows possible errors from login action in fancy-box.
         /// </summary>
         /// <param name="error">Error model.</param>
         private IActionResult ErrorLogin(Error error)

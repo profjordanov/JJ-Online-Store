@@ -6,6 +6,7 @@ using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Common.ViewModels.Account;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Business;
+using JjOnlineStore.Services.Core;
 using Microsoft.AspNetCore.Identity;
 using Moq;
 using Shouldly;
@@ -21,18 +22,21 @@ namespace JjOnlineStore.Tests.Services
         private readonly Mock<UserManager<ApplicationUser>> _userManagerMock;
         private readonly Mock<IMapper> _mapperMock;
         private readonly Mock<SignInManager<ApplicationUser>> _signInManagerMock;
+        private readonly Mock<IShoppingCartService> _cartServiceMock;
 
         public UsersServiceTests()
         {
             _userManagerMock = IdentityMocksProvider.GetMockUserManager();
             _mapperMock = new Mock<IMapper>();
             _signInManagerMock = IdentityMocksProvider.GetMockSignInManager();
+            _cartServiceMock = new Mock<IShoppingCartService>();
 
             _usersService = new UsersService(
                 GetInMemoryDbContext(),
                 _userManagerMock.Object,
                 _signInManagerMock.Object,
-                _mapperMock.Object);
+                _mapperMock.Object,
+                _cartServiceMock.Object);
         }
 
         [Theory]

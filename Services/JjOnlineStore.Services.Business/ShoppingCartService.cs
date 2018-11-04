@@ -73,5 +73,25 @@ namespace JjOnlineStore.Services.Business
 
             return entity.Id;
         }
+
+        public async Task CreateForUserByItsId(string userId)
+        {
+            var entity = new Cart
+            {
+                UserId = userId
+            };
+
+            await DbContext.Carts.AddAsync(entity);
+            await DbContext.SaveChangesAsync();
+
+            var currentUser = await DbContext
+                .Users
+                .FindAsync(userId);
+
+            currentUser.CartId = entity.Id;
+
+            DbContext.Users.Update(currentUser);
+            await DbContext.SaveChangesAsync();
+        }
     }
 }

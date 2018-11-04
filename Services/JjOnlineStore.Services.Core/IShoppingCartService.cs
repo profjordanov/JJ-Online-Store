@@ -11,5 +11,6 @@ namespace JjOnlineStore.Services.Core
         Task<CartVm> GetById(long shoppingCartId);
         Task<Option<long, Error>> CreateByUsernameAsync(string username);
         Task<long> CreateByUserAsync(ApplicationUser user);
+        Task CreateForUserByItsId(string userId);
     }
 }
