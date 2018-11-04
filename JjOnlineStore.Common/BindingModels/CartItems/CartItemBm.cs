@@ -7,5 +7,7 @@
         public long ProductId { get; set; }
 
         public short Quantity { get; set; }
+
+        public string UserId { get; set; }
     }
 }

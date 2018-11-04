@@ -8,8 +8,6 @@ namespace JjOnlineStore.Services.Core
 {
     public interface ICartItemsService
     {
-        Task<Option<CartItemServiceModel, Error>> CreateOrError(CartItemBm cartItem);
-        Task<CartItemServiceModel> CreateAsync(CartItemBm cartItem);
-        Task<bool> Exists(CartItemBm model);
+        Task<Option<CartItemServiceModel, Error>> CreateAsync(CartItemBm cartItem);
     }
 }
