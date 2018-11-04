@@ -59,7 +59,7 @@ namespace JjOnlineStore.Extensions
                             CreatedOn = DateTime.Now
                         };
 
-                        var result = await userManager.CreateAsync(adminUser, AminPassword);
+                        var result = await userManager.CreateAsync(adminUser, AdminPassword);
 
                         // Add User to Role
                         if (result.Succeeded)
