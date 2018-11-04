@@ -10,7 +10,7 @@ namespace JjOnlineStore.Services.Core
     public interface IUsersService
     {
         Task<Option<UserServiceModel, Error>> LoginAsync(CredentialsModel model);
-        Task<Option<UserServiceModel, Error>> Register(RegisterViewModel model);
+        Task<Option<UserServiceModel, Error>> RegisterAsync(RegisterViewModel model);
         Task SignOutAsync();
     }
 }
