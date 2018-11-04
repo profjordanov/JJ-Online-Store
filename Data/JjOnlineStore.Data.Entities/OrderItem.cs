@@ -16,5 +16,8 @@ namespace JjOnlineStore.Data.Entities
         public long OrderId { get; set; }
 
         public Order Order { get; set; }
+
+        public decimal TotalSum() =>
+            Product.Price * Quantity;
     }
 }

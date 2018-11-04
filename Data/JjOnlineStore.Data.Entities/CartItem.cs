@@ -13,5 +13,8 @@ namespace JjOnlineStore.Data.Entities
         public long CartId { get; set; }
 
         public Cart Cart { get; set; }
+
+        public decimal TotalSum() =>
+            Product.Price * Quantity;
     }
 }
