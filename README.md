@@ -24,6 +24,11 @@
 └───Tests
     └───JjOnlineStore.Tests
 ```
+- [x] Thin Controllers
+
+```csharp
+example
+```
 
 ### User Interface and User Experience (UI & UX)
 - [x] Using custom web design 
