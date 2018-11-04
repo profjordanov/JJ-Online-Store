@@ -2,7 +2,7 @@
 
 namespace JjOnlineStore.Data.Entities
 {
-    public class CartItem : BaseModel<long>
+    public class CartItem : BaseDeletableModel<long>
     {
         public long ProductId { get; set; }
 
@@ -13,5 +13,8 @@ namespace JjOnlineStore.Data.Entities
         public long CartId { get; set; }
 
         public Cart Cart { get; set; }
+
+        public decimal TotalSum() =>
+            Product.Price * Quantity;
     }
 }

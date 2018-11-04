@@ -30,14 +30,16 @@ namespace JjOnlineStore.Data.EF
 
         public DbSet<Order> Orders { get; set; }
 
+	    public DbSet<OrderItem> OrderItems { get; set; }
+
         public virtual void BeginTransaction()
 		{
-			if(this.currentTransaction != null)
+			if(currentTransaction != null)
 			{
 				return;
 			}
 
-			this.currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
+			currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
 		}
 
 		public virtual async Task CommitTransactionAsync()
@@ -46,7 +48,7 @@ namespace JjOnlineStore.Data.EF
 			{
 				await SaveChangesAsync();
 
-				this.currentTransaction?.Commit();
+				currentTransaction?.Commit();
 			}
 			catch(Exception)
 			{
@@ -54,10 +56,10 @@ namespace JjOnlineStore.Data.EF
 			}
 			finally
 			{
-				if(this.currentTransaction != null)
+				if(currentTransaction != null)
 				{
-					this.currentTransaction.Dispose();
-					this.currentTransaction = null;
+					currentTransaction.Dispose();
+					currentTransaction = null;
 				}
 			}
 		}
@@ -66,32 +68,32 @@ namespace JjOnlineStore.Data.EF
 		{
 			try
 			{
-				this.currentTransaction?.Rollback();
+				currentTransaction?.Rollback();
 			}
 			finally
 			{
-				if(this.currentTransaction != null)
+				if(currentTransaction != null)
 				{
-					this.currentTransaction.Dispose();
-					this.currentTransaction = null;
+					currentTransaction.Dispose();
+					currentTransaction = null;
 				}
 			}
 		}
 
 		public override int SaveChanges(bool acceptAllChangesOnSuccess)
 		{
-			this.ApplyAuditInfoRules();
+			ApplyAuditInfoRules();
 			return base.SaveChanges(acceptAllChangesOnSuccess);
 		}
 
 		public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default) =>
-			this.SaveChangesAsync(true , cancellationToken);
+			SaveChangesAsync(true , cancellationToken);
 
 		public override Task<int> SaveChangesAsync(
 			bool acceptAllChangesOnSuccess ,
 			CancellationToken cancellationToken = default)
 		{
-			this.ApplyAuditInfoRules();
+			ApplyAuditInfoRules();
 			return base.SaveChangesAsync(acceptAllChangesOnSuccess , cancellationToken);
 		}
 
@@ -102,17 +104,36 @@ namespace JjOnlineStore.Data.EF
 			ConfigureUserIdentityRelations(builder);
 		    ConfigureProductCategoryRelations(builder);
 		    ConfigureCartItemRelations(builder);
-		    ConfigureCartRelations(builder);
+		    ConfigureCartUserRelations(builder);
 		    ConfigureOrderRelations(builder);
+		    ConfigureOrderItemRelations(builder);
 		}
 
-	    private static void ConfigureOrderRelations(ModelBuilder builder)
+	    private static void ConfigureOrderItemRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<OrderItem>()
+	            .HasOne(oi => oi.Product)
+	            .WithMany(p => p.OrderItems)
+	            .HasForeignKey(oi => oi.ProductId);
+
+	        builder
+	            .Entity<OrderItem>()
+	            .HasOne(oi => oi.Order)
+	            .WithMany(o => o.OrderedItems)
+	            .HasForeignKey(oi => oi.OrderId);
+
+        }
+
+
+        private static void ConfigureOrderRelations(ModelBuilder builder)
 	    {
 	        builder
 	            .Entity<Order>()
-	            .HasOne(o => o.Cart)
-	            .WithOne(c => c.Order);
-        }
+	            .HasOne(o => o.User)
+	            .WithMany(u => u.Orders)
+	            .HasForeignKey(o => o.UserId);
+	    }
 
         private static void ConfigureCartItemRelations(ModelBuilder builder)
 	    {
@@ -129,14 +150,19 @@ namespace JjOnlineStore.Data.EF
 	            .HasForeignKey(ci => ci.CartId);
 	    }
 
-	    private static void ConfigureCartRelations(ModelBuilder builder)
+	    private static void ConfigureCartUserRelations(ModelBuilder builder)
 	    {
 	        builder
 	            .Entity<Cart>()
 	            .HasOne(c => c.User)
-	            .WithMany(u => u.Carts)
-	            .HasForeignKey(c => c.UserId);
+	            .WithOne(u => u.Cart)
+	            .HasForeignKey<ApplicationUser>(u => u.CartId);
 
+	        builder
+	            .Entity<ApplicationUser>()
+	            .HasOne(u => u.Cart)
+	            .WithOne(c => c.User)
+	            .HasForeignKey<Cart>(c => c.UserId);
 	    }
 
         private static void ConfigureProductCategoryRelations(ModelBuilder builder)
@@ -176,7 +202,9 @@ namespace JjOnlineStore.Data.EF
 		private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
 			where T : class, IDeletableEntity
 		{
-			builder.Entity<T>().HasQueryFilter(e => !e.IsDeleted);
+			builder
+			    .Entity<T>()
+			    .HasQueryFilter(e => !e.IsDeleted);
 		}
 
 		private void ApplyAuditInfoRules()

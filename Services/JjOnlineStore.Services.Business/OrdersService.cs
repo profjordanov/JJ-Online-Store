@@ -28,15 +28,13 @@ namespace JjOnlineStore.Services.Business
         {
             var entity = await DbContext
                 .Orders
-                .Include(o => o.Cart)
-                .Include(o => o.Cart.OrderedItems)
                 .Where(o => o.Id == orderId)
                 .FirstOrDefaultAsync();
 
             var viewModel = Mapper.Map<Order, OrderVm>(entity);
 
-            viewModel.Cart.CartItems =
-                Mapper.Map<IEnumerable<CartItem>, IEnumerable<CartItemVm>>(entity.Cart.OrderedItems);
+            //viewModel.Cart.CartItems =
+            //    Mapper.Map<IEnumerable<CartItem>, IEnumerable<CartItemVm>>(entity.Cart.OrderedItems);
 
             foreach (var cartItem in viewModel.Cart.CartItems)
             {
@@ -53,7 +51,6 @@ namespace JjOnlineStore.Services.Business
         public async Task<long> CreateAsync(OrderVm model)
         {
             var entity = Mapper.Map<OrderVm, Order>(model);
-            entity.CartId = 10;
             await DbContext.Orders.AddAsync(entity);
             await DbContext.SaveChangesAsync();
 

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using JjOnlineStore.Common.Enumeration;
 using JjOnlineStore.Data.Entities.Base;
 
@@ -30,11 +32,14 @@ namespace JjOnlineStore.Data.Entities
 
         public string Details { get; set; }
 
+        [ForeignKey(nameof(Category))]
         public long CategoryId { get; set; }
 
         [Required(ErrorMessage = "Please, specify a category.")]
         public virtual Category Category { get; set; }
 
         public virtual ICollection<CartItem> CartItems { get; set; } = new HashSet<CartItem>();
+
+        public virtual ICollection<OrderItem> OrderItems { get; set; } = new HashSet<OrderItem>();
     }
 }

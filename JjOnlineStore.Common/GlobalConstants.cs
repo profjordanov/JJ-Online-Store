@@ -9,7 +9,7 @@
         public const string BlogAuthorRoleName = "BlogAuthor";
         public const string AdminEmail = "admin@jjonlinestore.com";
         public const string AdminUsername = "admin";
-        public const string AminPassword = "123456";
+        public const string AdminPassword = "123456";
         public const string AdminArea = "Admin";
     }
 }

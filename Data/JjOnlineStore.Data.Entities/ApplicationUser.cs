@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using JjOnlineStore.Data.Entities.Base;
 using Microsoft.AspNetCore.Identity;
 
 namespace JjOnlineStore.Data.Entities
 {
-	public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
+	public sealed class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
 	{
 		public ApplicationUser()
 		{
-			this.Id = Guid.NewGuid().ToString();
-			this.Roles = new HashSet<IdentityUserRole<string>>();
-			this.Claims = new HashSet<IdentityUserClaim<string>>();
-			this.Logins = new HashSet<IdentityUserLogin<string>>();
+			Id = Guid.NewGuid().ToString();
+            Orders = new HashSet<Order>();
+			Roles = new HashSet<IdentityUserRole<string>>();
+			Claims = new HashSet<IdentityUserClaim<string>>();
+			Logins = new HashSet<IdentityUserLogin<string>>();
 		}
 
 		// Audit info
@@ -25,12 +27,18 @@ namespace JjOnlineStore.Data.Entities
 
 		public DateTime? DeletedOn { get; set; }
 
-	    public virtual ICollection<Cart> Carts { get; set; } = new HashSet<Cart>();
+        //Relations
+        [ForeignKey(nameof(Cart))]
+	    public long CartId { get; set; }
 
-        public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
+	    public Cart Cart { get; set; }
 
-		public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
+        public ICollection<Order> Orders { get; set; } 
 
-		public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+        public ICollection<IdentityUserRole<string>> Roles { get; set; }
+
+		public ICollection<IdentityUserClaim<string>> Claims { get; set; }
+
+		public ICollection<IdentityUserLogin<string>> Logins { get; set; }
 	}
 }

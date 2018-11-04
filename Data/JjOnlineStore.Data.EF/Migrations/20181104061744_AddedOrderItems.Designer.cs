@@ -4,14 +4,16 @@ using JjOnlineStore.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JjOnlineStore.Data.EF.Migrations
 {
     [DbContext(typeof(JjOnlineStoreDbContext))]
-    partial class JjOnlineStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181104061744_AddedOrderItems")]
+    partial class AddedOrderItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,8 +59,6 @@ namespace JjOnlineStore.Data.EF.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
-
-                    b.Property<long>("CartId");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -126,9 +126,7 @@ namespace JjOnlineStore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Carts");
                 });
@@ -199,6 +197,8 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.Property<string>("CardholderName")
                         .IsRequired();
 
+                    b.Property<long>("CartId");
+
                     b.Property<string>("City")
                         .IsRequired();
 
@@ -235,13 +235,12 @@ namespace JjOnlineStore.Data.EF.Migrations
 
                     b.Property<int>("TransportationType");
 
-                    b.Property<string>("UserId");
-
                     b.Property<string>("Zip");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CartId")
+                        .IsUnique();
 
                     b.ToTable("Orders");
                 });
@@ -400,8 +399,8 @@ namespace JjOnlineStore.Data.EF.Migrations
             modelBuilder.Entity("JjOnlineStore.Data.Entities.Cart", b =>
                 {
                     b.HasOne("JjOnlineStore.Data.Entities.ApplicationUser", "User")
-                        .WithOne("Cart")
-                        .HasForeignKey("JjOnlineStore.Data.Entities.Cart", "UserId");
+                        .WithMany("Carts")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("JjOnlineStore.Data.Entities.CartItem", b =>
@@ -419,20 +418,21 @@ namespace JjOnlineStore.Data.EF.Migrations
 
             modelBuilder.Entity("JjOnlineStore.Data.Entities.Order", b =>
                 {
-                    b.HasOne("JjOnlineStore.Data.Entities.ApplicationUser", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                    b.HasOne("JjOnlineStore.Data.Entities.Cart", "Cart")
+                        .WithOne("Order")
+                        .HasForeignKey("JjOnlineStore.Data.Entities.Order", "CartId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("JjOnlineStore.Data.Entities.OrderItem", b =>
                 {
                     b.HasOne("JjOnlineStore.Data.Entities.Order", "Order")
-                        .WithMany("OrderedItems")
+                        .WithMany()
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("JjOnlineStore.Data.Entities.Product", "Product")
-                        .WithMany("OrderItems")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
