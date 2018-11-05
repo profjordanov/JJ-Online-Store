@@ -1,8 +1,11 @@
-﻿using Optional;
-using System.Threading.Tasks;
-using JjOnlineStore.Common.BindingModels.CartItems;
+﻿using JjOnlineStore.Common.BindingModels.CartItems;
 using JjOnlineStore.Services.Data.CartItems;
 using JjOnlineStore.Common.ViewModels;
+
+using Optional;
+
+using System.Threading.Tasks;
+
 
 namespace JjOnlineStore.Services.Core
 {
