@@ -9,6 +9,10 @@
                 quantity: $productQuantity
             };
 
+            createCartItemByBindingModel(cartItemBindingModel);
+        });
+
+        function createCartItemByBindingModel(cartItemBindingModel) {
             const request = {
                 method: "POST",
                 url: createCartItemUrl,
@@ -20,7 +24,8 @@
             $.ajax(request)
                 .then(displaySuccessMessage)
                 .catch(displayErrorMessage);
-        });
+        };
+
     });
 
 })(createCartItemUrl);
