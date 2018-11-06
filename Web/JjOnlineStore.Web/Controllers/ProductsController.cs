@@ -57,7 +57,7 @@ namespace JjOnlineStore.Web.Controllers
 
         /// <summary>
         /// Redirects to /Products/Index 
-        /// and displays product details error in fancybox.
+        /// and displays product details error in fancy-box.
         /// </summary>
         private IActionResult DetailsError(Error error)
             => RedirectToAction(nameof(Index), new { errorMsg = error.ToString() });

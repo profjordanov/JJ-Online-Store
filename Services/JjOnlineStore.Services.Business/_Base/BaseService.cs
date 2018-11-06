@@ -1,5 +1,6 @@
 ﻿using Optional;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using JjOnlineStore.Common.ViewModels;
@@ -38,5 +39,12 @@ namespace JjOnlineStore.Services.Business._Base
             (await DbContext
                 .Users
                 .FirstOrDefaultAsync(u => predicate(u))).SomeNotNull();
+
+        protected async Task<long> GetCurrentCartIdByUserId(string userId) =>
+            await DbContext
+                .Users
+                .Where(u => u.Id == userId)
+                .Select(u => u.CartId)
+                .FirstOrDefaultAsync();
     }
 }

@@ -1,10 +1,13 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using JjOnlineStore.Common.BindingModels.CartItems;
-using JjOnlineStore.Common.ViewModels;
+﻿using JjOnlineStore.Common.BindingModels.CartItems;
 using JjOnlineStore.Services.Core;
 using JjOnlineStore.Services.Data.CartItems;
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNet.Identity;
+
+using System.Net;
+using System.Threading.Tasks;
+
 
 namespace JjOnlineStore.Web.Controllers
 {
@@ -19,17 +22,19 @@ namespace JjOnlineStore.Web.Controllers
 
         /// POST: /CartItems/Create
         /// <summary>
-        /// Creates a Cart Item by given Cart ID, Product ID and Quantity.
+        /// Creates a Cart Item by given Product ID and Quantity.
+        /// Current cart is taken by User ID.
         /// </summary>
-        /// <returns>A Cart Item Service Model.</returns>
+        /// <returns>Content Result.</returns>
         /// <param name="model">Cart Item Binding Model.</param>
         /// <response code="201">A Cart Item was created.</response>
         [HttpPost]
-        [ProducesResponseType(typeof(CartItemServiceModel), (int) HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(CartItemServiceModel), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> Create([FromBody] CartItemBm model)
-            => (await _cartItemsService.CreateOrError(model))
+        {
+            model.UserId = User.Identity.GetUserId();
+            return (await _cartItemsService.CreateAsync(model))
                 .Match(ci => CreatedAtAction(nameof(Create), ci), ErrorContent);
-
-
+        }
     }
 }

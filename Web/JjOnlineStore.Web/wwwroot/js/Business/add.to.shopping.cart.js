@@ -1,53 +1,39 @@
-﻿(function() {
-    $(document).ready(function() {
+﻿(function () {
+    $(document).ready(function () {
         $("#add-to-cart").click(function () {
-            const shoppingCartId = localStorage.getItem("shoppingCartId");
+            const $productId = $("#product-id").val();
+            const $productQuantity = $("#choose-quantity").val();
 
-            if (shoppingCartId == null) {
+            const cartItemBindingModel = {
+                productId: $productId,
+                quantity: $productQuantity
+            };
 
-                const request = {
-                    url: createShoppingCartUrl,
-                    method: "POST"
-                };
-
-                $.ajax(request)
-                    .then(setShoppingCartIdToLocalStorage)
-                    .then(createCartItemByAjax);
-
-            } else {            
-                createCartItemByAjax(shoppingCartId);
-            }
-
+            createCartItemByBindingModel(cartItemBindingModel);
         });
-    });
 
-    function createCartItemByAjax(shoppingCartId) {
-        const $productId = $("#product-id").val();
-        const $productQuantity = $("#choose-quantity").val();
+        function createCartItemByBindingModel(cartItemBindingModel) {
+            const request = {
+                method: "POST",
+                url: createCartItemUrl,
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(cartItemBindingModel)
+            };
 
-        const cartItemBindingModel = {
-            cartId: shoppingCartId,
-            productId: $productId,
-            quantity: $productQuantity
+            $.ajax(request)
+                .then(displaySuccessMessage)
+                .catch(displayErrorMessage);
         };
 
-        $.ajax({
-            type: "POST",
-            url: createCartItemUrl,
-            contentType: "application/json",
-            dataType: "json",
-            data: JSON.stringify(cartItemBindingModel),
-            success: function() {
-                alert("success");
-            },
-            error: function(errorMsg) {
-                alert(errorMsg);
-            }
-        });
-    }
+    });
 
-    function setShoppingCartIdToLocalStorage(shoppingCartId) {
-        localStorage.setItem("shoppingCartId", shoppingCartId);
-    };
+})(createCartItemUrl);
 
-})(createShoppingCartUrl, createCartItemUrl);
+function displaySuccessMessage() {
+    $.fancybox("Product successfully added to your cart.");
+}
+
+function displayErrorMessage() {
+    $.fancybox("This product has already been added to the cart.");
+}

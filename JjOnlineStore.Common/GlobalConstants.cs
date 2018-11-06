@@ -2,6 +2,7 @@
 {
     public static class GlobalConstants
     {
+        //Messages
         public const string ErrorMessage = "ErrorMessage";
 
         //ADMIN CREDENTIALS
