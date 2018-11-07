@@ -12,5 +12,7 @@ namespace JjOnlineStore.Services.Core
     public interface ICartItemsService
     {
         Task<Option<CartItemServiceModel, Error>> CreateAsync(CartItemBm cartItem);
+        Task SetDeletedByIdAsync(long cartItemId);
+        Task<UpdateCartItemBm> UpdateAsync(UpdateCartItemBm model);
     }
 }
