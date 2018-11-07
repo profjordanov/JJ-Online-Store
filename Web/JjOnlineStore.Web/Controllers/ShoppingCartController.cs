@@ -30,33 +30,5 @@ namespace JjOnlineStore.Web.Controllers
         /// <returns>Shopping Cart with Ordered Items</returns>
         public async Task<IActionResult> Index() =>
             View(await _shoppingCartService.GetByUserIdAsync(User.Identity.GetUserId()));
-
-        /// POST: /ShoppingCart/Create
-        /// <summary>
-        /// Creates new Shopping Cart for current user.
-        /// </summary>
-        /// <returns>Option of Shopping Cart Id or Error.</returns>
-        [HttpPost]
-        public async Task<IActionResult> Create()
-            => (await _shoppingCartService.CreateByUsernameAsync(User.Identity.Name))
-                .Match(IdContent, CreateError);
-
-        /// <summary>
-        /// Returns Content Result with Current Shopping Cart ID.
-        /// </summary>
-        /// <param name="shoppingCartId">ID of Shopping Cart.</param>
-        private IActionResult IdContent(long shoppingCartId)
-            => Content(shoppingCartId.ToString());
-
-        /// <summary>
-        /// Redirects to /--/-- 
-        /// and displays "user not found" error in fancy box.
-        /// </summary>
-        private IActionResult CreateError(Error error)
-        {
-            TempData[ErrorMessage] = error.ToString();
-            return View("ErrorViewForMiisingUser");
-        }
-
     }
 }
