@@ -27,7 +27,14 @@
 - [x] Thin Controllers
 
 ```csharp
-example
+        /// POST: /Account/Login
+        /// <summary>
+        /// Login.
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> Login(CredentialsModel model)
+            => (await _usersService.LoginAsync(model))
+                .Match(RedirectToLocal, ErrorLogin);
 ```
 
 ### User Interface and User Experience (UI & UX)
