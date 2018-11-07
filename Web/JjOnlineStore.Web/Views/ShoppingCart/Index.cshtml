@@ -83,7 +83,7 @@
                             </span>
                         </div>
                     </td>
-                    <td data-label="Total Price">$</td>
+                    <td data-label="Total Price">$@cartItem.TotalSum()</td>
                     <td>
                         <button class="remove-item">
                             <i class="fa fa-times" aria-hidden="true"></i>
@@ -105,13 +105,13 @@
                     </div>
                 </td>
                 <td colspan="2">
-                    Grand total: $@Model.TotalSum
+                    Grand total: $@Model.GrandTotal()
                 </td>
             </tr>
         </tfoot>
     </table>
     <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
-        <a href="">Continue Shopping</a>
-        <a href="">Go Payment Methods</a>
+        <a asp-controller="Products" asp-action="Index">Continue Shopping</a>
+        <a asp-controller="Orders" asp-action="Index">Go Payment Methods</a>
     </div>
 </main>

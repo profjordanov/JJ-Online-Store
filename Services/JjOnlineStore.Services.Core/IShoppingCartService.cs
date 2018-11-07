@@ -8,6 +8,8 @@ namespace JjOnlineStore.Services.Core
 {
     public interface IShoppingCartService
     {
+        Task<CartVm> GetByUserIdAsync(string userId);
+
         Task<CartVm> GetById(long shoppingCartId);
         Task<Option<long, Error>> CreateByUsernameAsync(string username);
         Task<long> CreateByUserAsync(ApplicationUser user);

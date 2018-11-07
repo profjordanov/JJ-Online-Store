@@ -33,7 +33,7 @@ namespace JjOnlineStore.Services.Business
 
         public async Task<Option<CartItemServiceModel, Error>> CreateAsync(CartItemBm model)
         {
-            model.CartId = await GetCurrentCartIdByUserId(model.UserId);
+            model.CartId = await GetCurrentCartIdByUserIdAsync(model.UserId);
             return await ExistsAsync(model)
                 ? Option.None<CartItemServiceModel, Error>(CartItemExistsErrMsg.ToError())
                 : (await SaveAsync(model)).Some<CartItemServiceModel, Error>();
@@ -54,7 +54,7 @@ namespace JjOnlineStore.Services.Business
 
         public async Task<UpdateCartItemBm> UpdateAsync(UpdateCartItemBm model)
         {
-            model.CartId = await GetCurrentCartIdByUserId(model.UserId);
+            model.CartId = await GetCurrentCartIdByUserIdAsync(model.UserId);
             model = await UpdateQuantityAsync(model);
             return model;
         }

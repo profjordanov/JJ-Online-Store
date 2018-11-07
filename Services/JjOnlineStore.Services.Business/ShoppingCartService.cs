@@ -28,6 +28,18 @@ namespace JjOnlineStore.Services.Business
 
         protected IMapper Mapper { get; }
 
+        public async Task<CartVm> GetByUserIdAsync(string userId)
+        {
+            var currentCartId = await GetCurrentCartIdByUserIdAsync(userId);
+            return await DbContext
+                .Carts
+                .Include(c => c.OrderedItems)
+                .ThenInclude(c => c.Product)
+                .Where(c => c.Id == currentCartId)
+                .ProjectTo<CartVm>(Mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<CartVm> GetById(long shoppingCartId)
         {
             var entity = await DbContext
@@ -49,8 +61,8 @@ namespace JjOnlineStore.Services.Business
                     .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
                     .FirstOrDefaultAsync();
             }
-            viewModel.TotalSum =
-                viewModel.CartItems.Sum(oi => oi.Product.Price * oi.Quantity);
+            //viewModel.TotalSum =
+            //    viewModel.CartItems.Sum(oi => oi.Product.Price * oi.Quantity);
 
             return viewModel;
         }

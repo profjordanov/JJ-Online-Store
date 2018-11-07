@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using JjOnlineStore.Services.Core;
+using JjOnlineStore.Common.ViewModels;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using JjOnlineStore.Services.Core;
-using JjOnlineStore.Common.ViewModels;
+using Microsoft.AspNet.Identity;
+
+using System.Threading.Tasks;
 
 using static JjOnlineStore.Common.GlobalConstants;
 
@@ -20,11 +23,13 @@ namespace JjOnlineStore.Web.Controllers
             _shoppingCartService = shoppingCartService;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var result = await _shoppingCartService.GetById(9);
-            return View(result);
-        }
+        /// GET: /ShoppingCart/Index
+        /// <summary>
+        /// Displays Shopping Cart page for current user.
+        /// </summary>
+        /// <returns>Shopping Cart with Ordered Items</returns>
+        public async Task<IActionResult> Index() =>
+            View(await _shoppingCartService.GetByUserIdAsync(User.Identity.GetUserId()));
 
         /// POST: /ShoppingCart/Create
         /// <summary>

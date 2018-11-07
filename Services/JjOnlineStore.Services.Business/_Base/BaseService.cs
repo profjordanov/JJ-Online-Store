@@ -40,7 +40,7 @@ namespace JjOnlineStore.Services.Business._Base
                 .Users
                 .FirstOrDefaultAsync(u => predicate(u))).SomeNotNull();
 
-        protected async Task<long> GetCurrentCartIdByUserId(string userId) =>
+        protected async Task<long> GetCurrentCartIdByUserIdAsync(string userId) =>
             await DbContext
                 .Users
                 .Where(u => u.Id == userId)
