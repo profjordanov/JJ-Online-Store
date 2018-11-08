@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using JjOnlineStore.Services.Core;
+using JjOnlineStore.Common.ViewModels;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using JjOnlineStore.Services.Core;
-using JjOnlineStore.Common.ViewModels;
+using Microsoft.AspNet.Identity;
+
+using System.Threading.Tasks;
 
 using static JjOnlineStore.Common.GlobalConstants;
 
@@ -20,38 +23,12 @@ namespace JjOnlineStore.Web.Controllers
             _shoppingCartService = shoppingCartService;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var result = await _shoppingCartService.GetById(9);
-            return View(result);
-        }
-
-        /// POST: /ShoppingCart/Create
+        /// GET: /ShoppingCart/Index
         /// <summary>
-        /// Creates new Shopping Cart for current user.
+        /// Displays Shopping Cart page for current user.
         /// </summary>
-        /// <returns>Option of Shopping Cart Id or Error.</returns>
-        [HttpPost]
-        public async Task<IActionResult> Create()
-            => (await _shoppingCartService.CreateByUsernameAsync(User.Identity.Name))
-                .Match(IdContent, CreateError);
-
-        /// <summary>
-        /// Returns Content Result with Current Shopping Cart ID.
-        /// </summary>
-        /// <param name="shoppingCartId">ID of Shopping Cart.</param>
-        private IActionResult IdContent(long shoppingCartId)
-            => Content(shoppingCartId.ToString());
-
-        /// <summary>
-        /// Redirects to /--/-- 
-        /// and displays "user not found" error in fancy box.
-        /// </summary>
-        private IActionResult CreateError(Error error)
-        {
-            TempData[ErrorMessage] = error.ToString();
-            return View("ErrorViewForMiisingUser");
-        }
-
+        /// <returns>Shopping Cart with Ordered Items</returns>
+        public async Task<IActionResult> Index() =>
+            View(await _shoppingCartService.GetByUserIdAsync(User.Identity.GetUserId()));
     }
 }

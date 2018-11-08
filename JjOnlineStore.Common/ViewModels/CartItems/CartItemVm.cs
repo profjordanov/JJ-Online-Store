@@ -13,5 +13,8 @@ namespace JjOnlineStore.Common.ViewModels.CartItems
         public short Quantity { get; set; }
 
         public long CartId { get; set; }
+
+        public decimal TotalSum() =>
+            Product.Price * Quantity;
     }
 }

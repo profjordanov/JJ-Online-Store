@@ -36,5 +36,12 @@ namespace JjOnlineStore.Web.Controllers
             return (await _cartItemsService.CreateAsync(model))
                 .Match(ci => CreatedAtAction(nameof(Create), ci), ErrorContent);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> FlagDeleted(long cartItemId)
+        {
+            await _cartItemsService.SetDeletedByIdAsync(cartItemId);
+            return Ok();
+        }
     }
 }

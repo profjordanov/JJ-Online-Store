@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using JjOnlineStore.Data.Entities.Base;
+
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using JjOnlineStore.Data.Entities.Base;
+using System.Linq;
 
 namespace JjOnlineStore.Data.Entities
 {
@@ -12,5 +14,8 @@ namespace JjOnlineStore.Data.Entities
         public ApplicationUser User { get; set; }
 
         public ICollection<CartItem> OrderedItems { get; set; } = new HashSet<CartItem>();
+
+        public decimal GrandTotal =>
+            OrderedItems.Sum(oi => oi.TotalSum());
     }
 }
