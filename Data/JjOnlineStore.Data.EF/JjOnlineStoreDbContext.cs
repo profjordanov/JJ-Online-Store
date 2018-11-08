@@ -118,13 +118,15 @@ namespace JjOnlineStore.Data.EF
 		                     typeof(IDeletableEntity).IsAssignableFrom(et.ClrType));
 		    foreach (var deletableEntityType in deletableEntityTypes)
 		    {
-		        var method = SetIsDeletedQueryFilterMethod.MakeGenericMethod(deletableEntityType.ClrType);
+		        var method = SetIsDeletedQueryFilterMethod
+		            .MakeGenericMethod(deletableEntityType.ClrType);
 		        method.Invoke(null, new object[] { builder });
 		    }
 
 		    // Disable cascade delete
 		    var foreignKeys = entityTypes
-		        .SelectMany(e => e.GetForeignKeys().Where(f => f.DeleteBehavior == DeleteBehavior.Cascade));
+		        .SelectMany(e => e.GetForeignKeys()
+		            .Where(f => f.DeleteBehavior == DeleteBehavior.Cascade));
 		    foreach (var foreignKey in foreignKeys)
 		    {
 		        foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
