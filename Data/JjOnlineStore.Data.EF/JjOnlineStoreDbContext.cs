@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -107,7 +108,28 @@ namespace JjOnlineStore.Data.EF
 		    ConfigureCartUserRelations(builder);
 		    ConfigureOrderRelations(builder);
 		    ConfigureOrderItemRelations(builder);
-		}
+
+		    var entityTypes = builder.Model.GetEntityTypes().ToList();
+
+            // Set global query filter for not deleted entities only
+		    // IDeletableEntity.IsDeleted index
+            var deletableEntityTypes = entityTypes
+		        .Where(et => et.ClrType != null && 
+		                     typeof(IDeletableEntity).IsAssignableFrom(et.ClrType));
+		    foreach (var deletableEntityType in deletableEntityTypes)
+		    {
+		        var method = SetIsDeletedQueryFilterMethod.MakeGenericMethod(deletableEntityType.ClrType);
+		        method.Invoke(null, new object[] { builder });
+		    }
+
+		    // Disable cascade delete
+		    var foreignKeys = entityTypes
+		        .SelectMany(e => e.GetForeignKeys().Where(f => f.DeleteBehavior == DeleteBehavior.Cascade));
+		    foreach (var foreignKey in foreignKeys)
+		    {
+		        foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+		    }
+        }
 
 	    private static void ConfigureOrderItemRelations(ModelBuilder builder)
 	    {
@@ -199,7 +221,12 @@ namespace JjOnlineStore.Data.EF
 				.OnDelete(DeleteBehavior.Restrict);
 		}
 
-		private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
+	    private static readonly MethodInfo SetIsDeletedQueryFilterMethod =
+	        typeof(JjOnlineStoreDbContext).GetMethod(
+	            nameof(SetIsDeletedQueryFilter),
+	            BindingFlags.NonPublic | BindingFlags.Static);
+
+        private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
 			where T : class, IDeletableEntity
 		{
 			builder
