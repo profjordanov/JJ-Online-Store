@@ -23,6 +23,7 @@ namespace JjOnlineStore.Services.Business
 {
     public class CartItemsService : BaseService, ICartItemsService
     {     
+
         public CartItemsService(JjOnlineStoreDbContext dbContext, IMapper mapper) 
             : base(dbContext)
         {
@@ -57,6 +58,26 @@ namespace JjOnlineStore.Services.Business
             model.CartId = await GetCurrentCartIdByUserIdAsync(model.UserId);
             model = await UpdateQuantityAsync(model);
             return model;
+        }
+
+        public async Task DeleteAllInCartByUserId(string userId) //OPTION
+        {
+            var shoppingCar = await DbContext
+                .Carts
+                .Where(sc => sc.UserId == userId)
+                .Include(sc => sc.OrderedItems)
+                .FirstOrDefaultAsync();
+
+            try
+            {
+                DbContext.BeginTransaction();
+                DbContext.CartItems.RemoveRange(shoppingCar.OrderedItems);
+                await DbContext.CommitTransactionAsync();
+            }
+            catch (Exception e)
+            {
+                //LOG
+            }
         }
 
         private async Task<UpdateCartItemBm> UpdateQuantityAsync(UpdateCartItemBm model)

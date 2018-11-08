@@ -57,6 +57,7 @@ namespace JjOnlineStore.Web.Infrastructure
             services.AddTransient<IShoppingCartService, ShoppingCartService>();
             services.AddTransient<ICartItemsService, CartItemsService>();
 	        services.AddTransient<IOrdersService, OrdersService>();
+	        services.AddTransient<IOrderItemsService, OrderItemsService>();
 	    }
     }
 }

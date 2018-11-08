@@ -1,60 +1,57 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using JjOnlineStore.Common.ViewModels.CartItems;
+﻿using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Common.ViewModels.Orders;
-using JjOnlineStore.Common.ViewModels.Products;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Business._Base;
 using JjOnlineStore.Services.Core;
+
 using Microsoft.EntityFrameworkCore;
+
+using Optional;
+
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace JjOnlineStore.Services.Business
 {
     public class OrdersService : BaseService, IOrdersService
     {
-        public OrdersService(JjOnlineStoreDbContext dbContext, IMapper mapper) 
+        private readonly IOrderItemsService _orderItemsService;
+        public OrdersService(
+            JjOnlineStoreDbContext dbContext,
+            IMapper mapper,
+            IOrderItemsService orderItemsService) 
             : base(dbContext)
         {
             Mapper = mapper;
+            _orderItemsService = orderItemsService;
         }
 
         protected IMapper Mapper { get; }
 
-        public async Task<OrderVm> GetByIdAsync(long orderId)
-        {
-            var entity = await DbContext
+        public async Task<OrderVm> GetByIdAsync(long orderId) =>
+            await DbContext
                 .Orders
                 .Where(o => o.Id == orderId)
+                .Include(o => o.OrderedItems)
+                .ThenInclude(oi => oi.Product)
+                .ProjectTo<OrderVm>(Mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
 
-            var viewModel = Mapper.Map<Order, OrderVm>(entity);
-
-            //viewModel.Cart.CartItems =
-            //    Mapper.Map<IEnumerable<CartItem>, IEnumerable<CartItemVm>>(entity.Cart.OrderedItems);
-
-            foreach (var cartItem in viewModel.Cart.CartItems)
-            {
-                cartItem.Product = await DbContext
-                    .Products
-                    .Where(p => p.Id == cartItem.ProductId)
-                    .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
-                    .FirstOrDefaultAsync();
-            }
-
-            return viewModel;
-        }
-
-        public async Task<long> CreateAsync(OrderVm model)
+        public async Task<Option<long, Error>> CreateAsync(OrderVm model)
         {
             var entity = Mapper.Map<OrderVm, Order>(model);
             await DbContext.Orders.AddAsync(entity);
             await DbContext.SaveChangesAsync();
-
-            return entity.Id;
+            return (await _orderItemsService.CreateRangeByUserIdAndOrderIdAsync(model.UserId, entity.Id))
+                .FlatMap(oi =>
+                {
+                    entity.OrderedItems = oi.ToList();
+                    return entity.Id.Some<long, Error>();
+                });
         }
     }
 }

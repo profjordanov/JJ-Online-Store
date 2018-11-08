@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using JjOnlineStore.Common.Enumeration;
-using JjOnlineStore.Common.ViewModels.ShoppingCarts;
+using JjOnlineStore.Common.ViewModels.OrderItems;
 
 namespace JjOnlineStore.Common.ViewModels.Orders
 {
@@ -51,9 +53,11 @@ namespace JjOnlineStore.Common.ViewModels.Orders
 
         public TransportationType TransportationType { get; set; }
 
-        //Shopping Card
-        public long CartId { get; set; }
+        public IEnumerable<OrderItemVm> OrderedItems { get; set; }
 
-        public virtual CartVm Cart { get; set; }
+        public decimal GrandTotal() =>
+            OrderedItems.Sum(oi => oi.Product.Price * oi.Quantity);
+
+        public string UserId { get; set; }
     }
 }

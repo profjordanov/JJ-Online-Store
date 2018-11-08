@@ -37,27 +37,27 @@
     <div class="wrapper">
         <h1>Shopping Cart</h1>
         <hr />
-        @foreach (var cartItem in Model.Cart.CartItems)
+        @foreach (var orderItem in Model.OrderedItems)
         {
             <section class="row">
                 <div class="col-md-6 col-sm-6 col-xs-5">
-                    <p>@cartItem.Product.Name</p>
+                    <p>@orderItem.Product.Name</p>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-2">
-                    <p>$@cartItem.Product.Price</p>
+                    <p>$@orderItem.Product.Price</p>
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-3">
-                    @if (cartItem.Quantity == 1)
+                    @if (orderItem.Quantity == 1)
                     {
                         <p>One Item</p>
                     }
                     else
                     {
-                        <p>@cartItem.Quantity Items</p>
+                        <p>@orderItem.Quantity Items</p>
                     }
                 </div>
                 <div class="col-md-2 col-sm-2 col-xs-2">
-                    <p>CALC: @cartItem.Quantity x @cartItem.Product.Price</p>
+                    <p>$@orderItem.TotalSum()</p>
                 </div>
             </section>
             <hr />
@@ -118,7 +118,7 @@
         <hr />
         <section class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <p>Total price: <span class="total-price-confirmation">$@Model.Cart.GrandTotal()</span></p>
+                <p>Total price: <span class="total-price-confirmation">$@Model.GrandTotal()</span></p>
             </div>
         </section>
     </div>
