@@ -9,10 +9,14 @@
 
 @section Scripts{
     <script src="~/js/Business/shopping.cart.index.js"></script>
+    <script src="~/js/encode.query.data.js"></script>
 }
 
-<main>
+<script type="text/javascript">
+    var deleteCartItemUrl = "@Url.Action("FlagDeleted", "CartItems")";
+</script>
 
+<main>
     <ul id="steps" class="col-md-12 col-sm-12 col-xs-12">
         <li class="col-md-3 current col-sm-3 col-xs-12">
             <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
@@ -85,7 +89,7 @@
                     </td>
                     <td data-label="Total Price">$@cartItem.TotalSum()</td>
                     <td>
-                        <button class="remove-item">
+                        <button class="remove-item" onclick="deleteCartItemById(@cartItem.Id)">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </button>
                     </td>

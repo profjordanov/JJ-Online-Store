@@ -37,8 +37,14 @@ namespace JjOnlineStore.Web.Controllers
                 .Match(ci => CreatedAtAction(nameof(Create), ci), ErrorContent);
         }
 
+        /// Delete: /CartItems/FlagDeleted
+        /// <summary>
+        /// Sets Cart Item IsDeleted, DeletedOn and ModifiedOn properties.
+        /// </summary>
+        /// <param name="cartItemId">Cart Item ID.</param>
+        /// <response code="200">A Cart Item was flagged as deleted.</response>
         [HttpDelete]
-        public async Task<IActionResult> FlagDeleted(long cartItemId)
+        public async Task<IActionResult> FlagDeleted([FromQuery]long cartItemId)
         {
             await _cartItemsService.SetDeletedByIdAsync(cartItemId);
             return Ok();

@@ -109,3 +109,19 @@ $(document).ready(function () {
         });
     }
 });
+
+function deleteCartItemById(cartItemId) {
+
+    const queryData = {
+        cartItemId: cartItemId
+    };
+
+    const url = window.deleteCartItemUrl + encodeQueryData(queryData);
+
+    const request = {
+        method: "DELETE",
+        url: url
+    };
+
+    $.ajax(request);
+}

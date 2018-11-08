@@ -1,13 +1,10 @@
 ﻿using JjOnlineStore.Services.Core;
-using JjOnlineStore.Common.ViewModels;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNet.Identity;
 
 using System.Threading.Tasks;
-
-using static JjOnlineStore.Common.GlobalConstants;
 
 
 namespace JjOnlineStore.Web.Controllers
