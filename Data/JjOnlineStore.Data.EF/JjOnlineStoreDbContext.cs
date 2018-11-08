@@ -114,7 +114,8 @@ namespace JjOnlineStore.Data.EF
             // Set global query filter for not deleted entities only
 		    // IDeletableEntity.IsDeleted index
             var deletableEntityTypes = entityTypes
-		        .Where(et => et.ClrType != null && typeof(IDeletableEntity).IsAssignableFrom(et.ClrType));
+		        .Where(et => et.ClrType != null && 
+		                     typeof(IDeletableEntity).IsAssignableFrom(et.ClrType));
 		    foreach (var deletableEntityType in deletableEntityTypes)
 		    {
 		        var method = SetIsDeletedQueryFilterMethod.MakeGenericMethod(deletableEntityType.ClrType);
