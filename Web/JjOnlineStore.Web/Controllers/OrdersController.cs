@@ -1,8 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using JjOnlineStore.Common.ViewModels.Orders;
+using JjOnlineStore.Services.Core;
+using JjOnlineStore.Common.ViewModels;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using JjOnlineStore.Common.ViewModels.Orders;
-using JjOnlineStore.Services.Core;
+using Microsoft.AspNet.Identity;
+
+using System.Threading.Tasks;
 
 namespace JjOnlineStore.Web.Controllers
 {
@@ -20,9 +24,8 @@ namespace JjOnlineStore.Web.Controllers
 
         /// GET: /Orders/Index
         /// <summary>
-        /// Payment and Delivery Methods Screen.
+        /// Payment and Delivery Methods Screens.
         /// </summary>
-        /// <returns></returns>
         public IActionResult Index() =>
             View();
 
@@ -31,15 +34,31 @@ namespace JjOnlineStore.Web.Controllers
         /// Creates new Order and Redirects to Confirmation screen.
         /// </summary>
         /// <param name="model">Order View Model.</param>
-        /// <returns>ID of the newly created order.</returns>
-        [HttpPost] 
-        public async Task<IActionResult> Create(OrderVm model) =>
-            RedirectToAction(nameof(Confirmation), 
-                new { orderId = await _ordersService.CreateAsync(model) });
+        /// <returns>Either ID of the newly created order or Error.</returns>
+        [HttpPost]
+        public async Task<IActionResult> Create(OrderVm model)
+        {
+            model.UserId = User.Identity.GetUserId();
+            return (await _ordersService.CreateAsync(model))
+                .Match(RedirectToConfirmation, RedirectToIndexWithErrMsg);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IActionResult RedirectToConfirmation(long orderId) =>
+            RedirectToAction(nameof(Confirmation), new {orderId});
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IActionResult RedirectToIndexWithErrMsg(Error error) =>
+            RedirectToAction(nameof(Index));
+
 
         ///  GET: /Orders/Confirmation
         ///  <summary>
-        ///  Screen for Confirmation of New Order.
+        ///  Screen for Confirmation of the new Order.
         ///  </summary>
         /// <param name="orderId">ID of the Order.</param>
         public async Task<IActionResult> Confirmation(long orderId) =>
