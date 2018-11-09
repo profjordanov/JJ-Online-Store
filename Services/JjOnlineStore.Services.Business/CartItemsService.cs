@@ -11,6 +11,8 @@ using AutoMapper;
 
 using Optional;
 
+using Serilog;
+
 using Microsoft.EntityFrameworkCore;
 
 using System;
@@ -22,12 +24,14 @@ using static JjOnlineStore.Services.Data.ServiceConstants;
 namespace JjOnlineStore.Services.Business
 {
     public class CartItemsService : BaseService, ICartItemsService
-    {     
+    {
+        private readonly ILogger _log;
 
-        public CartItemsService(JjOnlineStoreDbContext dbContext, IMapper mapper) 
+        public CartItemsService(JjOnlineStoreDbContext dbContext, IMapper mapper, ILogger log) 
             : base(dbContext)
         {
             Mapper = mapper;
+            _log = log;
         }
 
         protected IMapper Mapper { get; }
@@ -60,7 +64,7 @@ namespace JjOnlineStore.Services.Business
             return model;
         }
 
-        public async Task DeleteAllInCartByUserId(string userId) //OPTION
+        public async Task<Option<bool, Error>> DeleteAllInCartByUserId(string userId)
         {
             var shoppingCar = await DbContext
                 .Carts
@@ -73,10 +77,12 @@ namespace JjOnlineStore.Services.Business
                 DbContext.BeginTransaction();
                 DbContext.CartItems.RemoveRange(shoppingCar.OrderedItems);
                 await DbContext.CommitTransactionAsync();
+                return true.Some<bool,Error>();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                //LOG
+                _log.Error(ex,ex.Message);
+                return Option.None<bool, Error>(CartItemsDeleteErrMsg.ToError());
             }
         }
 

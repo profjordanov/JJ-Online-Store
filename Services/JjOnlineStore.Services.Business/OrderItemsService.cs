@@ -9,6 +9,8 @@ using AutoMapper;
 
 using Optional;
 
+using Serilog;
+
 using Microsoft.EntityFrameworkCore;
 
 using System;
@@ -22,10 +24,12 @@ namespace JjOnlineStore.Services.Business
 {
     public class OrderItemsService : BaseService, IOrderItemsService
     {
-        public OrderItemsService(JjOnlineStoreDbContext dbContext, IMapper mapper) 
+        private readonly ILogger _log;
+        public OrderItemsService(JjOnlineStoreDbContext dbContext, IMapper mapper, ILogger log) 
             : base(dbContext)
         {
             Mapper = mapper;
+            _log = log;
         }
 
         protected IMapper Mapper { get; }
@@ -52,8 +56,9 @@ namespace JjOnlineStore.Services.Business
                 await DbContext.OrderItems.AddRangeAsync(orderItems);
                 await DbContext.CommitTransactionAsync();
             }
-            catch (Exception )
+            catch (Exception ex)
             {
+                _log.Error(ex, ex.Message);
                 return Option.None<IEnumerable<OrderItem>, Error>(OrderConfirmationErrMsg.ToError());
             }
 

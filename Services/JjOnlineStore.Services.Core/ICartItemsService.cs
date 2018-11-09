@@ -14,5 +14,6 @@ namespace JjOnlineStore.Services.Core
         Task<Option<CartItemServiceModel, Error>> CreateAsync(CartItemBm cartItem);
         Task SetDeletedByIdAsync(long cartItemId);
         Task<UpdateCartItemBm> UpdateAsync(UpdateCartItemBm model);
+        Task<Option<bool, Error>> DeleteAllInCartByUserId(string userId);
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using JjOnlineStore.Web.Infrastructure;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Extensions;
+using Serilog;
 
 namespace JjOnlineStore.Web
 {
@@ -35,6 +36,8 @@ namespace JjOnlineStore.Web
             services.AddIdentity();
 		    services.AddIdentityStores();
 		    services.AddApplicationServices();
+
+		    services.AddSerilogServices(new LoggerConfiguration());
 
 
             // External Authentication with Facebook & Google
