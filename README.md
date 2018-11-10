@@ -1,7 +1,7 @@
 # JJ Online Store
 
 
-## Features:
+## Architecture:
 - [x] AutoMapper
 - [x] EntityFramework Core with SQL Server and ASP.NET Identity
 - [x] File logging with Serilog
