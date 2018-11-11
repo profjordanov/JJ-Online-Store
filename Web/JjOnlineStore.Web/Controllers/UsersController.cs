@@ -7,7 +7,7 @@ namespace JjOnlineStore.Web.Controllers
     {
         public async Task<IActionResult> Profile(string username)
         {
-            return null;
+            return View();
         }
     }
 }
