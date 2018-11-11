@@ -51,17 +51,14 @@ namespace JjOnlineStore.Data.EF
 
 				currentTransaction?.Commit();
 			}
-			catch(Exception)
-			{
+			catch(Exception ex)
+			{			    
 				RollbackTransaction();
-			}
+                Console.WriteLine($"Transaction Rollback because of {ex} / {ex.Message}!");
+            }
 			finally
 			{
-				if(currentTransaction != null)
-				{
-					currentTransaction.Dispose();
-					currentTransaction = null;
-				}
+			    DisposeTransaction();
 			}
 		}
 
@@ -73,15 +70,22 @@ namespace JjOnlineStore.Data.EF
 			}
 			finally
 			{
-				if(currentTransaction != null)
-				{
-					currentTransaction.Dispose();
-					currentTransaction = null;
-				}
+			    DisposeTransaction();
 			}
 		}
 
-		public override int SaveChanges(bool acceptAllChangesOnSuccess)
+	    private void DisposeTransaction()
+	    {
+	        if (currentTransaction == null)
+	        {
+                return;
+	        }
+	        currentTransaction.Dispose();
+	        currentTransaction = null;
+	    }
+
+
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
 		{
 			ApplyAuditInfoRules();
 			return base.SaveChanges(acceptAllChangesOnSuccess);

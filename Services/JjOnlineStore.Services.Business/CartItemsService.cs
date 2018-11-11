@@ -50,10 +50,7 @@ namespace JjOnlineStore.Services.Business
                 .CartItems
                 .FindAsync(cartItemId);
 
-            entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.UtcNow;
-
-            DbContext.CartItems.Update(entity);
+            DbContext.CartItems.Remove(entity);
             await DbContext.SaveChangesAsync();
         }
 
@@ -64,26 +61,16 @@ namespace JjOnlineStore.Services.Business
             return model;
         }
 
-        public async Task<Option<bool, Error>> DeleteAllInCartByUserId(string userId)
+        public async Task DeleteAllInCartByUserIdAsync(string userId)
         {
-            var shoppingCar = await DbContext
-                .Carts
-                .Where(sc => sc.UserId == userId)
-                .Include(sc => sc.OrderedItems)
-                .FirstOrDefaultAsync();
+            var shoppingCartId = await GetCurrentCartIdByUserIdAsync(userId);
+            var cartItems = DbContext
+                .CartItems
+                .Where(ci => ci.CartId == shoppingCartId);
 
-            try
-            {
-                DbContext.BeginTransaction();
-                DbContext.CartItems.RemoveRange(shoppingCar.OrderedItems);
-                await DbContext.CommitTransactionAsync();
-                return true.Some<bool,Error>();
-            }
-            catch (Exception ex)
-            {
-                _log.Error(ex,ex.Message);
-                return Option.None<bool, Error>(CartItemsDeleteErrMsg.ToError());
-            }
+            DbContext.BeginTransaction();
+            DbContext.CartItems.RemoveRange(cartItems);
+            await DbContext.CommitTransactionAsync();
         }
 
         private async Task<UpdateCartItemBm> UpdateQuantityAsync(UpdateCartItemBm model)
