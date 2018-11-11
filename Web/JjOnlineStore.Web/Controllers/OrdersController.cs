@@ -15,10 +15,12 @@ namespace JjOnlineStore.Web.Controllers
     public class OrdersController : BaseController
     {
         private readonly IOrdersService _ordersService;
+        private readonly ICartItemsService _cartItemsService;
 
-        public OrdersController(IOrdersService ordersService)
+        public OrdersController(IOrdersService ordersService, ICartItemsService cartItemsService)
         {
             _ordersService = ordersService;
+            _cartItemsService = cartItemsService;
         }
 
 
@@ -44,13 +46,13 @@ namespace JjOnlineStore.Web.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Redirects To Confirmation Page.
         /// </summary>
         public IActionResult RedirectToConfirmation(long orderId) =>
             RedirectToAction(nameof(Confirmation), new {orderId});
 
         /// <summary>
-        /// 
+        /// Redirects To Index Page With Error Message for Order Creation. 
         /// </summary>
         public IActionResult RedirectToIndexWithErrMsg(Error error) =>
             RedirectToAction(nameof(Index));
@@ -66,9 +68,13 @@ namespace JjOnlineStore.Web.Controllers
 
         /// GET: /Orders/SuccessfulCheckout
         /// <summary>
-        /// Successful Checkout of Order.
+        /// - First erase all current cart items.
+        /// - Then display 'Successful Checkout' page.
         /// </summary>
-        public IActionResult SuccessfulCheckout() =>
-            View();
+        public async Task<IActionResult> SuccessfulCheckout()
+        {
+            await _cartItemsService.DeleteAllInCartByUserIdAsync(User.Identity.GetUserId());
+            return View();
+        }
     }
 }

@@ -11,6 +11,8 @@ using AutoMapper;
 
 using Optional;
 
+using Serilog;
+
 using Microsoft.EntityFrameworkCore;
 
 using System;
@@ -22,12 +24,14 @@ using static JjOnlineStore.Services.Data.ServiceConstants;
 namespace JjOnlineStore.Services.Business
 {
     public class CartItemsService : BaseService, ICartItemsService
-    {     
+    {
+        private readonly ILogger _log;
 
-        public CartItemsService(JjOnlineStoreDbContext dbContext, IMapper mapper) 
+        public CartItemsService(JjOnlineStoreDbContext dbContext, IMapper mapper, ILogger log) 
             : base(dbContext)
         {
             Mapper = mapper;
+            _log = log;
         }
 
         protected IMapper Mapper { get; }
@@ -46,10 +50,7 @@ namespace JjOnlineStore.Services.Business
                 .CartItems
                 .FindAsync(cartItemId);
 
-            entity.IsDeleted = true;
-            entity.DeletedOn = DateTime.UtcNow;
-
-            DbContext.CartItems.Update(entity);
+            DbContext.CartItems.Remove(entity);
             await DbContext.SaveChangesAsync();
         }
 
@@ -60,24 +61,16 @@ namespace JjOnlineStore.Services.Business
             return model;
         }
 
-        public async Task DeleteAllInCartByUserId(string userId) //OPTION
+        public async Task DeleteAllInCartByUserIdAsync(string userId)
         {
-            var shoppingCar = await DbContext
-                .Carts
-                .Where(sc => sc.UserId == userId)
-                .Include(sc => sc.OrderedItems)
-                .FirstOrDefaultAsync();
+            var shoppingCartId = await GetCurrentCartIdByUserIdAsync(userId);
+            var cartItems = DbContext
+                .CartItems
+                .Where(ci => ci.CartId == shoppingCartId);
 
-            try
-            {
-                DbContext.BeginTransaction();
-                DbContext.CartItems.RemoveRange(shoppingCar.OrderedItems);
-                await DbContext.CommitTransactionAsync();
-            }
-            catch (Exception e)
-            {
-                //LOG
-            }
+            DbContext.BeginTransaction();
+            DbContext.CartItems.RemoveRange(cartItems);
+            await DbContext.CommitTransactionAsync();
         }
 
         private async Task<UpdateCartItemBm> UpdateQuantityAsync(UpdateCartItemBm model)

@@ -47,11 +47,7 @@ namespace JjOnlineStore.Services.Business
             await DbContext.Orders.AddAsync(entity);
             await DbContext.SaveChangesAsync();
             return (await _orderItemsService.CreateRangeByUserIdAndOrderIdAsync(model.UserId, entity.Id))
-                .FlatMap(oi =>
-                {
-                    entity.OrderedItems = oi.ToList();
-                    return entity.Id.Some<long, Error>();
-                });
+                .FlatMap(oi => entity.Id.Some<long, Error>());
         }
     }
 }
