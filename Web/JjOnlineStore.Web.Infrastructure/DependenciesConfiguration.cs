@@ -59,6 +59,7 @@ namespace JjOnlineStore.Web.Infrastructure
 	        services.AddTransient<IOrdersService, OrdersService>();
 	        services.AddTransient<IOrderItemsService, OrderItemsService>();
 	        services.AddTransient<IPdfGenerator, PdfGenerator>();
+	        services.AddTransient<IBillingService, BillingService>();
 	    }
     }
 }
