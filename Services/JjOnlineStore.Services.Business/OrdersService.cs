@@ -1,4 +1,5 @@
-﻿using JjOnlineStore.Common.ViewModels;
+﻿using System.Collections.Generic;
+using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Common.ViewModels.Orders;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
@@ -49,5 +50,11 @@ namespace JjOnlineStore.Services.Business
             return (await _orderItemsService.CreateRangeByUserIdAndOrderIdAsync(model.UserId, entity.Id))
                 .FlatMap(oi => entity.Id.Some<long, Error>());
         }
+
+        public IEnumerable<OrderVm> GetByUserId(string userId) =>
+            DbContext
+                .Orders
+                .Where(o => o.UserId == userId)
+                .ProjectTo<OrderVm>(Mapper.ConfigurationProvider);
     }
 }
