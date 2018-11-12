@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-namespace JjOnlineStore.Web.Controllers
+﻿namespace JjOnlineStore.Web.Controllers
 {
     public class BillingController :  BaseController
     {
