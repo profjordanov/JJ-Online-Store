@@ -7,5 +7,12 @@
                                      "couldn't process confirmation of the order! Try again later!";
         public const string CartItemsDeleteErrMsg = "Opps..Some of your products " +
                                                     "are still in the shopping cart!";
+
+        //HTML
+        public const string PdfInvoiceLayout = @"
+        <h1>Invoice #: {0}</h1>
+        <br />
+        InvoicePerson {1}
+        ";
     }
 }

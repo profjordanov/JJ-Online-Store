@@ -19,13 +19,40 @@ namespace JjOnlineStore.Web.Controllers
             _billingService = billingService;
         }
 
+        /// GET: /Billing/Index
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>All orders for current User.</returns>
         public IActionResult Index() =>
             View(_ordersService.GetByUserId(User.Identity.GetUserId()));
 
+        /// GET: /Billing/CreateInvoice
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="orderId">Order ID.</param>
         public async Task<IActionResult> CreateInvoice(long orderId)
         {
             await _billingService.CreateInvoiceByOrderIdAsync(orderId);
             return RedirectToAction(nameof(Index));
+        }
+
+        /// GET: /Billing/CreateInvoice
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="invoiceId">Invoice ID.</param>
+        /// <returns>PDF Invoice.</returns>
+        public async Task<IActionResult> DownloadInvoice(long invoiceId)
+        {
+            var invoice = await _billingService.GetPdfInvoiceAsync(invoiceId);
+            if (invoice == null)
+            {
+                return BadRequest();
+            }
+
+            return File(invoice, "application/pdf", "Invoice.pdf");
         }
     }
 }

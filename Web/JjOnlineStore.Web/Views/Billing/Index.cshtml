@@ -69,7 +69,8 @@
                             {
                                 <td></td>
                                 <td><a class="btn btn-success"
-                                       asp-controller="" asp-action="">Download</a></td>
+                                       asp-controller="Billing" asp-action="DownloadInvoice"
+                                       asp-route-invoiceId="@order.InvoiceId.Value">Download</a></td>
                             }
                             else
                             {
