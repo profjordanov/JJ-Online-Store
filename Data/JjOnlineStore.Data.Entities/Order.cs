@@ -53,8 +53,11 @@ namespace JjOnlineStore.Data.Entities
         //Relations
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
-
         public ApplicationUser User { get; set; }
+
+        [ForeignKey(nameof(Invoice))]
+        public long? InvoiceId { get; set; }
+        public Invoice Invoice { get; set; }
 
         public ICollection<OrderItem> OrderedItems { get; set; } = new HashSet<OrderItem>();
     }
