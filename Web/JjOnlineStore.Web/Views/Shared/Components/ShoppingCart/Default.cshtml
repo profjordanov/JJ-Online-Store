@@ -1,0 +1,14 @@
+﻿@model ShoppingCartComponentServiceModel
+<span class="number-of-products">@Model.CartItemsCount</span>
+<span>My cart</span>
+<br/>
+@if (Model.CartItemsCount == 1)
+{
+    <span>1 item - $@Model.CartProductsGrandTotal</span>
+}
+else
+{
+    <span>@Model.CartItemsCount items - $@Model.CartProductsGrandTotal</span>
+}
+
+
