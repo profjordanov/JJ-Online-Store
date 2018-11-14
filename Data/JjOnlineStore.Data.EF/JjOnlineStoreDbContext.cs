@@ -33,6 +33,8 @@ namespace JjOnlineStore.Data.EF
 
 	    public DbSet<OrderItem> OrderItems { get; set; }
 
+	    public DbSet<Invoice> Invoices { get; set; }
+
         public virtual void BeginTransaction()
 		{
 			if(currentTransaction != null)
@@ -112,8 +114,9 @@ namespace JjOnlineStore.Data.EF
 		    ConfigureCartUserRelations(builder);
 		    ConfigureOrderRelations(builder);
 		    ConfigureOrderItemRelations(builder);
+		    ConfigureInvoiceOrderRelations(builder);
 
-		    var entityTypes = builder.Model.GetEntityTypes().ToList();
+            var entityTypes = builder.Model.GetEntityTypes().ToList();
 
             // Set global query filter for not deleted entities only
 		    // IDeletableEntity.IsDeleted index
@@ -137,7 +140,22 @@ namespace JjOnlineStore.Data.EF
 		    }
         }
 
-	    private static void ConfigureOrderItemRelations(ModelBuilder builder)
+	    private static void ConfigureInvoiceOrderRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<Invoice>()
+	            .HasOne(i => i.Order)
+	            .WithOne(o => o.Invoice)
+	            .HasForeignKey<Order>(o => o.InvoiceId);
+
+	        builder
+	            .Entity<Order>()
+	            .HasOne(o => o.Invoice)
+	            .WithOne(i => i.Order)
+	            .HasForeignKey<Invoice>(i => i.OrderId);
+	    }
+
+        private static void ConfigureOrderItemRelations(ModelBuilder builder)
 	    {
 	        builder
 	            .Entity<OrderItem>()
@@ -150,7 +168,6 @@ namespace JjOnlineStore.Data.EF
 	            .HasOne(oi => oi.Order)
 	            .WithMany(o => o.OrderedItems)
 	            .HasForeignKey(oi => oi.OrderId);
-
         }
 
 

@@ -11,6 +11,8 @@ namespace JjOnlineStore.Common.ViewModels.Orders
     {
         public long Id { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         //Delivery Methods
         [Required(ErrorMessage = "Please enter your first name.")]
         public string FirstName { get; set; }
@@ -55,9 +57,12 @@ namespace JjOnlineStore.Common.ViewModels.Orders
 
         public IEnumerable<OrderItemVm> OrderedItems { get; set; }
 
-        public decimal GrandTotal() =>
-            OrderedItems.Sum(oi => oi.Product.Price * oi.Quantity);
+        public long? InvoiceId { get; set; }
 
         public string UserId { get; set; }
+
+
+        public decimal GrandTotal() =>
+            OrderedItems.Sum(oi => oi.Product.Price * oi.Quantity);
     }
 }
