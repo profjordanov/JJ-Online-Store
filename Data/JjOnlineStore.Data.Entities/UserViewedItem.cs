@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JjOnlineStore.Data.Entities
 {
-    public class UserViewedItems
+    public class UserViewedItem
     {
         [Key]
         public long Id { get; set; }

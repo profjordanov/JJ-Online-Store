@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using JjOnlineStore.Common.ViewModels.Products;
+﻿using JjOnlineStore.Common.ViewModels.Products;
 using JjOnlineStore.Services.Core;
 using JjOnlineStore.Common.ViewModels;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Mvc;
+
+using System.Threading.Tasks;
 
 using static JjOnlineStore.Common.GlobalConstants;
 using static JjOnlineStore.Web.ViewPaths;
@@ -13,9 +16,14 @@ namespace JjOnlineStore.Web.Controllers
     public class ProductsController : BaseController
     {
         private readonly IProductsService _productsService;
-        public ProductsController(IProductsService productsService)
+        private readonly IUserViewedItemsService _userViewedItemsService;
+
+        public ProductsController(
+            IProductsService productsService, 
+            IUserViewedItemsService userViewedItemsService)
         {
             _productsService = productsService;
+            _userViewedItemsService = userViewedItemsService;
         }
 
         /// GET: /Products/Index
@@ -33,6 +41,7 @@ namespace JjOnlineStore.Web.Controllers
 
         /// GET: /Products/Details?Id
         /// <summary>
+        /// Adds current product to 'UserViewedItems'.
         /// Gets product details.
         /// </summary>
         /// <param name="id">Product ID.</param>
@@ -43,6 +52,8 @@ namespace JjOnlineStore.Web.Controllers
             {
                 return NotFound();
             }
+
+            await _userViewedItemsService.AddAsync(User.Identity.GetUserId(), id.Value);
 
             return (await _productsService.GetByIdAsync(id.Value))
                 .Match(DisplayDetails, DetailsError);

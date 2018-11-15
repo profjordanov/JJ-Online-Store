@@ -37,7 +37,7 @@ namespace JjOnlineStore.Data.EF
 
 	    public DbSet<Invoice> Invoices { get; set; }
 
-	    public DbSet<UserViewedItems> UserViewedItems { get; set; }
+	    public DbSet<UserViewedItem> UserViewedItems { get; set; }
 
         public virtual void BeginTransaction()
 		{
@@ -148,13 +148,13 @@ namespace JjOnlineStore.Data.EF
 	    private static void ConfigureUserViewedItemsRelations(ModelBuilder builder)
 	    {
 	        builder
-	            .Entity<UserViewedItems>()
+	            .Entity<UserViewedItem>()
 	            .HasOne(uvi => uvi.User)
 	            .WithMany(u => u.ViewedItems)
 	            .HasForeignKey(uvi => uvi.UserId);
 
 	        builder
-	            .Entity<UserViewedItems>()
+	            .Entity<UserViewedItem>()
 	            .HasOne(uvi => uvi.Product)
 	            .WithMany(p => p.UserViewed)
 	            .HasForeignKey(uvi => uvi.ProductId);

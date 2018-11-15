@@ -12,7 +12,7 @@ namespace JjOnlineStore.Data.Entities
 		{
 			Id = Guid.NewGuid().ToString();
             Orders = new HashSet<Order>();
-            ViewedItems = new HashSet<UserViewedItems>();
+            ViewedItems = new HashSet<UserViewedItem>();
 			Roles = new HashSet<IdentityUserRole<string>>();
 			Claims = new HashSet<IdentityUserClaim<string>>();
 			Logins = new HashSet<IdentityUserLogin<string>>();
@@ -36,7 +36,7 @@ namespace JjOnlineStore.Data.Entities
 
         public ICollection<Order> Orders { get; set; }
 
-	    public ICollection<UserViewedItems> ViewedItems { get; set; }
+	    public ICollection<UserViewedItem> ViewedItems { get; set; }
 
 	    public ICollection<IdentityUserRole<string>> Roles { get; set; }
 
