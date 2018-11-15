@@ -18,8 +18,13 @@
     @foreach (var item in Model.CartItems)
     {
         <div class="shopping-cart-item">
-            <a href="#"><img src="@item.Product.Base64Image" alt="product" /></a>
-            <a href="#"><p class="shopping-cart-product-details">@item.Product.Name</p></a> <br>
+            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
+                <img src="@item.Product.Base64Image" alt="product"/>
+            </a>
+            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
+                <p class="shopping-cart-product-details">@item.Product.Name</p>
+            </a> 
+            <br>
             <p class="shopping-cart-price">
                 $@item.Product.Price <span class="shopping-cart-count-products">(x @item.Quantity)</span>
             </p>

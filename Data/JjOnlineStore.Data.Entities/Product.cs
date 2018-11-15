@@ -41,5 +41,7 @@ namespace JjOnlineStore.Data.Entities
         public virtual ICollection<CartItem> CartItems { get; set; } = new HashSet<CartItem>();
 
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new HashSet<OrderItem>();
+
+        public virtual ICollection<UserViewedItems> UserViewed { get; set; } = new HashSet<UserViewedItems>();
     }
 }
