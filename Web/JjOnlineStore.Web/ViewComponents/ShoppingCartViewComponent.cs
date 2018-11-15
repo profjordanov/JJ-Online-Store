@@ -16,6 +16,10 @@ namespace JjOnlineStore.Web.ViewComponents
             _shoppingCartService = shoppingCartService;
         }
 
+        /// <summary>
+        /// Gets information for shopping cart icon in the top right corner.
+        /// </summary>
+        /// <returns>Shopping Cart Ordered Items.</returns>
         public async Task<IViewComponentResult> InvokeAsync() =>
             View(await _shoppingCartService.GetCartComponentModelAsync(User.Identity.GetUserId()));
     }

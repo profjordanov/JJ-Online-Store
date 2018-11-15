@@ -1,14 +1,39 @@
 ﻿@model ShoppingCartComponentServiceModel
-<span class="number-of-products">@Model.CartItemsCount</span>
-<span>My cart</span>
-<br/>
-@if (Model.CartItemsCount == 1)
-{
-    <span>1 item - $@Model.CartProductsGrandTotal</span>
-}
-else
-{
-    <span>@Model.CartItemsCount items - $@Model.CartProductsGrandTotal</span>
-}
+<p class="products">
+    <span class="number-of-products">@Model.GetItemsCount()</span>
+    <span>My cart</span>
+    <br />
+    @if (Model.GetItemsCount() == 1)
+    {
+        <span>1 item - $@Model.GetProductsGrandTotal()</span>
+    }
+    else
+    {
+        <span>@Model.GetItemsCount() items - $@Model.GetProductsGrandTotal()</span>
+    }
+</p>
+<div class="shopping-cart-details">
+    <h1>You have <span>@Model.GetItemsCount()</span> items</h1>
+    <p>Check or edit your item below!</p>
+    @foreach (var item in Model.CartItems)
+    {
+        <div class="shopping-cart-item">
+            <a href="#"><img src="@item.Product.Base64Image" alt="product" /></a>
+            <a href="#"><p class="shopping-cart-product-details">@item.Product.Name</p></a> <br>
+            <p class="shopping-cart-price">
+                $@item.Product.Price <span class="shopping-cart-count-products">(x @item.Quantity)</span>
+            </p>
+        </div>
+    }
+    <hr />
+    <hr />
+    <h2 class="shopping-cart-total-price">Grand total: <span>$@Model.GetProductsGrandTotal()</span></h2>
+    <div class="shopping-cart-buttons">
+        <button class="shopping-cart-btn-go">
+            <a asp-controller="ShoppingCart" asp-action="">Go Shopping Cart</a>
+        </button>
+        <button class="shopping-cart-btn-checkout"><a href="#">Check Out</a></button>
+    </div>
+</div>
 
 

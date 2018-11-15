@@ -1,9 +1,17 @@
-﻿namespace JjOnlineStore.Services.Data.ShoppingCarts
+﻿using System.Collections.Generic;
+using System.Linq;
+using JjOnlineStore.Common.ViewModels.CartItems;
+
+namespace JjOnlineStore.Services.Data.ShoppingCarts
 {
     public class ShoppingCartComponentServiceModel
     {
-        public int CartItemsCount { get; set; }
+        public IEnumerable<CartItemVm> CartItems { get; set; }
 
-        public decimal CartProductsGrandTotal { get; set; }
+        public int GetItemsCount() =>
+            CartItems.Count();
+
+        public decimal GetProductsGrandTotal() =>
+            CartItems.Sum(ci => ci.TotalSum());
     }
 }
