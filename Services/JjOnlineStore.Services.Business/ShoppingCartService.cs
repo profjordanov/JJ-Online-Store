@@ -3,6 +3,8 @@ using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Business._Base;
 using JjOnlineStore.Services.Core;
+using JjOnlineStore.Services.Data.ShoppingCarts;
+using JjOnlineStore.Common.ViewModels.CartItems;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -11,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 using System.Linq;
 using System.Threading.Tasks;
-
+using System.Collections.Generic;
 
 namespace JjOnlineStore.Services.Business
 {
@@ -55,6 +57,21 @@ namespace JjOnlineStore.Services.Business
 
             DbContext.Users.Update(currentUser);
             await DbContext.SaveChangesAsync();
+        }
+
+        public async Task<ShoppingCartComponentServiceModel> GetCartComponentModelAsync(string userId)
+        {
+            var cartId = await GetCurrentCartIdByUserIdAsync(userId);
+            var cartItems = await DbContext
+                .CartItems
+                .Where(ci => ci.CartId == cartId)
+                .Include(ci => ci.Product)
+                .ToListAsync();
+
+            return new ShoppingCartComponentServiceModel
+            {
+                CartItems = Mapper.Map<IEnumerable<CartItem>,IEnumerable<CartItemVm>>(cartItems)
+            };
         }
     }
 }

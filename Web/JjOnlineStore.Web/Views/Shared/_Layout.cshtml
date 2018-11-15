@@ -71,37 +71,7 @@
             {
                 <div class="col-xs-5 col-sm-5 col-md-3 shopping-cart pull-right">
                     <div class="shopping-cart-wrapper">
-                        <p class="products">
-                            <span class="number-of-products">2</span>
-                            <span>My cart</span><br />2 items - $100.00
-                        </p>
-                        <div class="shopping-cart-details">
-                            <h1>You have <span>2</span> items</h1>
-                            <p>Check or edit your item below!</p>
-                            <div class="shopping-cart-item">
-                                <a href="#"><img src="~/images/homepage/6926CSS-ninja.jpg" alt="product" /></a>
-                                <a href="#"><p class="shopping-cart-product-details">CSS Puns Ninja</p></a> <br>
-                                <p class="shopping-cart-price">
-                                    $25.95 <span class="shopping-cart-count-products">(x2)</span>
-                                </p>
-                            </div>
-                            <hr />
-                            <div class="shopping-cart-item">
-                                <a href="#"><img src="~/images/homepage/12018Matias_EP_DE_03.jpg" alt="product" /></a>
-                                <a href="#"><p class="shopping-cart-product-details">Matias Ergo Pro Keyboard</p></a> <br>
-                                <p class="shopping-cart-price-2">
-                                    $299.95 <span class="shopping-cart-count-products">(x2)</span>
-                                </p>
-                            </div>
-                            <hr />
-                            <h2 class="shopping-cart-total-price">Grand total: <span>$651.80</span></h2>
-                            <div class="shopping-cart-buttons">
-                                <button class="shopping-cart-btn-go">
-                                    <a href="pages/shopping-cart.html">Go Shopping Cart</a>
-                                </button>
-                                <button class="shopping-cart-btn-checkout"><a href="#">Check Out</a></button>
-                            </div>
-                        </div>
+                        @await Component.InvokeAsync("ShoppingCart")
                     </div>
                 </div>
             }
