@@ -25,7 +25,19 @@
 <body>
     <header>
         <section class="row upper-nav">
-            <div class="col-xs-6 col-md-2"><span>Welcome to SoftUnikum Gift Shop</span></div>
+            @if (User.IsInRole(AdministratorRoleName))
+            {
+                <div class="col-xs-6 col-md-2">
+                    <a asp-area="Admin" asp-controller="BaseAdmin" asp-action="BaseIndex">
+                        <i class="fa fa-user"> ADMIN Panel</i>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="col-xs-6 col-md-2"><span>Welcome to SoftUnikum Gift Shop</span></div>
+
+            }
             <div class="col-xs-6 col-md-2 pull-right">
                 <span>
                     <a class="fancybox" href="#social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
