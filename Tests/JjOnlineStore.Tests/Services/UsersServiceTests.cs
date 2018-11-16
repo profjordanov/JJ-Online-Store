@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -71,33 +72,27 @@ namespace JjOnlineStore.Tests.Services
                 .ShouldBeTrue();
         }
 
-        [Theory]
-        [AutoData]
-        public async Task Register_Should_Return_Validation_Errors(
-            RegisterViewModel model,
-            ApplicationUser userToRegister,
-            IdentityError[] expectedErrors)
+        private IEnumerable<RegisterViewModel> GetTestData = new List<RegisterViewModel>
         {
-            // Arrange
-            userToRegister = new ApplicationUser()
+            new RegisterViewModel
             {
-                UserName = model.Email,
-                Email = model.Email
-            };
-
-            _userManagerMock.Setup(userManager => userManager
-                    .CreateAsync(userToRegister, model.Password))
-                .ReturnsAsync(IdentityResult.Failed(expectedErrors));
-
-            // Act
-            var result = await _usersService.RegisterAsync(model);
-
-            // Assert
-            result.HasValue.ShouldBeFalse();
-            result.MatchNone(error => error.Messages
-                .ShouldAllBe(message => expectedErrors
-                    .Any(expectedError => expectedError.Description == message)));
-        }
+                Email = "test@mail.com",
+                Password = "123123",
+                ConfirmPassword = "123123"
+            },
+            new RegisterViewModel
+            {
+                Email = "test2@mail.com",
+                Password = "123123",
+                ConfirmPassword = "123123"
+            },
+            new RegisterViewModel
+            {
+                Email = "test3@mail.com",
+                Password = "123123",
+                ConfirmPassword = "123123"
+            }
+        };
 
         private void MockMapper<T, TExpected>(T model, TExpected expected) =>
             _mapperMock.Setup(mapper => mapper
