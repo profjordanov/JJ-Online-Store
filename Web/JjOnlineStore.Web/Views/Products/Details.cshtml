@@ -3,9 +3,11 @@
     ViewData["Title"] = Model.Name;
 }
 
-<link href="~/css/logo-fix.css" rel="stylesheet" />
-<link href="~/css/quickview.css" rel="stylesheet" />
-<link href="~/css/product-details.css" rel="stylesheet" />
+@section Styles{
+    <link href="~/css/logo-fix.css" rel="stylesheet" />
+    <link href="~/css/quickview.css" rel="stylesheet" />
+    <link href="~/css/product-details.css" rel="stylesheet" />
+}
 
 @section Scripts{
     <script src="~/js/slider.js"></script>
@@ -66,38 +68,38 @@
                 <span class="size">L</span>
                 <span class="size">XL</span>
             </div>
-           @if (User.Identity.IsAuthenticated)
-           {
-               <ul class="selected-item-actions">
-                   <li class="wishlist">
-                       <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Add to Wishlist</a>
-                   </li>
-                   <li class="compare">
-                       <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> Add to Compare</a>
-                   </li>
-                   <li class="send-via-email">
-                       <a href="#">
-                           <i class="fa fa-envelope" aria-hidden="true"></i> Email to a
-                           friend
-                       </a>
-                   </li>
-               </ul>
-               <div class="place-order">
-                   <input type="text" name="choose-quantity" id="choose-quantity" value="1">
-                   <button class="add-to-cart" id="add-to-cart">
-                       <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to Cart
-                   </button>
-               </div>
-           }
-           else
-           {
-               <div>         
-                   <h4>
-                       <i class="fa fa-check" aria-hidden="true"></i>
-                       Please, <a asp-area="" asp-controller="Account" asp-action="Login">Log in</a> to make an order!
-                   </h4>
-               </div>
-           }
+            @if (User.Identity.IsAuthenticated)
+            {
+                <ul class="selected-item-actions">
+                    <li class="wishlist">
+                        <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Add to Wishlist</a>
+                    </li>
+                    <li class="compare">
+                        <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> Add to Compare</a>
+                    </li>
+                    <li class="send-via-email">
+                        <a href="#">
+                            <i class="fa fa-envelope" aria-hidden="true"></i> Email to a
+                            friend
+                        </a>
+                    </li>
+                </ul>
+                <div class="place-order">
+                    <input type="text" name="choose-quantity" id="choose-quantity" value="1">
+                    <button class="add-to-cart" id="add-to-cart">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Add to Cart
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <h4>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Please, <a asp-area="" asp-controller="Account" asp-action="Login">Log in</a> to make an order!
+                    </h4>
+                </div>
+            }
 
         </div>
         <div class="product-view-tabs">

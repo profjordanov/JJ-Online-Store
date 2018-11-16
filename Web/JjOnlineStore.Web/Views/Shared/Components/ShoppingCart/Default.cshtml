@@ -14,12 +14,19 @@
 </p>
 <div class="shopping-cart-details">
     <h1>You have <span>@Model.GetItemsCount()</span> items</h1>
-    <p>Check or edit your item below!</p>
-    @foreach (var item in Model.CartItems)
+    <p>Check or edit your 2 item below!</p>
+    @foreach (var item in Model.CartItems
+        .OrderByDescending(ci => ci.Id)
+        .Take(2))
     {
         <div class="shopping-cart-item">
-            <a href="#"><img src="@item.Product.Base64Image" alt="product" /></a>
-            <a href="#"><p class="shopping-cart-product-details">@item.Product.Name</p></a> <br>
+            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ProductId">
+                <img src="@item.Product.Base64Image" alt="product"/>
+            </a>
+            <a asp-controller="Products" asp-action="Details" asp-route-id="@item.Id">
+                <p class="shopping-cart-product-details">@item.Product.Name</p>
+            </a> 
+            <br>
             <p class="shopping-cart-price">
                 $@item.Product.Price <span class="shopping-cart-count-products">(x @item.Quantity)</span>
             </p>

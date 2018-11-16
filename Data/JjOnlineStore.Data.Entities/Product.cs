@@ -16,7 +16,6 @@ namespace JjOnlineStore.Data.Entities
         public string Description { get; set; }
 
         [Required]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Please, enter a positive price.")]
         public decimal Price { get; set; }
 
         [Required]
@@ -41,5 +40,7 @@ namespace JjOnlineStore.Data.Entities
         public virtual ICollection<CartItem> CartItems { get; set; } = new HashSet<CartItem>();
 
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new HashSet<OrderItem>();
+
+        public virtual ICollection<UserViewedItem> UserViewed { get; set; } = new HashSet<UserViewedItem>();
     }
 }

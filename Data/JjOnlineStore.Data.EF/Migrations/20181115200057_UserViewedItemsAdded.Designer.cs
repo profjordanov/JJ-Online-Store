@@ -4,14 +4,16 @@ using JjOnlineStore.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JjOnlineStore.Data.EF.Migrations
 {
     [DbContext(typeof(JjOnlineStoreDbContext))]
-    partial class JjOnlineStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181115200057_UserViewedItemsAdded")]
+    partial class UserViewedItemsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -333,7 +335,7 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.UserViewedItem", b =>
+            modelBuilder.Entity("JjOnlineStore.Data.Entities.UserViewedItems", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -494,7 +496,7 @@ namespace JjOnlineStore.Data.EF.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.UserViewedItem", b =>
+            modelBuilder.Entity("JjOnlineStore.Data.Entities.UserViewedItems", b =>
                 {
                     b.HasOne("JjOnlineStore.Data.Entities.Product", "Product")
                         .WithMany("UserViewed")

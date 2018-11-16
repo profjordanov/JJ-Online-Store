@@ -19,7 +19,7 @@ namespace JjOnlineStore.Tests
 
         public static Mock<SignInManager<ApplicationUser>> GetMockSignInManager()
             => new Mock<SignInManager<ApplicationUser>>(
-                null,
+                GetMockUserManager().Object,
                 new Mock<IHttpContextAccessor>().Object,
                 new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object,
                 new Mock<IOptions<IdentityOptions>>().Object,

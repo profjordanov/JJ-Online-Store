@@ -9,7 +9,7 @@
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <li>
             @{ var userName = UserManager.GetUserName(User); }
-            <a asp-area="" asp-controller="Users" asp-action="Profile" class="fancybox" asp-route-username="@userName" title="Manage">Hello, @userName!</a>
+            <a asp-area="" asp-controller="Users" asp-action="Profile" class="fancybox" title="Manage">Hello, @userName!</a>
         </li>
 
         <li>            

@@ -1,14 +1,16 @@
-﻿using System;
+﻿using JjOnlineStore.Data.Entities;
+using JjOnlineStore.Data.Entities.Base;
+
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+
+using System;
 using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using JjOnlineStore.Data.Entities;
-using JjOnlineStore.Data.Entities.Base;
 
 namespace JjOnlineStore.Data.EF
 {
@@ -34,6 +36,8 @@ namespace JjOnlineStore.Data.EF
 	    public DbSet<OrderItem> OrderItems { get; set; }
 
 	    public DbSet<Invoice> Invoices { get; set; }
+
+	    public DbSet<UserViewedItem> UserViewedItems { get; set; }
 
         public virtual void BeginTransaction()
 		{
@@ -115,6 +119,7 @@ namespace JjOnlineStore.Data.EF
 		    ConfigureOrderRelations(builder);
 		    ConfigureOrderItemRelations(builder);
 		    ConfigureInvoiceOrderRelations(builder);
+		    ConfigureUserViewedItemsRelations(builder);
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();
 
@@ -140,7 +145,23 @@ namespace JjOnlineStore.Data.EF
 		    }
         }
 
-	    private static void ConfigureInvoiceOrderRelations(ModelBuilder builder)
+	    private static void ConfigureUserViewedItemsRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<UserViewedItem>()
+	            .HasOne(uvi => uvi.User)
+	            .WithMany(u => u.ViewedItems)
+	            .HasForeignKey(uvi => uvi.UserId);
+
+	        builder
+	            .Entity<UserViewedItem>()
+	            .HasOne(uvi => uvi.Product)
+	            .WithMany(p => p.UserViewed)
+	            .HasForeignKey(uvi => uvi.ProductId);
+	    }
+
+
+        private static void ConfigureInvoiceOrderRelations(ModelBuilder builder)
 	    {
 	        builder
 	            .Entity<Invoice>()
