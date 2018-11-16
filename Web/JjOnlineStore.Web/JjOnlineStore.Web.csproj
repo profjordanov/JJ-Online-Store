@@ -191,6 +191,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\admin\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\admin\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\admin\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\admin\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="wwwroot\css\checkout-successful.css" />
     <None Include="wwwroot\css\confirmation.css" />
     <None Include="wwwroot\css\delivery-methods.css" />
