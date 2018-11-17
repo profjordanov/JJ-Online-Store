@@ -8,45 +8,103 @@
     var deleteCategoryUrl = "@Url.Action("Delete", "Categories", new { Area = "Admin" })";
 </script>
 
-<br />
+<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+    <div class="profile-sidebar">
+        <div class="profile-userpic">
+            <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+        </div>
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">@User.Identity.Name</div>
+            <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="divider"></div>
+    <form role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+    </form>
+    <ul class="nav menu">
+        <li><a asp-area="Admin" asp-controller="BaseAdmin" asp-action="BaseIndex">
+            <em class="fa fa-dashboard">&nbsp;</em> Dashboard
+        </a></li>
+        <li>
+            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index">
+                <em class="fa fa-product-hunt">&nbsp;</em> Products
+            </a>
+        </li>
+        <li class="active">
+            <a asp-area="Admin" asp-controller="Categories" asp-action="All">
+                <em class="fa fa-file">&nbsp;</em> Categories
+            </a>
+        </li>
+        <li class="parent ">
+            <a data-toggle="collapse" href="#sub-item-1">
+                <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+            </a>
+            <ul class="children collapse" id="sub-item-1">
+                <li>
+                    <a class="" href="#">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="#">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="#">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+    </ul>
+</div><!--/.sidebar-->
+<main class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <br />
 
-@Html.ActionLink("Add Category", "Create", "Categories", null, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Add Category", "Create", "Categories", null, new { @class = "btn btn-primary btn-lg" })
 
-<h2>All Categories</h2>
+    <h2>All Categories</h2>
 
-<hr />
-<br />
+    <hr />
+    <br />
 
-<table class="table table-striped">
-    <tr>
-        <th>@Html.DisplayNameFor(m => m.Id)</th>
-        <th>@Html.DisplayNameFor(m => m.Name)</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    @foreach (var item in Model)
-    {
+    <table class="table table-striped">
         <tr>
-            <td>
-                @Html.DisplayFor(m => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(m => item.Name)
-            </td>
-            <td>
-                <button class="btn btn-warning btn-sm">EDIT</button>
-            </td>
-            <td>
-                <button class="btn btn-danger btn-sm" onclick="showDeleteWarning(@item.Id)">
-                    DELETE
-                </button>
-            </td>
+            <th>@Html.DisplayNameFor(m => m.Id)</th>
+            <th>@Html.DisplayNameFor(m => m.Name)</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td>
+                    <button class="btn btn-warning btn-sm">EDIT</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="showDeleteWarning(@item.Id)">
+                        DELETE
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+</main>
 
 @section Scripts {
     @{await this.Html.RenderPartialAsync("_DeleteWarningPartial");
-      await this.Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+        await this.Html.RenderPartialAsync("_ValidationScriptsPartial"); }
     <script src="~/js/Business/delete.category.js" asp-append-version="true"></script>
 }
