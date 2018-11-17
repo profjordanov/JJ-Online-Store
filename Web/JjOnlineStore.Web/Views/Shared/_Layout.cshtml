@@ -77,7 +77,12 @@
         </section>
         <section class="row search-bar-nav">
             <div class="col-xs-7 col-sm-7 col-md-5">
-                <h1 class="logo"><img src="~/images/logo.png" width="70" height="35" alt="Logo" />SoftUnikum</h1>
+                <h1 class="logo">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/images/logo.png" width="70" height="35" alt="Logo" />
+                    </a>
+                    SoftUnikum
+                </h1>
             </div>
             @if (User.Identity.IsAuthenticated)
             {
@@ -88,15 +93,30 @@
                 </div>
             }
             <div class="col-xs-7 col-sm-6 col-md-4 search-bar">
-                <select name="search-bar">
-                    <option value="1">All Categories</option>
-                    <option value="2">Gadgets</option>
-                    <option value="3">T-Shirts</option>
-                    <option value="4">Hats</option>
-                    <option value="5">Key Rings</option>
+                <select name="search-bar" id="main-categories">
+                    <option value="@((int) MainStoreCategories.All)">
+                        All Categories
+                    </option>
+                    <option value="@((int) MainStoreCategories.Gadgets)">
+                        Gadgets
+                    </option>
+                    <option value="@((int) MainStoreCategories.Shirts)">
+                        T-Shirts
+                    </option>
+                    <option value="@((int)MainStoreCategories.Hats)">
+                        Hats
+                    </option>
+                    <option value="@((int)MainStoreCategories.KeyRings)">
+                        Key Rings
+                    </option>
+                    <option value="@((int)MainStoreCategories.RandomStuffs)">
+                        Random
+                    </option>
                 </select>
-                <input type="text" placeholder="Search entire store here..." />
-                <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                <input id="searched-product-name" type="text" placeholder="Search entire store here..." />
+                <button id="search-btn">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
             </div>
         </section>
         <nav class="flex-box-container navbar">
@@ -104,20 +124,28 @@
             <div class="flex-item-main-nav nav-ul">
                 <ul>
                     <li class="flex-item-nav-li">
-                        <a href="pages/gadgets.html" title="SoftUnikum Gadgets">Gadgets</a>
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="Gadgets">
+                            Gadgets
+                        </a>
                     </li>
                     <li class="flex-item-nav-li">
-                        <a href="pages/t-shirts.html" title="SoftUnikum T-Shirts">T-Shirts</a>
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="Shirts">
+                            T-Shirts
+                        </a>
                     </li>
-                    <li class="flex-item-nav-li"><a href="pages/hats.html" title="SoftUnikum Hats">Hats</a></li>
                     <li class="flex-item-nav-li">
-                        <a href="pages/key-rings.html" title="SoftUnikum Key Rings">
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="Hats">
+                            Hats
+                        </a>
+                    </li>
+                    <li class="flex-item-nav-li">
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="KeyRings">
                             Key
                             Rings
                         </a>
                     </li>
                     <li class="flex-item-nav-li">
-                        <a href="pages/random-stuff.html" title="SoftUnikum Random Stuff">
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="RandomStuffs">
                             Random
                             Stuff
                         </a>
@@ -210,12 +238,18 @@
         </footer>
     </div>
 
+    <script type="text/javascript">
+        var searchUrl = "@Url.Action("SearchByCategoryAndWord", "Products")";
+    </script>
+
     <environment include="Development">
         <script src="~/lib/jquery-3.1.1.min.js"></script>
         <script src="~/lib/jquery-ui.min.js"></script>
         <script src="~/js/jquery.fancybox.pack.js"></script>
         <script src="~/js/index-script.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/encode.query.data.js"></script>
+        <script src="~/js/Business/search.entire.store.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"

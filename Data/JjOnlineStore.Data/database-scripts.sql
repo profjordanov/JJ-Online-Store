@@ -9,26 +9,45 @@ INSERT INTO [dbo].[Categories]
            ,[ModifiedOn]
            ,[IsDeleted]
            ,[DeletedOn]
-           ,[Name])
+           ,[Name]
+           ,[StoreCategory])
      VALUES
-           (GETDATE ( )
-           ,GETDATE ( )
-           ,0
-           ,null
-           ,'HATS');
+           (GETDATE (),
+            GETDATE (),
+            0,
+            NULL,
+            'PC',
+			2);
 
 INSERT INTO [dbo].[Categories]
            ([CreatedOn]
            ,[ModifiedOn]
            ,[IsDeleted]
            ,[DeletedOn]
-           ,[Name])
+           ,[Name]
+           ,[StoreCategory])
      VALUES
-           (GETDATE ( )
-           ,GETDATE ( )
-           ,0
-           ,null
-           ,'Gadgets');
+           (GETDATE (),
+            GETDATE (),
+            0,
+            NULL,
+            'All T-shirts',
+			4);
+
+INSERT INTO [dbo].[Categories]
+           ([CreatedOn]
+           ,[ModifiedOn]
+           ,[IsDeleted]
+           ,[DeletedOn]
+           ,[Name]
+           ,[StoreCategory])
+     VALUES
+           (GETDATE (),
+            GETDATE (),
+            0,
+            NULL,
+            'Gifts for programmers',
+			32);
 
 -- Products
 
