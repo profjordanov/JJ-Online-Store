@@ -77,7 +77,12 @@
         </section>
         <section class="row search-bar-nav">
             <div class="col-xs-7 col-sm-7 col-md-5">
-                <h1 class="logo"><img src="~/images/logo.png" width="70" height="35" alt="Logo" />SoftUnikum</h1>
+                <h1 class="logo">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/images/logo.png" width="70" height="35" alt="Logo" />
+                    </a>
+                    SoftUnikum
+                </h1>
             </div>
             @if (User.Identity.IsAuthenticated)
             {

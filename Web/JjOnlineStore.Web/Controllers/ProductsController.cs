@@ -42,7 +42,8 @@ namespace JjOnlineStore.Web.Controllers
 
         /// GET: /Products/GetByMainCategory
         /// <summary>
-        /// 
+        /// Returns collection of Products by Category -> Main Store Category.
+        /// It is visualized in the Products->Index view.
         /// </summary>
         /// <param name="category">Main Store Category</param>
         public async Task<IActionResult> GetByMainCategory(MainStoreCategories category) =>
@@ -50,7 +51,9 @@ namespace JjOnlineStore.Web.Controllers
 
         /// GET: /Products/SearchByCategoryAndWord
         /// <summary>
-        /// 
+        /// Returns collection of Products by Category -> Main Store Category
+        /// and searched word.
+        /// It is visualized in the Products->Index view. 
         /// </summary>
         /// <param name="category">Main Store Category</param>
         /// <param name="searchedWord"></param>
