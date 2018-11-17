@@ -48,6 +48,18 @@ namespace JjOnlineStore.Web.Controllers
         public async Task<IActionResult> GetByMainCategory(MainStoreCategories category) =>
             View(ProductsIndex, await _productsService.GetByMainCategoryAsync(category));
 
+        /// GET: /Products/SearchByCategoryAndWord
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="category">Main Store Category</param>
+        /// <param name="searchedWord"></param>
+        public async Task<IActionResult> SearchByCategoryAndWord([FromQuery]
+            MainStoreCategories category,
+            string searchedWord) =>
+            View(ProductsIndex);
+
+
         /// GET: /Products/Details?Id
         /// <summary>
         /// Adds current product to 'UserViewedItems'.
