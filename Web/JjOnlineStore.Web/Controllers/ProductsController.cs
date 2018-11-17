@@ -57,7 +57,7 @@ namespace JjOnlineStore.Web.Controllers
         public async Task<IActionResult> SearchByCategoryAndWord([FromQuery]
             MainStoreCategories category,
             string searchedWord) =>
-            View(ProductsIndex);
+            View(ProductsIndex, await _productsService.GetByMainCategoryAndWordAsync(category,searchedWord));
 
 
         /// GET: /Products/Details?Id
