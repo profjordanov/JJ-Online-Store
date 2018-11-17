@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HomeIndexVm
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -71,340 +73,86 @@
             </ul>
             <div id="tabs-1" class="recently-viewed-container">
                 <ul class="col-md-12 col-sm-12 col-xs-12 recent-item-container">
-                    <li class="recent-item new-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                    @foreach (var newItem in Model.NewItems)
+                    {
+                        <li class="recent-item new-item">
+                            <article>
+                                <div class="img-container col-md-12">
+                                    <div class="actions">
+                                        <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                        <a href="pages/t-shirt-web-developers.html">
+                                            <i class="fa fa-bars"
+                                               aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                     <a href="pages/t-shirt-web-developers.html">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
+                                        <img src="@newItem.Base64Image" alt="Image">
                                     </a>
+                                    <div class="quickview">
+                                        <a href="#">Quickview</a>
+                                    </div>
                                 </div>
                                 <a href="pages/t-shirt-web-developers.html">
-                                    <img src="img/products/tshirts/tshirt-web-developers-style-white-1.jpg">
+                                    <p class="item-type">Category</p>
+                                    <div class="item-name">@newItem.Name</div>
+                                    <p class="item-rating">
+                                        <span class="yellow">
+                                            &starf;&starf;&starf;&starf;
+                                        </span>&star;<span class="item-reviews">12 Review(s)</span>
+                                    </p>
                                 </a>
-                                <div class="quickview">
-                                    <a href="#">Quickview</a>
-                                </div>
-                            </div>
-                            <a href="pages/t-shirt-web-developers.html">
-                                <p class="item-type">T-shirts</p>
-                                <div class="item-name">Web Developers Style T-Shirt</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;</span>&star;<span class="item-reviews">12 Review(s)</span>
+                                <p class="item-price">
+                                    $@newItem.Price<a href="#">
+                                        <i class="fa fa-cart-arrow-down"
+                                           aria-hidden="true"></i>
+                                    </a>
                                 </p>
-                            </a>
-                            <p class="item-price">
-                                $22.95<a href="#">
-                                    <i class="fa fa-cart-arrow-down"
-                                       aria-hidden="true"></i>
-                                </a>
-                            </p>
-                        </article>
-                    </li>
-                    <li class="recent-item new-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-heart"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <a class="fancybox" href="#nakov-forbids">
-                                    <img src="~/images/products/gadgets/usb-cup-warmer-lcd.jpg">
-                                </a>
-                                <div class="quickview">
-                                    <a class="fancybox" href="#nakov-forbids">Quickview</a>
-                                </div>
-                            </div>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <p class="item-type">Gadgets</p>
-                                <div class="item-name">USB Cup Warmer LCD</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;</span>&star;
-                                    <span class="item-reviews">12 Review(s)</span>
-                                </p>
-                            </a>
-                            <p class="item-price">
-                                $29.95<a class="fancybox" href="#nakov-forbids">
-                                    <i class="fa fa-cart-arrow-down"
-                                       aria-hidden="true"></i>
-                                </a>
-                            </p>
-                        </article>
-                    </li>
-                    <li class="recent-item new-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a href="pages/t-shirt-css-is-awesome.html">
-                                        <i class="fa fa-heart"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                    <a href="pages/t-shirt-css-is-awesome.html">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <a href="pages/t-shirt-css-is-awesome.html">
-                                    <img src="img/products/tshirts/tshirt-css-is-awesome-black-1.jpg">
-                                </a>
-                                <div class="quickview">
-                                    <a href="#">Quickview</a>
-                                </div>
-                            </div>
-                            <a href="pages/t-shirt-css-is-awesome.html">
-                                <p class="item-type">T-shirts</p>
-                                <div class="item-name">CSS Is Awesome T-Shirt</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;</span>&star;<span class="item-reviews">12 Review(s)</span>
-                                </p>
-                            </a>
-                            <p class="item-price">
-                                $22.95<a href="pages/t-shirt-css-is-awesome.html">
-                                    <i class="fa fa-cart-arrow-down"
-                                       aria-hidden="true"></i>
-                                </a>
-                            </p>
-                        </article>
-                    </li>
-                    <li class="recent-item new-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-heart"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <a class="fancybox" href="#nakov-forbids">
-                                    <img src="img/products/gadgets/micro-charger.jpg">
-                                </a>
-                                <div class="quickview">
-                                    <a class="fancybox" href="#nakov-forbids">Quickview</a>
-                                </div>
-                            </div>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <p class="item-type">Chargers</p>
-                                <div class="item-name">Emergency Micro Charger</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;</span>&star;&star;<span class="item-reviews">12 Review(s)</span>
-                                </p>
-                            </a>
-                            <p class="item-price">
-                                195.95<a href="#">
-                                    <i class="fa fa-cart-arrow-down"
-                                       aria-hidden="true"></i>
-                                </a>
-                            </p>
-                        </article>
-                    </li>
-                    <li class="recent-item new-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <a class="fancybox" href="#nakov-forbids">
-                                    <img src="img/hats/nakov/nakov-hat-v1.png">
-                                </a>
-                                <div class="quickview">
-                                    <a href="#">Quickview</a>
-                                </div>
-                            </div>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <p class="item-type">Hats</p>
-                                <div class="item-name">Nakov's Hat</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">12 Review(s)</span>
-                                </p>
-                            </a>
-                            <p class="item-price">
-                                $69.95<a href="#">
-                                    <i class="fa fa-cart-arrow-down"
-                                       aria-hidden="true"></i>
-                                </a>
-                            </p>
-                        </article>
-                    </li>
+                            </article>
+                        </li>
+                    }
                 </ul>
             </div>
             <div id="tabs-2" class="recently-viewed-container">
                 <ul class="col-md-12 col-sm-12 col-xs-12 recent-item-container">
-                    <li class="recent-item discount-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
+                    @foreach (var onSaleItem in @Model.OnSaleItems)
+                    {
+                        <li class="recent-item discount-item">
+                            <article>
+                                <div class="img-container col-md-12">
+                                    <div class="actions">
+                                        <a class="fancybox" href="#nakov-forbids">
+                                            <i class="fa fa-heart"
+                                               aria-hidden="true"></i>
+                                        </a>
+                                        <a class="fancybox" href="#nakov-forbids">
+                                            <i class="fa fa-bars"
+                                               aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                     <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-heart"
-                                           aria-hidden="true"></i>
+                                        <img src="@onSaleItem.Base64Image">
                                     </a>
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
+                                    <div class="quickview">
+                                        <a class="fancybox" href="#nakov-forbids">Quickview</a>
+                                    </div>
                                 </div>
                                 <a class="fancybox" href="#nakov-forbids">
-                                    <img src="img/Handtuch-Binaer.jpg">
+                                    <p class="item-type">CATEGORY</p>
+                                    <div class="item-name">@onSaleItem.Name</div>
+                                    <p class="item-rating">
+                                        <span class="yellow">
+                                            &starf;&starf;&starf;&starf;&starf;
+                                        </span><span class="item-reviews">12 Review(s)</span>
+                                    </p>
                                 </a>
-                                <div class="quickview">
-                                    <a class="fancybox" href="#nakov-forbids">Quickview</a>
-                                </div>
-                            </div>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <p class="item-type">Towels</p>
-                                <div class="item-name">Binary Bath Towel</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">12 Review(s)</span>
+                                <p class="item-price">
+                                    <span class="new-price">$@onSaleItem.Price</span>
+                                    <span class="old-price">$@onSaleItem.Price</span>
+                                    <a href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
                                 </p>
-                            </a>
-                            <p class="item-price">
-                                <span class="new-price">$19.95</span><span class="old-price">$24.95</span><a href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
-                            </p>
-                        </article>
-                    </li>
-                    <li class="recent-item discount-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-heart"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <a class="fancybox" href="#nakov-forbids">
-                                    <img src="img/1226912269_retro_games_controller_01.jpg">
-                                </a>
-                                <div class="quickview">
-                                    <a class="fancybox" href="#nakov-forbids">Quickview</a>
-                                </div>
-                            </div>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <p class="item-type">Games</p>
-                                <div class="item-name">Retro Games Controller</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">12 Review(s)</span>
-                                </p>
-                            </a>
-                            <p class="item-price">
-                                <span class="new-price">$24.95</span><span class="old-price">$37.95</span><a href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
-                            </p>
-                        </article>
-                    </li>
-                    <li class="recent-item discount-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-heart"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <a class="fancybox" href="#nakov-forbids">
-                                    <img src="~/images/149Binaeruhr_02.jpg">
-                                </a>
-                                <div class="quickview">
-                                    <a class="fancybox" href="#nakov-forbids">Quickview</a>
-                                </div>
-                            </div>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <p class="item-type">Clocks</p>
-                                <div class="item-name">Binary Clock</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">12 Review(s)</span>
-                                </p>
-                            </a>
-                            <p class="item-price">
-                                <span class="new-price">$29.95</span><span class="old-price">$39.95</span><a href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
-                            </p>
-                        </article>
-                    </li>
-                    <li class="recent-item discount-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-heart"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <a class="fancybox" href="#nakov-forbids">
-                                    <img src="~/images/coffee-mug-css-is-awesome.jpg">
-                                </a>
-                                <div class="quickview">
-                                    <a class="fancybox" href="#nakov-forbids">Quickview</a>
-                                </div>
-                            </div>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <p class="item-type">Coffee Mug</p>
-                                <div class="item-name">CSS Is Awesome Coffee Mug</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">12 Review(s)</span>
-                                </p>
-                            </a>
-                            <p class="item-price">
-                                <span class="new-price">$5.95</span><span class="old-price">$12.95</span><a href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
-                            </p>
-                        </article>
-                    </li>
-                    <li class="recent-item discount-item">
-                        <article>
-                            <div class="img-container col-md-12">
-                                <div class="actions">
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-heart"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                    <a class="fancybox" href="#nakov-forbids">
-                                        <i class="fa fa-bars"
-                                           aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                                <a class="fancybox" href="#nakov-forbids">
-                                    <img src="~/images/mouse-pad-bad-spelling.jpg">
-                                </a>
-                                <div class="quickview">
-                                    <a class="fancybox" href="#nakov-forbids">Quickview</a>
-                                </div>
-                            </div>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <p class="item-type">Mouse Pad</p>
-                                <div class="item-name">Bad Spelling Mouse Pad</div>
-                                <p class="item-rating">
-                                    <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">12 Review(s)</span>
-                                </p>
-                            </a>
-                            <p class="item-price">
-                                <span class="new-price">$7.95</span><span class="old-price">$9.95</span><a href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
-                            </p>
-                        </article>
-                    </li>
+                            </article>
+                        </li>
+                    }
                 </ul>
             </div>
         </section>
@@ -422,264 +170,43 @@
                     <a href="#" class="details-btn">View Details</a>
                 </article>
             </li>
-            <li class="recent-item">
-                <article>
-                    <div class="img-container col-md-12">
-                        <div class="actions">
-                            <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
+            @foreach (var topSellingItem in Model.TopSellingItems)
+            {
+                <li class="recent-item">
+                    <article>
+                        <div class="img-container col-md-12">
+                            <div class="actions">
+                                <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                <a class="fancybox" href="#nakov-forbids">
+                                    <i class="fa fa-bars"
+                                       aria-hidden="true"></i>
+                                </a>
+                            </div>
                             <a class="fancybox" href="#nakov-forbids">
-                                <i class="fa fa-bars"
-                                   aria-hidden="true"></i>
+                                <img src="@topSellingItem.Base64Image">
                             </a>
+                            <div class="quickview">
+                                <a href="#">Quickview</a>
+                            </div>
                         </div>
                         <a class="fancybox" href="#nakov-forbids">
-                            <img src="~/images/products/tshirts/tshirt-it-guy-cardinal-1.jpg">
+                            <p class="item-type">T-shirts</p>
+                            <div class="item-name">@topSellingItem.Name</div>
+                            <p class="item-rating">
+                                <span class="yellow">
+                                    &starf;&starf;&starf;&starf;
+                                </span>&star;<span class="item-reviews">12 Review(s)</span>
+                            </p>
                         </a>
-                        <div class="quickview">
-                            <a href="#">Quickview</a>
-                        </div>
-                    </div>
-                    <a class="fancybox" href="#nakov-forbids">
-                        <p class="item-type">T-shirts</p>
-                        <div class="item-name">The IT Guy T-Shirt</div>
-                        <p class="item-rating">
-                            <span class="yellow">&starf;&starf;&starf;&starf;</span>&star;<span class="item-reviews">12 Review(s)</span>
-                        </p>
-                    </a>
-                    <p class="item-price">
-                        $22.95<a href="#">
-                            <i class="fa fa-cart-arrow-down"
-                               aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </article>
-            </li>
-            <li class="recent-item">
-                <article>
-                    <div class="img-container col-md-12">
-                        <div class="actions">
-                            <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <i class="fa fa-bars"
+                        <p class="item-price">
+                            $@topSellingItem.Price<a href="#">
+                                <i class="fa fa-cart-arrow-down"
                                    aria-hidden="true"></i>
                             </a>
-                        </div>
-                        <a class="fancybox" href="#nakov-forbids">
-                            <img src="~/images/tshirt-important-1.jpg">
-                        </a>
-                        <div class="quickview">
-                            <a href="#">Quickview</a>
-                        </div>
-                    </div>
-                    <a class="fancybox" href="#nakov-forbids">
-                        <p class="item-type">T-shirts</p>
-                        <div class="item-name">!important T-Shirt</div>
-                        <p class="item-rating">
-                            <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">9 Review(s)</span>
                         </p>
-                    </a>
-                    <p class="item-price">
-                        $22.95<a href="#">
-                            <i class="fa fa-cart-arrow-down"
-                               aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </article>
-            </li>
-            <li class="recent-item new-item">
-                <article>
-                    <div class="img-container col-md-12">
-                        <div class="actions">
-                            <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <i class="fa fa-bars"
-                                   aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <a class="fancybox" href="#nakov-forbids">
-                            <img src="~/images/products/gadgets/binary-wrist-watch.jpg">
-                        </a>
-                        <div class="quickview">
-                            <a href="#">Quickview</a>
-                        </div>
-                    </div>
-                    <a class="fancybox" href="#nakov-forbids">
-                        <p class="item-type">Clocks</p>
-                        <div class="item-name">Binary Wrist Watch</div>
-                        <p class="item-rating">
-                            <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">7 Review(s)</span>
-                        </p>
-                    </a>
-                    <p class="item-price">
-                        $21.95<a href="#">
-                            <i class="fa fa-cart-arrow-down"
-                               aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </article>
-            </li>
-        </ul>
-        <ul class="recent-item-container">
-            <li class="recent-item">
-                <article>
-                    <div class="img-container col-md-12">
-                        <div class="actions">
-                            <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <i class="fa fa-bars"
-                                   aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <a class="fancybox" href="#nakov-forbids">
-                            <img src="~/images/key-ring-evolution.jpg">
-                        </a>
-                        <div class="quickview">
-                            <a href="#">Quickview</a>
-                        </div>
-                    </div>
-                    <a class="fancybox" href="#nakov-forbids">
-                        <p class="item-type">Key Rings</p>
-                        <div class="item-name">Evolution Key Ring</div>
-                        <p class="item-rating">
-                            <span class="yellow">&starf;&starf;&starf;</span>&star;&star;<span class="item-reviews">5 Review(s)</span>
-                        </p>
-                    </a>
-                    <p class="item-price">
-                        $5.95<a href="#">
-                            <i class="fa fa-cart-arrow-down"
-                               aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </article>
-            </li>
-            <li class="recent-item">
-                <article>
-                    <div class="img-container col-md-12">
-                        <div class="actions">
-                            <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <i class="fa fa-bars"
-                                   aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <a class="fancybox" href="#nakov-forbids">
-                            <img src="~/images/tshirt-div-1.jpg">
-                        </a>
-                        <div class="quickview">
-                            <a href="#">Quickview</a>
-                        </div>
-                    </div>
-                    <a class="fancybox" href="#nakov-forbids">
-                        <p class="item-type">T-shirts</p>
-                        <div class="item-name">DIV ID T-Shirt</div>
-                        <p class="item-rating">
-                            <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">18 Review(s)</span>
-                        </p>
-                    </a>
-                    <p class="item-price">
-                        $22.95<a href="#">
-                            <i class="fa fa-cart-arrow-down"
-                               aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </article>
-            </li>
-            <li class="recent-item">
-                <article>
-                    <div class="img-container col-md-12">
-                        <div class="actions">
-                            <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <i class="fa fa-bars"
-                                   aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <a class="fancybox" href="#nakov-forbids">
-                            <img src="~/images/6926CSS-ninja.jpg">
-                        </a>
-                        <div class="quickview">
-                            <a href="#">Quickview</a>
-                        </div>
-                    </div>
-                    <a class="fancybox" href="#nakov-forbids">
-                        <p class="item-type">T-shirts</p>
-                        <div class="item-name">Ninja T-Shirt</div>
-                        <p class="item-rating">
-                            <span class="yellow">&starf;&starf;&starf;&starf;&starf;</span><span class="item-reviews">6 Review(s)</span>
-                        </p>
-                    </a>
-                    <p class="item-price">
-                        $22.95<a href="#">
-                            <i class="fa fa-cart-arrow-down"
-                               aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </article>
-            </li>
-            <li class="recent-item">
-                <article>
-                    <div class="img-container col-md-12">
-                        <div class="actions">
-                            <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <i class="fa fa-bars"
-                                   aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <a class="fancybox" href="#nakov-forbids">
-                            <img src="~/images/products/tshirts/tshirt-no-internet-green-1.jpg" alt="">
-                        </a>
-                        <div class="quickview">
-                            <a href="#">Quickview</a>
-                        </div>
-                    </div>
-                    <a class="fancybox" href="#nakov-forbids">
-                        <p class="item-type">T-shirts</p>
-                        <div class="item-name">No Internet T-Shirt</div>
-                        <p class="item-rating">
-                            <span class="yellow">&starf;&starf;&starf;&starf;</span>&star;<span class="item-reviews">9 Review(s)</span>
-                        </p>
-                    </a>
-                    <p class="item-price">
-                        $22.95<a href="#">
-                            <i class="fa fa-cart-arrow-down"
-                               aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </article>
-            </li>
-            <li class="recent-item">
-                <article>
-                    <div class="img-container col-md-12">
-                        <div class="actions">
-                            <a class="fancybox" href="#nakov-forbids"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            <a class="fancybox" href="#nakov-forbids">
-                                <i class="fa fa-bars"
-                                   aria-hidden="true"></i>
-                            </a>
-                        </div>
-                        <a class="fancybox" href="#nakov-forbids">
-                            <img src="~/images/products/hats/hat-head-tag-black-and-white.jpg">
-                        </a>
-                        <div class="quickview">
-                            <a href="#">Quickview</a>
-                        </div>
-                    </div>
-                    <a class="fancybox" href="#nakov-forbids">
-                        <p class="item-type">Hats</p>
-                        <div class="item-name">&lt;head&gt; Hat</div>
-                        <p class="item-rating">
-                            <span class="yellow">&starf;&starf;&starf;&starf;</span>&star;<span class="item-reviews">7 Review(s)</span>
-                        </p>
-                    </a>
-                    <p class="item-price">
-                        $12.95<a href="#">
-                            <i class="fa fa-cart-arrow-down"
-                               aria-hidden="true"></i>
-                        </a>
-                    </p>
-                </article>
-            </li>
+                    </article>
+                </li>
+            }
         </ul>
     </section>
     <div class="row">
