@@ -1,10 +1,13 @@
-﻿using System.Threading.Tasks;
-using JjOnlineStore.Common.ViewModels.Home;
+﻿using JjOnlineStore.Common.ViewModels.Home;
 using JjOnlineStore.Services.Core;
+
 using Microsoft.AspNetCore.Mvc;
+
+using System.Threading.Tasks;
 
 namespace JjOnlineStore.Web.Controllers
 {
+    [Route("[controller]/[action]")]
     public class HomeController : BaseController
     {
         private readonly IProductsService _productsService;
@@ -14,6 +17,10 @@ namespace JjOnlineStore.Web.Controllers
             _productsService = productsService;
         }
 
+        /// GET: /Home/Index
+        /// <summary>
+        /// Home Page.
+        /// </summary>
         public async Task<IActionResult> Index()
         {
             var model = new HomeIndexVm
@@ -25,25 +32,5 @@ namespace JjOnlineStore.Web.Controllers
 
             return View(model);
         }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
     }
 }
