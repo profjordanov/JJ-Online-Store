@@ -17,6 +17,19 @@ INSERT INTO [dbo].[Categories]
            ,null
            ,'HATS');
 
+INSERT INTO [dbo].[Categories]
+           ([CreatedOn]
+           ,[ModifiedOn]
+           ,[IsDeleted]
+           ,[DeletedOn]
+           ,[Name])
+     VALUES
+           (GETDATE ( )
+           ,GETDATE ( )
+           ,0
+           ,null
+           ,'Gadgets');
+
 -- Products
 
 INSERT INTO [dbo].[Products]
