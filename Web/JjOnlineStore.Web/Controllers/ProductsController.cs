@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Threading.Tasks;
+using JjOnlineStore.Common.Enumeration;
 
 using static JjOnlineStore.Common.GlobalConstants;
 using static JjOnlineStore.Web.ViewPaths;
@@ -38,6 +39,14 @@ namespace JjOnlineStore.Web.Controllers
             }
             return View(await _productsService.AllWithoutDeletedAsync());
         }
+
+        /// GET: /Products/GetByMainCategory
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="category">Main Store Category</param>
+        public async Task<IActionResult> GetByMainCategory(MainStoreCategories category) =>
+            View(ProductsIndex, await _productsService.GetByMainCategoryAsync(category));
 
         /// GET: /Products/Details?Id
         /// <summary>

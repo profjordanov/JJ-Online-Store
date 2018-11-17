@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Optional;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using JjOnlineStore.Common.Enumeration;
 using JjOnlineStore.Common.ViewModels.Products;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Services.Business._Base;
@@ -29,6 +30,14 @@ namespace JjOnlineStore.Services.Business
                 .Products
                 .Where(p => !p.IsDeleted)
                 .Include(p => p.Category)
+                .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
+                .ToListAsync();
+
+        public async Task<IEnumerable<ProductViewModel>> GetByMainCategoryAsync(MainStoreCategories category) =>
+            await DbContext
+                .Products
+                .Include(p => p.Category)
+                .Where(p => p.Category.StoreCategory == category)
                 .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
                 .ToListAsync();
 

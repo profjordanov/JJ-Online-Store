@@ -2,10 +2,11 @@
 {
     public enum MainStoreCategories
     {
-        Gadgets = 1,
-        Shirts = 2,
-        Hats = 4,
-        KeyRings = 8,
-        RandomStuffs = 16
+        All = 1,
+        Gadgets = 2,
+        Shirts = 4,
+        Hats = 8,
+        KeyRings = 16,
+        RandomStuffs = 32
     }
 }

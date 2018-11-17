@@ -89,11 +89,24 @@
             }
             <div class="col-xs-7 col-sm-6 col-md-4 search-bar">
                 <select name="search-bar">
-                    <option value="1">All Categories</option>
-                    <option value="2">Gadgets</option>
-                    <option value="3">T-Shirts</option>
-                    <option value="4">Hats</option>
-                    <option value="5">Key Rings</option>
+                    <option value="@((int) MainStoreCategories.All)">
+                        All Categories
+                    </option>
+                    <option value="@((int) MainStoreCategories.Gadgets)">
+                        Gadgets
+                    </option>
+                    <option value="@((int) MainStoreCategories.Shirts)">
+                        T-Shirts
+                    </option>
+                    <option value="@((int)MainStoreCategories.Hats)">
+                        Hats
+                    </option>
+                    <option value="@((int)MainStoreCategories.KeyRings)">
+                        Key Rings
+                    </option>
+                    <option value="@((int)MainStoreCategories.RandomStuffs)">
+                        Random
+                    </option>
                 </select>
                 <input type="text" placeholder="Search entire store here..." />
                 <button><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -104,20 +117,28 @@
             <div class="flex-item-main-nav nav-ul">
                 <ul>
                     <li class="flex-item-nav-li">
-                        <a href="pages/gadgets.html" title="SoftUnikum Gadgets">Gadgets</a>
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="Gadgets">
+                            Gadgets
+                        </a>
                     </li>
                     <li class="flex-item-nav-li">
-                        <a href="pages/t-shirts.html" title="SoftUnikum T-Shirts">T-Shirts</a>
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="Shirts">
+                            T-Shirts
+                        </a>
                     </li>
-                    <li class="flex-item-nav-li"><a href="pages/hats.html" title="SoftUnikum Hats">Hats</a></li>
                     <li class="flex-item-nav-li">
-                        <a href="pages/key-rings.html" title="SoftUnikum Key Rings">
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="Hats">
+                            Hats
+                        </a>
+                    </li>
+                    <li class="flex-item-nav-li">
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="KeyRings">
                             Key
                             Rings
                         </a>
                     </li>
                     <li class="flex-item-nav-li">
-                        <a href="pages/random-stuff.html" title="SoftUnikum Random Stuff">
+                        <a asp-controller="Products" asp-action="GetByMainCategory" asp-route-category="RandomStuffs">
                             Random
                             Stuff
                         </a>

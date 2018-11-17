@@ -17,21 +17,6 @@ INSERT INTO [dbo].[Categories]
             0,
             NULL,
             'PC',
-			1);
-
-INSERT INTO [dbo].[Categories]
-           ([CreatedOn]
-           ,[ModifiedOn]
-           ,[IsDeleted]
-           ,[DeletedOn]
-           ,[Name]
-           ,[StoreCategory])
-     VALUES
-           (GETDATE (),
-            GETDATE (),
-            0,
-            NULL,
-            'All T-shirts',
 			2);
 
 INSERT INTO [dbo].[Categories]
@@ -46,8 +31,23 @@ INSERT INTO [dbo].[Categories]
             GETDATE (),
             0,
             NULL,
+            'All T-shirts',
+			4);
+
+INSERT INTO [dbo].[Categories]
+           ([CreatedOn]
+           ,[ModifiedOn]
+           ,[IsDeleted]
+           ,[DeletedOn]
+           ,[Name]
+           ,[StoreCategory])
+     VALUES
+           (GETDATE (),
+            GETDATE (),
+            0,
+            NULL,
             'Gifts for programmers',
-			16);
+			32);
 
 -- Products
 
