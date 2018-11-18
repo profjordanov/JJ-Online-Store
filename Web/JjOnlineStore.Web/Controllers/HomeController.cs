@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace JjOnlineStore.Web.Controllers
 {
-    [Route("[controller]/[action]")]
     public class HomeController : BaseController
     {
         private readonly IProductsService _productsService;
