@@ -1,15 +1,31 @@
 ﻿<body>
-    <div class="invoice-box">
-        <table cellpadding="0" cellspacing="0">
+    <div style="max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+      font-size: 16px;
+      line-height: 24px;
+      font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+      color: #555;">
+        <table cellpadding="0" cellspacing="0"
+               style="width: 100%;
+         line-height: inherit;
+         text-align: left;">
             <tr class="top">
-                <td colspan="2">
+                <td colspan="2" style="padding: 5px;
+               vertical-align: top; padding-bottom: 20px;">
                     <table>
                         <tr>
-                            <td class="title">
+                            <td class="title" style="padding: 5px;
+                        vertical-align: top;
+                        font-size: 45px;
+                        line-height: 45px;
+                        color: #333;">
                                 <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;">
                             </td>
-
-                            <td>
+                            <td style="padding: 5px;
+                        vertical-align: top;">
                                 Invoice #: {0}<br>
                                 Created: {1}<br>
                             </td>
@@ -17,18 +33,21 @@
                     </table>
                 </td>
             </tr>
-
-            <tr class="information">
+            <tr class="information" style="padding-bottom: 40px;">
                 <td colspan="2">
                     <table>
                         <tr>
-                            <td>
+                            <td style="padding: 5px;
+                            vertical-align: top;
+                            padding-bottom: 40px;">
                                 Jordan & Co?!, Inc.<br>
                                 12345 Sunny Road<br>
                                 Sunnyville, CA 12345
                             </td>
-
-                            <td>
+                            <td style="padding: 5px;
+                            vertical-align: top;
+                            padding-bottom: 40px;
+                            text-align: right;">
                                 {2}<br>
                                 {3}
                             </td>
@@ -36,71 +55,72 @@
                     </table>
                 </td>
             </tr>
-
             <tr class="heading">
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;">
                     Payment Method
                 </td>
-
-                <td>
-                    Check #
+                <td style="padding: 5px;
+               vertical-align: top;">
+                    Credit Card #
                 </td>
             </tr>
-
-            <tr class="details">
-                <td>
-                    Check
-                </td>
-
-                <td>
-                    1000
-                </td>
-            </tr>
-
             <tr class="heading">
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;
+               background: #eee;
+               border-bottom: 1px solid #ddd;
+               font-weight: bold;">
                     Item
                 </td>
-
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;
+               background: #eee;
+               border-bottom: 1px solid #ddd;
+               font-weight: bold;">
                     Price
                 </td>
             </tr>
-
             <tr class="item">
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;">
                     Website design
                 </td>
-
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;">
                     $300.00
                 </td>
             </tr>
-
             <tr class="item">
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;">
                     Hosting (3 months)
                 </td>
-
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;">
                     $75.00
                 </td>
             </tr>
-
             <tr class="item last">
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;
+               border-bottom: none;
+               border-bottom: 1px solid #eee;">
                     Domain name (1 year)
                 </td>
-
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;
+               border-bottom: none;
+               border-bottom: 1px solid #eee;">
                     $10.00
                 </td>
             </tr>
-
             <tr class="total">
                 <td></td>
-
-                <td>
+                <td style="padding: 5px;
+               vertical-align: top;
+               border-top: 2px solid #eee;
+               font-weight: bold;">
                     Total: $385.00
                 </td>
             </tr>

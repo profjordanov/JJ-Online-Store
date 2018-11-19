@@ -52,6 +52,7 @@ namespace JjOnlineStore.Services.Business
                                  "invoice" +
                                  DirectorySeparatorChar +
                                  "invoice.html";
+
             var invoiceLayout = ReadAllText(invoiceHtmPath);
 
             var invoiceData = await DbContext
@@ -65,7 +66,9 @@ namespace JjOnlineStore.Services.Business
                     InvoiceNumber = i.Id,
                     DateCreated = i.CreatedOn.ToString(CultureInfo.InvariantCulture),
                     InvoicePerson = $"{i.Order.FirstName} {i.Order.LastName}",
-                    InvoicePersonAddress = $"{i.Order.Country}, {i.Order.City}, {i.Order.Address}"
+                    InvoicePersonAddress = $"{i.Order.Country}, {i.Order.City}, {i.Order.Address}",
+                    OrderedItemsWithoutLast = i.Order.OrderedItems.SkipLast(1),
+                    LastOrderedItem = i.Order.OrderedItems.LastOrDefault()
                 })
                 .FirstOrDefaultAsync();
 
