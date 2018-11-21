@@ -12,7 +12,7 @@ namespace JjOnlineStore.Services.Business
     {
         public byte[] GeneratePdfFromHtml(string html)
         {
-            var pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            var pdfDoc = new Document(PageSize.A4, 20f, 20f, 20f, 5f);
             var htmlParser = new HTMLWorker(pdfDoc);
 
             using (var memoryStream = new MemoryStream())

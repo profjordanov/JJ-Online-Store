@@ -1,5 +1,7 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
@@ -55,32 +57,59 @@ namespace JjOnlineStore.Services.Business
 
             var invoiceLayout = ReadAllText(invoiceHtmPath);
 
-            var invoiceData = await DbContext
+            var invoice = await DbContext
                 .Invoices
-                .Where(i => i.Id == invoiceId)
                 .Include(i => i.Order)
-                .ThenInclude(o => o.OrderedItems)
-                .ThenInclude(oi => oi.Product)
-                .Select(i => new
-                {
-                    InvoiceNumber = i.Id,
-                    DateCreated = i.CreatedOn.ToString(CultureInfo.InvariantCulture),
-                    InvoicePerson = $"{i.Order.FirstName} {i.Order.LastName}",
-                    InvoicePersonAddress = $"{i.Order.Country}, {i.Order.City}, {i.Order.Address}",
-                    OrderedItemsWithoutLast = i.Order.OrderedItems.SkipLast(1),
-                    LastOrderedItem = i.Order.OrderedItems.LastOrDefault()
-                })
+                .Where(i => i.Id == invoiceId)
                 .FirstOrDefaultAsync();
 
-            var x = _pdfGenerator.GeneratePdfFromHtml(string.Format(
+            invoice.Order.OrderedItems = await DbContext
+                .OrderItems
+                .Include(oi => oi.Product)
+                .Where(oi => oi.OrderId == invoice.OrderId)
+                .ToListAsync();
+
+            var invoiceData = new
+            {
+                InvoiceNumber = invoice.Id,
+                DateCreated = invoice.CreatedOn.ToString(CultureInfo.InvariantCulture),
+                InvoicePerson = 
+                    $"{invoice.Order.FirstName} {invoice.Order.LastName}",
+                InvoicePersonAddress = 
+                    $"{invoice.Order.Country}, {invoice.Order.City}, {invoice.Order.Address}",
+                OrderedItems = invoice.Order.OrderedItems,
+                GrandTotal = invoice.Order.OrderedItems.Sum(oi => oi.TotalSum())
+            };
+
+            return _pdfGenerator.GeneratePdfFromHtml(string.Format(
                 invoiceLayout,
                 invoiceData.InvoiceNumber,
                 invoiceData.DateCreated,
                 invoiceData.InvoicePerson,
-                invoiceData.InvoicePersonAddress
+                invoiceData.InvoicePersonAddress,
+                StringifiedOrderedItemsForHtmlTable(invoiceData.OrderedItems),
+                invoiceData.GrandTotal
             ));
+        }
 
-            return x;
+        private static string StringifiedOrderedItemsForHtmlTable(IEnumerable<OrderItem> orderItems)
+        {
+            var sb = new StringBuilder();
+            foreach (var orderItem in orderItems)
+            {
+                sb.Append("<tr>");
+                sb.Append("<td>");
+                sb.Append(orderItem.Product.Name);
+                sb.Append("</td>");
+                sb.Append("<td>");
+                sb.Append(orderItem
+                    .TotalSum()
+                    .ToString(CultureInfo.InvariantCulture));
+                sb.Append("</td>");
+                sb.Append("</tr>");
+            }
+
+            return sb.ToString();
         }
     }
 }

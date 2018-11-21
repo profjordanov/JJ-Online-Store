@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
-using JjOnlineStore.Services.Core;
+﻿using JjOnlineStore.Services.Core;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+using System.Threading.Tasks;
 
 namespace JjOnlineStore.Web.Controllers
 {
@@ -52,7 +54,7 @@ namespace JjOnlineStore.Web.Controllers
                 return BadRequest();
             }
 
-            return File(invoice, "application/pdf", "Invoice.pdf");
+            return File(invoice, "application/pdf", $"Invoice-{invoiceId}.pdf");
         }
     }
 }
