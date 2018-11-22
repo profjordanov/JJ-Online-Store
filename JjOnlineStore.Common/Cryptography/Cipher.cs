@@ -5,7 +5,7 @@ using static System.Text.Encoding;
 using static System.Security.Cryptography.SHA256;
 using static System.Convert;
 
-namespace JjOnlineStore.Web.Infrastructure.Cryptography
+namespace JjOnlineStore.Common.Cryptography
 {
     public static class Cipher
     {

@@ -64,5 +64,10 @@ namespace JjOnlineStore.Common.ViewModels.Orders
 
         public decimal GrandTotal() =>
             OrderedItems.Sum(oi => oi.Product.Price * oi.Quantity);
+
+        public OrderVm EncryptSensitiveData(OrderVm order)
+        {
+            order.CardholderName = 
+        }
     }
 }
