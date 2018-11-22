@@ -13,6 +13,7 @@
         <h1>Invoice #: {0}</h1>
         <br />
         InvoicePerson {1}
+        {2} {3}
         ";
     }
 }

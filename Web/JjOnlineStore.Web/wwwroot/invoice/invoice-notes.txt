@@ -1,0 +1,14 @@
+﻿{0} - Invoice ID
+{1} - Date Created
+{2} - Invoice Person Name
+{3} - Invoice Person Address
+{4} - Order Items 
+    <tr>
+        <td>
+            Website design
+        </td>
+        <td>
+            $300.00
+        </td>
+    </tr>
+{5} - Total Price
