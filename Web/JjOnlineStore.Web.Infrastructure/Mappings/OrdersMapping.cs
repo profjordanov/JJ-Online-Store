@@ -8,8 +8,11 @@ namespace JjOnlineStore.Web.Infrastructure.Mappings
     {
         public OrdersMapping()
         {
-            CreateMap<Order, OrderVm>(MemberList.Destination);
-            CreateMap<OrderVm, Order>(MemberList.Source);
+            //TODO: DecryptSensitiveData
+            CreateMap<Order, OrderVm>(MemberList.Destination)
+                .AfterMap((entityModel, viewModel) => viewModel.DecryptSensitiveData(viewModel));
+            CreateMap<OrderVm, Order>(MemberList.Source)
+                .BeforeMap((viewModel, entityModel) => viewModel.EncryptSensitiveData(viewModel));
         }
     }
 }
