@@ -5,6 +5,8 @@ using System.Linq;
 using JjOnlineStore.Common.Enumeration;
 using JjOnlineStore.Common.ViewModels.OrderItems;
 
+using static JjOnlineStore.Common.Cryptography.Cipher;
+
 namespace JjOnlineStore.Common.ViewModels.Orders
 {
     public class OrderVm
@@ -64,5 +66,23 @@ namespace JjOnlineStore.Common.ViewModels.Orders
 
         public decimal GrandTotal() =>
             OrderedItems.Sum(oi => oi.Product.Price * oi.Quantity);
+
+        public OrderVm EncryptSensitiveData(OrderVm order)
+        {
+            order.CardholderName = Encrypt(order.CardholderName);
+            order.CardNumber = Encrypt(order.CardNumber);
+            order.Cvv = Encrypt(order.Cvv);
+
+            return order;
+        }
+
+        public OrderVm DecryptSensitiveData(OrderVm order)
+        {
+            order.CardholderName = Decrypt(order.CardholderName);
+            order.CardNumber = Decrypt(order.CardNumber);
+            order.Cvv = Decrypt(order.Cvv);
+
+            return order;
+        }
     }
 }
