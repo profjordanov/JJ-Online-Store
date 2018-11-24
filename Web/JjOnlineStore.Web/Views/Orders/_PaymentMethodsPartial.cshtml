@@ -49,34 +49,33 @@
                     </div>
                     <div class="expired-date">
                         <p>Expire Date</p>
-                        <input asp-for="ExpireDate" />
-                        @*<select id="expire-date-month">
-            <option value="0">MM</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
-        <select id="expire-date-year">
-            <option value="0">YYYY</option>
-            <option value="1">2017</option>
-            <option value="2">2018</option>
-            <option value="3">2019</option>
-            <option value="4">2020</option>
-            <option value="5">2021</option>
-            <option value="6">2022</option>
-            <option value="7">2023</option>
-            <option value="8">2024</option>
-            <option value="9">2025</option>
-        </select>*@
+                        <select id="expire-date-month">
+                            <option value="0">MM</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <select id="expire-date-year">
+                            <option value="0">YYYY</option>
+                            <option value="1">2017</option>
+                            <option value="2">2018</option>
+                            <option value="3">2019</option>
+                            <option value="4">2020</option>
+                            <option value="5">2021</option>
+                            <option value="6">2022</option>
+                            <option value="7">2023</option>
+                            <option value="8">2024</option>
+                            <option value="9">2025</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -96,8 +95,8 @@
     </section>
     <section class="row">
         <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
-            <button>Check Out</button>
-            <button id="show-delivery-methods">Go To Delivery Methods</button>
+            <a asp-controller="ShoppingCart" asp-action="Index">Check Out</a>
+            <a id="show-delivery-methods">Go To Delivery Methods</a>
         </div>
     </section>
 </main>
