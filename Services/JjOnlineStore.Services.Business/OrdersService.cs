@@ -33,14 +33,17 @@ namespace JjOnlineStore.Services.Business
 
         protected IMapper Mapper { get; }
 
-        public async Task<OrderVm> GetByIdAsync(long orderId) =>
-            await DbContext
+        public async Task<OrderVm> GetByIdAsync(long orderId)
+        {
+            var entity = await DbContext
                 .Orders
                 .Where(o => o.Id == orderId)
                 .Include(o => o.OrderedItems)
                 .ThenInclude(oi => oi.Product)
-                .ProjectTo<OrderVm>(Mapper.ConfigurationProvider)
                 .FirstOrDefaultAsync();
+
+            return Mapper.Map<Order, OrderVm>(entity);
+        }
 
         public async Task<Option<long, Error>> CreateAsync(OrderVm model)
         {
