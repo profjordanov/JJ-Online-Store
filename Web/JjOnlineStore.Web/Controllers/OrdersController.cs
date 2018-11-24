@@ -33,7 +33,8 @@ namespace JjOnlineStore.Web.Controllers
 
         /// POST: /Orders/Create
         /// <summary>
-        /// Creates new Order and Redirects to Confirmation screen.
+        /// Creates new Order and all order items from shopping cart
+        /// and Redirects to Confirmation screen.
         /// </summary>
         /// <param name="model">Order View Model.</param>
         /// <returns>Either ID of the newly created order or Error.</returns>

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using JjOnlineStore.Common.Enumeration;
+using JjOnlineStore.Common.ViewModels.OrderItems;
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using JjOnlineStore.Common.Enumeration;
-using JjOnlineStore.Common.ViewModels.OrderItems;
 
 using static JjOnlineStore.Common.Cryptography.Cipher;
 
@@ -15,7 +16,7 @@ namespace JjOnlineStore.Common.ViewModels.Orders
 
         public DateTime CreatedOn { get; set; }
 
-        //Delivery Methods
+        //Delivery Information
         [Required(ErrorMessage = "Please enter your first name.")]
         public string FirstName { get; set; }
 
@@ -41,16 +42,18 @@ namespace JjOnlineStore.Common.ViewModels.Orders
 
         public bool Shipped { get; set; }
 
-        //Payment Methods
+        //Payment Information
         [Required(ErrorMessage = "Please enter a Cardholder Name.")]
         public string CardholderName { get; set; }
 
         [Required(ErrorMessage = "Please enter a Card Number.")]
         public string CardNumber { get; set; }
 
-        [Required(ErrorMessage = "Please enter a Expire Date.")]
-        [DisplayFormat(DataFormatString = @"{0:dd\/MM\/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime ExpireDate { get; set; }
+        [Required]
+        public int ExpireDateMonth { get; set; }
+
+        [Required]
+        public int ExpireDateYear { get; set; }
 
         [Required(ErrorMessage = "Please enter a CW.")]
         public string Cvv { get; set; }
@@ -84,5 +87,10 @@ namespace JjOnlineStore.Common.ViewModels.Orders
 
             return order;
         }
+
+        public DateTime GetExpireDateTime() =>
+            (ExpireDateMonth == 0 || ExpireDateYear == 0)
+            ? DateTime.UtcNow
+            : new DateTime(ExpireDateYear, ExpireDateMonth, 1);
     }
 }
