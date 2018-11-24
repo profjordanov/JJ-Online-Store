@@ -10,7 +10,7 @@ namespace JjOnlineStore.Common.Cryptography
 {
     public static class Cipher
     {
-        private const string Password = "t@1NA_P@R0L@";
+        private const string Strong = "t@1NA_P@R0L@";
 
         /// <summary>
         /// Encrypt a string.
@@ -25,7 +25,7 @@ namespace JjOnlineStore.Common.Cryptography
 
             // Get the bytes of the string
             var bytesToBeEncrypted = UTF8.GetBytes(plainText);
-            var passwordBytes = UTF8.GetBytes(Password);
+            var passwordBytes = UTF8.GetBytes(Strong);
 
             // Hash the password with SHA256
             passwordBytes = Create().ComputeHash(passwordBytes);
@@ -49,7 +49,7 @@ namespace JjOnlineStore.Common.Cryptography
 
             // Get the bytes of the string
             var bytesToBeDecrypted = FromBase64String(encryptedText);
-            var passwordBytes = UTF8.GetBytes(Password);
+            var passwordBytes = UTF8.GetBytes(Strong);
 
             passwordBytes = Create().ComputeHash(passwordBytes);
 

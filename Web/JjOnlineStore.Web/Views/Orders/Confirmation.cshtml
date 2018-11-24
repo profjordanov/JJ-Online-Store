@@ -72,7 +72,7 @@
                 <p>Visa Cart</p>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
-                <p>Cart number: XXX-XXX-XXX-@Model.CardNumber.Substring(Model.CardNumber.Length - 3);</p>
+                <p>Cart number: XXX-XXX-XXX-@Model.CardNumber.Substring(Model.CardNumber.Length - 3)</p>
             </div>
         </section>
         <h1>Delivery Information</h1>
@@ -123,7 +123,7 @@
         </section>
     </div>
     <div id="buttons" class="col-md-12 col-sm-12 col-xs-12">
-        <a href="#">Back to Delivery</a>
+        <a asp-controller="Orders" asp-action="Index">Back to Delivery</a>
         <a asp-action="SuccessfulCheckout" asp-controller="Orders">Proceed Checkout</a>
     </div>
 </main>
