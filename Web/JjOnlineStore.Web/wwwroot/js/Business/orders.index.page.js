@@ -2,11 +2,19 @@
 const $paymentMethodsPartial = $("#payment-methods-partial");
 const $deliveryMethodsPartial = $("#delivery-methods-partial");
 
+//Messages
+const fieldsValidationErrMsg = "Some of the required fields are not filled." +
+    "Please, fill in all fields.";
+
 $("#show-delivery-methods").click(function () {
-    $paymentMethodsPartial.fadeOut("slow", function () {
-        $deliveryMethodsPartial.fadeIn("slow");
-        $deliveryMethodsPartial.removeClass("hidden");
-    });
+    if (validatePaymentInputs()) {
+        $paymentMethodsPartial.fadeOut("slow", function () {
+            $deliveryMethodsPartial.fadeIn("slow");
+            $deliveryMethodsPartial.removeClass("hidden");
+        });
+    } else {
+        $.fancybox(fieldsValidationErrMsg);
+    }
 });
 
 $("#show-payment-methods").click(function () {
@@ -19,12 +27,27 @@ $("#submit-order-form").click(function () {
     if (checkOrderFormInputs()) {
         $("#create-order-form").submit();
     } else {
-        $.fancybox("Some of the required fields are not filled." +
-            "Please, fill in all fields.");
+        $.fancybox(fieldsValidationErrMsg);
     }
 });
 
+function validatePaymentInputs() {
+    const cardholderNameVal = $("#CardholderName").val();
+    const expireDateMonthVal = $("#expire-date-month").val();
+    const expireDateYearVal = $("#expire-date-year").val();
+    const cardNumberVal = $("#CardNumber").val();
+    const cvvVal = $("#Cvv").val();
 
+    if (cardholderNameVal == "" ||
+        cardNumberVal == "" ||
+        cvvVal == "" ||
+        expireDateMonthVal == 0 ||
+        expireDateYearVal == 0) {
+        return false;
+
+    }
+    return true;
+}
 
 function checkOrderFormInputs() {
     var isValid = true;
