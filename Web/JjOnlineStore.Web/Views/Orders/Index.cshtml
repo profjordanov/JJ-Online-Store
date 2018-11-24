@@ -12,7 +12,8 @@
     <script src="~/js/Business/orders.index.page.js"></script>
 }
 
-<form asp-action="Create" asp-controller="Orders" method="post" class="form-horizontal" id="submit-order-form">
+<form asp-action="Create" asp-controller="Orders" method="post"
+      class="form-horizontal" id="create-order-form">
     <div id="payment-methods-partial">
         @{
             @(await Html.PartialAsync("_PaymentMethodsPartial.cshtml", Model))
