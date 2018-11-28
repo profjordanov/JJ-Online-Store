@@ -23,7 +23,7 @@ namespace JjOnlineStore.Web.Controllers
 
         /// GET: /Billing/Index
         /// <summary>
-        /// 
+        /// Billing Index page. 
         /// </summary>
         /// <returns>All orders for current User.</returns>
         public IActionResult Index() =>
@@ -31,7 +31,7 @@ namespace JjOnlineStore.Web.Controllers
 
         /// GET: /Billing/CreateInvoice
         /// <summary>
-        /// 
+        /// Creates an invoice record in the database by Order ID. 
         /// </summary>
         /// <param name="orderId">Order ID.</param>
         public async Task<IActionResult> CreateInvoice(long orderId)
@@ -42,7 +42,7 @@ namespace JjOnlineStore.Web.Controllers
 
         /// GET: /Billing/CreateInvoice
         /// <summary>
-        /// 
+        /// Creates invoice in pdf by ID.
         /// </summary>
         /// <param name="invoiceId">Invoice ID.</param>
         /// <returns>PDF Invoice.</returns>
