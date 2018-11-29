@@ -1,5 +1,26 @@
 # JJ Online Store
 
+# Features
+
+What's special about this specific implementation is that it employs a different approach on error handling and propagation. It uses the **Maybe** and **Either** monads to enable very explicit function declarations and allow us to abstract the conditionals and validations into the type itself.
+
+This allows you to do cool stuff like:
+
+```csharp
+public Task<Option<UserModel, Error>> LoginAsync(CredentialsModel model) =>
+    GetUser(u => u.Email == model.Email)
+        .FilterAsync<User, Error>(user => UserManager.CheckPasswordAsync(user, model.Password), "Invalid credentials.")
+        .MapAsync(async user =>
+        {
+            var result = Mapper.Map<UserModel>(user);
+
+            result.Token = GenerateToken(user.Id, user.Email);
+
+            return result;
+        });
+```
+
+You can read more about **Maybe** and **Either** [here](https://devadventures.net/2018/04/17/forget-object-reference-not-set-to-an-instance-of-an-object-functional-adventures-in-c/) and [here](https://devadventures.net/2018/09/20/real-life-examples-of-functional-c-sharp-either/).
 
 ## Architecture:
 - [x] AutoMapper
