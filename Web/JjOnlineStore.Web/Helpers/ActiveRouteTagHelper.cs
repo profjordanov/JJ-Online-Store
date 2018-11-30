@@ -8,6 +8,10 @@ using System.Linq;
 
 namespace JjOnlineStore.Web.Helpers
 {
+    /// <summary>
+    /// Tag Helper for active route to appear highlighted in navigation menu.
+    /// It only adds the “active” class to current <li></li> tag.
+    /// </summary>
     [HtmlTargetElement(Attributes = "is-active-route")]
     public class ActiveRouteTagHelper : TagHelper
     {
