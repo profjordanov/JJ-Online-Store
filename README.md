@@ -7,15 +7,13 @@ What's special about this specific implementation is that it employs a different
 This allows you to do cool stuff like:
 
 ```csharp
-public Task<Option<UserModel, Error>> LoginAsync(CredentialsModel model) =>
+public Task<Option<UserServiceModel, Error>> LoginAsync(CredentialsModel model) =>
     GetUser(u => u.Email == model.Email)
-        .FilterAsync<User, Error>(user => UserManager.CheckPasswordAsync(user, model.Password), "Invalid credentials.")
+        .FilterAsync(user => UserManager.CheckPasswordAsync(user, model.Password), "Invalid credentials.".ToError())
         .MapAsync(async user =>
         {
-            var result = Mapper.Map<UserModel>(user);
-
-            result.Token = GenerateToken(user.Id, user.Email);
-
+            var result = Mapper.Map<UserServiceModel>(user);
+            await SignInManager.SignInAsync(user, isPersistent: false);
             return result;
         });
 ```
