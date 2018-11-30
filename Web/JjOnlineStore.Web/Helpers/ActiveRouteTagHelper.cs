@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JjOnlineStore.Web.Helpers
 {
@@ -13,12 +14,18 @@ namespace JjOnlineStore.Web.Helpers
         private IDictionary<string, string> _routeValues;
 
         /// <summary>The name of the action method.</summary>
-        /// <remarks>Must be <c>null</c> if <see cref="P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route" /> is non-<c>null</c>.</remarks>
+        /// <remarks>
+        /// Must be <c>null</c> if <see cref="P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route" />
+        /// is non-<c>null</c>.
+        /// </remarks>
         [HtmlAttributeName("asp-action")]
         public string Action { get; set; }
 
         /// <summary>The name of the controller.</summary>
-        /// <remarks>Must be <c>null</c> if <see cref="P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route" /> is non-<c>null</c>.</remarks>
+        /// <remarks>
+        /// Must be <c>null</c> if <see cref="P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route" />
+        /// is non-<c>null</c>.
+        /// </remarks>
         [HtmlAttributeName("asp-controller")]
         public string Controller { get; set; }
 
@@ -26,16 +33,9 @@ namespace JjOnlineStore.Web.Helpers
         [HtmlAttributeName("asp-all-route-data", DictionaryAttributePrefix = "asp-route-")]
         public IDictionary<string, string> RouteValues
         {
-            get
-            {
-                if (this._routeValues == null)
-                    this._routeValues = (IDictionary<string, string>)new Dictionary<string, string>((IEqualityComparer<string>)StringComparer.OrdinalIgnoreCase);
-                return this._routeValues;
-            }
-            set
-            {
-                this._routeValues = value;
-            }
+            get => _routeValues ?? (_routeValues = 
+                       new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase));
+            set => _routeValues = value;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace JjOnlineStore.Web.Helpers
         {
             base.Process(context, output);
 
-            if (ShouldBeActive())
+            if (IsActive())
             {
                 MakeActive(output);
             }
@@ -57,34 +57,29 @@ namespace JjOnlineStore.Web.Helpers
             output.Attributes.RemoveAll("is-active-route");
         }
 
-        private bool ShouldBeActive()
+        private bool IsActive()
         {
-            string currentController = ViewContext.RouteData.Values["Controller"].ToString();
-            string currentAction = ViewContext.RouteData.Values["Action"].ToString();
+            var currentController = ViewContext.RouteData.Values["Controller"].ToString();
+            var currentAction = ViewContext.RouteData.Values["Action"].ToString();
 
-            if (!string.IsNullOrWhiteSpace(Controller) && Controller.ToLower() != currentController.ToLower())
+            if (!string.IsNullOrWhiteSpace(Controller) &&
+                !string.Equals(Controller, currentController, StringComparison.CurrentCultureIgnoreCase))
             {
                 return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(Action) && Action.ToLower() != currentAction.ToLower())
+            if (!string.IsNullOrWhiteSpace(Action) &&
+                !string.Equals(Action, currentAction, StringComparison.CurrentCultureIgnoreCase))
             {
                 return false;
             }
 
-            foreach (KeyValuePair<string, string> routeValue in RouteValues)
-            {
-                if (!ViewContext.RouteData.Values.ContainsKey(routeValue.Key) ||
-                    ViewContext.RouteData.Values[routeValue.Key].ToString() != routeValue.Value)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return RouteValues
+                .All(routeValue => ViewContext.RouteData.Values.ContainsKey(routeValue.Key) && 
+                                   ViewContext.RouteData.Values[routeValue.Key].ToString() == routeValue.Value);
         }
 
-        private void MakeActive(TagHelperOutput output)
+        private static TagHelperOutput MakeActive(TagHelperOutput output)
         {
             var classAttr = output.Attributes.FirstOrDefault(a => a.Name == "class");
             if (classAttr == null)
@@ -96,8 +91,10 @@ namespace JjOnlineStore.Web.Helpers
             {
                 output.Attributes.SetAttribute("class", classAttr.Value == null
                     ? "active"
-                    : classAttr.Value.ToString() + " active");
+                    : classAttr.Value + " active");
             }
+
+            return output;
         }
     }
 }
