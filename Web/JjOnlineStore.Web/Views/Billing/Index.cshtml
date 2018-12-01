@@ -10,44 +10,7 @@
 <div class="container">
     <div class="row profile">
         <div class="col-md-3">
-            <div class="profile-sidebar">
-                <div class="profile-userpic">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/User.svg/1024px-User.svg.png" class="img-responsive" alt="User">
-                </div>
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">
-                        @User.Identity.Name
-                    </div>
-                </div>
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li>
-                            <a asp-controller="Users" asp-action="Profile">
-                                <i class="glyphicon glyphicon-home"></i>
-                                Overview
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-user"></i>
-                                Account Settings
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a>
-                                <i class="glyphicon glyphicon-ok"></i>
-                                Billing
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="glyphicon glyphicon-flag"></i>
-                                Help
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            @await Html.PartialAsync("_UserProfileSidebarPartial")
         </div>
         <div class="col-md-9">
             <div class="profile-content">
@@ -68,15 +31,19 @@
                             @if (order.InvoiceId.HasValue)
                             {
                                 <td></td>
-                                <td><a class="btn btn-success"
+                                <td>
+                                    <a class="btn btn-success"
                                        asp-controller="Billing" asp-action="DownloadInvoice"
-                                       asp-route-invoiceId="@order.InvoiceId.Value">Download</a></td>
+                                       asp-route-invoiceId="@order.InvoiceId.Value">Download</a>
+                                </td>
                             }
                             else
                             {
-                                <td><a class="btn btn-primary"
-                                       asp-controller="Billing" asp-action="CreateInvoice" 
-                                       asp-route-orderId="@order.Id">Create Invoice</a></td>
+                                <td>
+                                    <a class="btn btn-primary"
+                                       asp-controller="Billing" asp-action="CreateInvoice"
+                                       asp-route-orderId="@order.Id">Create Invoice</a>
+                                </td>
                                 <td></td>
                             }
                         </tr>

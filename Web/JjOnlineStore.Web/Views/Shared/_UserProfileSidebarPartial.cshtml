@@ -1,0 +1,32 @@
+﻿<div class="profile-sidebar">
+    <div class="profile-userpic">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/User.svg/1024px-User.svg.png" class="img-responsive" alt="User">
+    </div>
+    <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+            @User.Identity.Name
+        </div>
+    </div>
+    <div class="profile-usermenu">
+        <ul class="nav">
+            <li is-active-route asp-controller="Users" asp-action="Profile">
+                <a asp-controller="Users" asp-action="Profile">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Overview
+                </a>
+            </li>
+            <li is-active-route asp-controller="Manage" asp-action="ChangePassword">
+                <a asp-controller="Manage" asp-action="ChangePassword">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Account Settings
+                </a>
+            </li>
+            <li is-active-route asp-controller="Billing" asp-action="Index">
+                <a asp-controller="Billing" asp-action="Index">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    Billing
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
