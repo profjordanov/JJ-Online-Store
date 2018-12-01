@@ -145,7 +145,7 @@
                                 </a>
                                 <p class="item-price">
                                     <span class="new-price">$@onSaleItem.Price</span>
-                                    <span class="old-price">$@onSaleItem.Price</span>
+                                    <span class="old-price">$ @($"{ComputeValue(onSaleItem.Price):0.00}")</span>
                                     @await Html.PartialAsync("_DirectAddProductToCartArrowDownBtnPartial", @onSaleItem.Id)
                                 </p>
                             </article>
