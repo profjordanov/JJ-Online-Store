@@ -169,7 +169,18 @@
                     <p class="availability">Availability: <span>In stock</span></p>
                     <button>
                         <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                        <a class="button" href="#"> Add to Cart</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="button" onclick="directAddProductToCart(@product.Id)">
+                                Add to Cart
+                            </a>
+                        }
+                        else
+                        {
+                            <a class="button" asp-controller="Account" asp-action="Login">
+                                Login First
+                            </a>
+                        }
                     </button>
                 </div>
             </article>

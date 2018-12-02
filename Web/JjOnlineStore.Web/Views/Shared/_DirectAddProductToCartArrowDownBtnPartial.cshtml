@@ -1,0 +1,15 @@
+﻿@model long
+@if (User.Identity.IsAuthenticated)
+{
+    <a onclick="directAddProductToCart(@Model)">
+        <i class="fa fa-cart-arrow-down"
+           aria-hidden="true"></i>
+    </a>
+}
+else
+{
+    <a asp-controller="Account" asp-action="Login">
+        <i class="fa fa-cart-arrow-down"
+           aria-hidden="true"></i>
+    </a>
+}

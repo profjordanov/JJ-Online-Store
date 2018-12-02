@@ -102,10 +102,8 @@
                                     </p>
                                 </a>
                                 <p class="item-price">
-                                    $@newItem.Price<a href="#">
-                                        <i class="fa fa-cart-arrow-down"
-                                           aria-hidden="true"></i>
-                                    </a>
+                                    $@newItem.Price
+                                    @await Html.PartialAsync("_DirectAddProductToCartArrowDownBtnPartial", @newItem.Id)
                                 </p>
                             </article>
                         </li>
@@ -147,8 +145,8 @@
                                 </a>
                                 <p class="item-price">
                                     <span class="new-price">$@onSaleItem.Price</span>
-                                    <span class="old-price">$@onSaleItem.Price</span>
-                                    <a href="#"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></a>
+                                    <span class="old-price">$ @($"{ComputeValue(onSaleItem.Price):0.00}")</span>
+                                    @await Html.PartialAsync("_DirectAddProductToCartArrowDownBtnPartial", @onSaleItem.Id)
                                 </p>
                             </article>
                         </li>
@@ -199,10 +197,8 @@
                             </p>
                         </a>
                         <p class="item-price">
-                            $@topSellingItem.Price<a href="#">
-                                <i class="fa fa-cart-arrow-down"
-                                   aria-hidden="true"></i>
-                            </a>
+                            $@topSellingItem.Price
+                            @await Html.PartialAsync("_DirectAddProductToCartArrowDownBtnPartial", @topSellingItem.Id)
                         </p>
                     </article>
                 </li>
