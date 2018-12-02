@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using AutoMapper;
 using Moq;
 using Shouldly;
 using Xunit;
-using AutoFixture.Xunit2;
-
-using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Identity;
 
 using JjOnlineStore.Common.ViewModels.Account;
+using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Services.Business;
 using JjOnlineStore.Services.Core;
@@ -28,9 +26,11 @@ namespace JjOnlineStore.Tests.Services
         private readonly Mock<IMapper> _mapperMock;
         private readonly Mock<SignInManager<ApplicationUser>> _signInManagerMock;
         private readonly Mock<IShoppingCartService> _cartServiceMock;
+        private readonly JjOnlineStoreDbContext _dbContext;
 
         public UsersServiceTests()
         {
+            _dbContext = GetInMemoryDbContext();
             _userManagerMock = IdentityMocksProvider.GetMockUserManager();
             _mapperMock = new Mock<IMapper>();
             _signInManagerMock = IdentityMocksProvider.GetMockSignInManager();
@@ -46,17 +46,31 @@ namespace JjOnlineStore.Tests.Services
 
         [Theory]
         [CustomAutoData]
+        public async Task Login_Should_Return_Exception_When_Credentials_Are_Invalid(
+            CredentialsModel model,
+            ApplicationUser expectedUser)
+        {
+            // Arrange
+            AddUserWithEmail(model.Email, expectedUser);
+
+            MockCheckPassword(model.Password, false);
+
+            // Act
+            var result = await _usersService.LoginAsync(model);
+
+            // Assert
+            result.HasValue.ShouldBeFalse();
+            result.MatchNone(error => error.Messages?.Count.ShouldBeGreaterThan(0));
+        }
+
+        [Theory]
+        [CustomAutoData]
         public async Task Register_Should_Register_User(
             RegisterViewModel model,
             ApplicationUser userToRegister,
             UserServiceModel userToReturn)
         {
-            // Arrange
-            userToRegister = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email
-            };
+            MockMapper(model, userToRegister);
 
             MockMapper(userToRegister, userToReturn);
 
@@ -72,31 +86,45 @@ namespace JjOnlineStore.Tests.Services
                 .ShouldBeTrue();
         }
 
-        private IEnumerable<RegisterViewModel> GetTestData = new List<RegisterViewModel>
+        [Theory]
+        [CustomAutoData]
+        public async Task Register_Should_Return_Validation_Errors(
+            RegisterViewModel model,
+            ApplicationUser userToRegister,
+            IdentityError[] expectedErrors)
         {
-            new RegisterViewModel
-            {
-                Email = "test@mail.com",
-                Password = "123123",
-                ConfirmPassword = "123123"
-            },
-            new RegisterViewModel
-            {
-                Email = "test2@mail.com",
-                Password = "123123",
-                ConfirmPassword = "123123"
-            },
-            new RegisterViewModel
-            {
-                Email = "test3@mail.com",
-                Password = "123123",
-                ConfirmPassword = "123123"
-            }
-        };
+            // Arrange
+            MockMapper(model, userToRegister);
+
+            _userManagerMock.Setup(userManager => userManager
+                    .CreateAsync(userToRegister, model.Password))
+                .ReturnsAsync(IdentityResult.Failed(expectedErrors));
+
+            // Act
+            var result = await _usersService.RegisterAsync(model);
+
+            // Assert
+            result.HasValue.ShouldBeFalse();
+            result.MatchNone(error => error.Messages
+                .ShouldAllBe(message => expectedErrors
+                    .Any(expectedError => expectedError.Description == message)));
+        }
 
         private void MockMapper<T, TExpected>(T model, TExpected expected) =>
             _mapperMock.Setup(mapper => mapper
                     .Map<TExpected>(model))
                 .Returns(expected);
+
+        private void MockCheckPassword(string password, bool result) =>
+            _userManagerMock.Setup(userManager => userManager
+                    .CheckPasswordAsync(It.IsAny<ApplicationUser>(), password))
+                .ReturnsAsync(result);
+
+        private void AddUserWithEmail(string email, ApplicationUser expected)
+        {
+            expected.Email = email;
+            _dbContext.Users.Add(expected);
+            _dbContext.SaveChanges();
+        }
     }
 }
