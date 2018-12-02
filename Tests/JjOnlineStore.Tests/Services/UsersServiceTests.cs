@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AutoMapper;
 using Moq;
 using Shouldly;
@@ -19,7 +20,7 @@ using static JjOnlineStore.Tests.DbContextProvider;
 
 namespace JjOnlineStore.Tests.Services
 {
-    public class UsersServiceTests
+    public class UsersServiceTests : IDisposable
     {
         private readonly UsersService _usersService;
         private readonly Mock<UserManager<ApplicationUser>> _userManagerMock;
@@ -42,6 +43,26 @@ namespace JjOnlineStore.Tests.Services
                 _signInManagerMock.Object,
                 _mapperMock.Object,
                 _cartServiceMock.Object);
+        }
+
+        [Theory]
+        [CustomAutoData]
+        public async Task Login_Should_Work(
+            CredentialsModel model, 
+            ApplicationUser expectedUser)
+        {
+            // Arrange
+            AddUserWithEmail(model.Email, expectedUser);
+
+            MockCheckPassword(model.Password, true);
+
+            _mapperMock.Setup(mapper => mapper
+                .Map<UserServiceModel>(It.IsAny<ApplicationUser>()))
+                .Returns(new UserServiceModel());
+
+            // Act
+            var result = await _usersService.LoginAsync(model);
+
         }
 
         [Theory]
@@ -125,6 +146,11 @@ namespace JjOnlineStore.Tests.Services
             expected.Email = email;
             _dbContext.Users.Add(expected);
             _dbContext.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _dbContext.Database.EnsureDeleted();
         }
     }
 }
