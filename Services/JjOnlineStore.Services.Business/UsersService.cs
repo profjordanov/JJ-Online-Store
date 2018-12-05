@@ -54,11 +54,8 @@ namespace JjOnlineStore.Services.Business
 
         public async Task<Option<UserServiceModel, Error>> RegisterAsync(RegisterViewModel model)
         {
-            var user = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email
-            };
+            var user = Mapper.Map<ApplicationUser>(model);
+
             var creationResult = await UserManager.CreateAsync(user, model.Password);
 
             if (!creationResult.Succeeded)

@@ -1,15 +1,19 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
 using JjOnlineStore.Web.Infrastructure;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Extensions;
+
 using Serilog;
+
+using AutoMapper;
+
 
 namespace JjOnlineStore.Web
 {
@@ -50,7 +54,7 @@ namespace JjOnlineStore.Web
 		        })
 		        .AddGoogle(options =>
 		        {
-		            options.ClientId = this.Configuration["Authentication:Google:ClientId"];
+		            options.ClientId = Configuration["Authentication:Google:ClientId"];
 		            options.ClientSecret = this.Configuration["Authentication:Google:ClientSecret"];
 		        });
 
@@ -61,7 +65,6 @@ namespace JjOnlineStore.Web
 		    services.AddMvc(options =>
 		    {
 		        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
-                //TODO: ADD ExceptionFilter, ModelStateFilter
             });
 
             services.Configure<CookiePolicyOptions>(options =>
