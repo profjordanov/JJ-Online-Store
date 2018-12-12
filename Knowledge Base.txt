@@ -199,3 +199,42 @@ public static class CryptoMD5
     }
 }
 
+=======================================================================================================================
+Using IOptions<> :
+
+namespace ImmedisCRM.Api.Infrastructure.Configuration
+
+    public static class SettingsConfigurator
+    {
+        public static void AddSettings(this IServiceCollection services, IConfigurationRoot configuration)
+        {
+            services.Configure<JwtSettings>(configuration.GetSection(nameof(JwtSettings)));
+            services.Configure<FileSettings>(configuration.GetSection(nameof(FileSettings)));
+            services.Configure<TemplatesSettings>(configuration.GetSection(nameof(TemplatesSettings)));
+            services.Configure<CompanyUploadEmployeesTemplatesSettings>(configuration.GetSection(nameof(CompanyUploadEmployeesTemplatesSettings)));
+            services.Configure<EmployeeOnBoardingInfoDownloadColumns>(configuration.GetSection(nameof(EmployeeOnBoardingInfoDownloadColumns)));
+            services.Configure<DbSettings>(configuration.GetSection(nameof(DbSettings)));
+            services.Configure<AdditionalSettings>(configuration.GetSection(nameof(AdditionalSettings)));
+            services.Configure<MailSettings>(configuration.GetSection(nameof(MailSettings)));
+            services.Configure<CambridgePaymentsSettings>(configuration.GetSection(nameof(CambridgePaymentsSettings)));
+            services.Configure<BusinessIntelligenceSettings>(configuration.GetSection(nameof(BusinessIntelligenceSettings)));
+        }
+    }
+    
+    
+    
+    Startup.cs
+    public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddLogging();
+            services.AddSettings(Configuration);
+    
+    
+    In some class: 
+    Example:
+    
+    private readonly BusinessIntelligenceSettings biSettings;
+        public Controller(IOptions<BusinessIntelligenceSettings> biConfiguration)
+        {
+            this.biSettings = biConfiguration.Value;
+        }
