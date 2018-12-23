@@ -80,19 +80,25 @@
                                 <div class="img-container col-md-12">
                                     <div class="actions">
                                         <a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                        <a href="pages/t-shirt-web-developers.html">
+                                        <a asp-controller="Products"
+                                           asp-action="Details"
+                                           asp-route-id="@newItem.Id">
                                             <i class="fa fa-bars"
                                                aria-hidden="true"></i>
                                         </a>
                                     </div>
-                                    <a href="pages/t-shirt-web-developers.html">
+                                    <a asp-controller="Products"
+                                       asp-action="Details"
+                                       asp-route-id="@newItem.Id">
                                         <img src="@newItem.Base64Image" alt="Image">
                                     </a>
                                     <div class="quickview">
                                         <a href="#">Quickview</a>
                                     </div>
                                 </div>
-                                <a href="pages/t-shirt-web-developers.html">
+                                <a asp-controller="Products"
+                                   asp-action="Details"
+                                   asp-route-id="@newItem.Id">
                                     <p class="item-type">Category</p>
                                     <div class="item-name">@newItem.Name</div>
                                     <p class="item-rating">
@@ -180,14 +186,18 @@
                                        aria-hidden="true"></i>
                                 </a>
                             </div>
-                            <a class="fancybox" href="#nakov-forbids">
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="@topSellingItem.Id">
                                 <img src="@topSellingItem.Base64Image">
                             </a>
                             <div class="quickview">
                                 <a href="#">Quickview</a>
                             </div>
                         </div>
-                        <a class="fancybox" href="#nakov-forbids">
+                        <a asp-controller="Products"
+                           asp-action="Details"
+                           asp-route-id="@topSellingItem.Id">
                             <p class="item-type">T-shirts</p>
                             <div class="item-name">@topSellingItem.Name</div>
                             <p class="item-rating">
