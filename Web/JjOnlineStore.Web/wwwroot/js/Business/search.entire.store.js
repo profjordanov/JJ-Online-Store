@@ -4,15 +4,19 @@
             const searchedCategoryVal = $("#main-categories").val();
             const searchedWord = $("#searched-product-name").val();
 
+            if (searchedWord) {
+                const queryData = {
+                    category: searchedCategoryVal,
+                    searchedWord: searchedWord
+                };
 
-            const queryData = {
-                category: searchedCategoryVal,
-                searchedWord: searchedWord
-            };
+                const url = searchUrl + encodeQueryData(queryData);
 
-            const url = searchUrl + encodeQueryData(queryData);
-
-            window.location.href = url;
+                window.location.href = url;
+            } else {
+                $.fancybox("Need help? " +
+                    "Go to Customer Service...");
+            }
         });
     });
 })(searchUrl);
