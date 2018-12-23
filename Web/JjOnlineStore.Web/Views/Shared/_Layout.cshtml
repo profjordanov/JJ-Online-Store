@@ -198,20 +198,37 @@
                     <h1>Categories</h1>
                     <ul>
                         <li class="flex-item-nav-li">
-                            <a href="pages/gadgets.html" title="SoftUnikum Gadgets">Gadgets</a>
+                            <a asp-controller="Products"
+                               asp-action="GetByMainCategory"
+                               asp-route-category="Gadgets"
+                               title="SoftUnikum Gadgets">Gadgets</a>
                         </li>
                         <li class="flex-item-nav-li">
-                            <a href="pages/t-shirts.html" title="SoftUnikum T-Shirts">T-Shirts</a>
+                            <a asp-controller="Products"
+                               asp-action="GetByMainCategory"
+                               asp-route-category="Shirts"
+                               title="SoftUnikum T-Shirts">T-Shirts</a>
                         </li>
-                        <li class="flex-item-nav-li"><a href="pages/hats.html" title="SoftUnikum Hats">Hats</a></li>
                         <li class="flex-item-nav-li">
-                            <a href="pages/key-rings.html" title="SoftUnikum Key Rings">
+                            <a asp-controller="Products"
+                               asp-action="GetByMainCategory"
+                               asp-route-category="Hats"
+                               title="SoftUnikum Hats">Hats</a>
+                        </li>
+                        <li class="flex-item-nav-li">
+                            <a asp-controller="Products"
+                               asp-action="GetByMainCategory"
+                               asp-route-category="KeyRings"
+                               title="SoftUnikum Key Rings">
                                 Key
                                 Rings
                             </a>
                         </li>
                         <li class="flex-item-nav-li">
-                            <a href="pages/random-stuff.html" title="SoftUnikum Random Stuff">
+                            <a asp-controller="Products"
+                               asp-action="GetByMainCategory"
+                               asp-route-category="RandomStuffs"
+                               title="SoftUnikum Random Stuff">
                                 Random
                                 Stuff
                             </a>
