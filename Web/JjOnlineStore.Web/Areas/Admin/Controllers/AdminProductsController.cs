@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JjOnlineStore.Common.ViewModels.Products;
@@ -12,6 +11,10 @@ using JjOnlineStore.Services.Core.Admin;
 
 namespace JjOnlineStore.Web.Areas.Admin.Controllers
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// 
+    /// </summary>
     public class AdminProductsController : BaseAdminController
     {
         private readonly JjOnlineStoreDbContext _context;
