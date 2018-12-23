@@ -22,6 +22,7 @@ You can read more about **Maybe** and **Either** [here](https://devadventures.ne
 
 ## Architecture:
 - [x] AutoMapper
+- [x] Using Transactions
 - [x] EntityFramework Core with SQL Server and ASP.NET Identity
 - [x] File logging with Serilog
 - [x] Neat folder structure
