@@ -39,6 +39,8 @@ namespace JjOnlineStore.Data.EF
 
 	    public DbSet<UserViewedItem> UserViewedItems { get; set; }
 
+	    public DbSet<CartItemOnDeleteReport> CartItemsOnDeleteReport { get; set; }
+
         public virtual void BeginTransaction()
 		{
 			if(currentTransaction != null)
