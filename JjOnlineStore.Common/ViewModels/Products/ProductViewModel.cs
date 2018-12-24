@@ -16,6 +16,7 @@ namespace JjOnlineStore.Common.ViewModels.Products
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Please enter a description.")]
+        [MinLength(20)]
         public string Description { get; set; }
 
         public string ShortDescription
