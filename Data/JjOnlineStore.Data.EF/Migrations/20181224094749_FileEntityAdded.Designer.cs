@@ -4,14 +4,16 @@ using JjOnlineStore.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JjOnlineStore.Data.EF.Migrations
 {
     [DbContext(typeof(JjOnlineStoreDbContext))]
-    partial class JjOnlineStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181224094749_FileEntityAdded")]
+    partial class FileEntityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -383,33 +385,6 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.ProductImage", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime?>("DeletedOn");
-
-                    b.Property<long>("FileId");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<long>("ProductId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FileId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImage");
-                });
-
             modelBuilder.Entity("JjOnlineStore.Data.Entities.UserViewedItem", b =>
                 {
                     b.Property<long>("Id")
@@ -581,19 +556,6 @@ namespace JjOnlineStore.Data.EF.Migrations
                     b.HasOne("JjOnlineStore.Data.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("JjOnlineStore.Data.Entities.ProductImage", b =>
-                {
-                    b.HasOne("JjOnlineStore.Data.Entities.File", "File")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("FileId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("JjOnlineStore.Data.Entities.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
