@@ -1,17 +1,20 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using JjOnlineStore.Common.ViewModels;
+﻿using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Extensions;
 using JjOnlineStore.Services.Core;
+using JjOnlineStore.Services.Data;
+
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
+
 using Optional;
 
-using static System.IO.Path;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
 using static JjOnlineStore.Services.Data.ServiceConstants;
 
-namespace JjOnlineStore.Services.Business
+namespace JjOnlineStore.Services.Business.Storage
 {
     /// <summary>
     /// Stores images to Azure Storage service.
@@ -24,9 +27,9 @@ namespace JjOnlineStore.Services.Business
         /// <param name="filename"></param>
         /// <param name="image">Image content</param>
         /// <returns>Either file url to Azure or Error.</returns>
-        public async Task<Option<string, Error>> StoreImage(string filename, byte[] image)
+        public async Task<Option<string, Error>> StoreImageAsync(string filename, byte[] image)
         {
-            var filenameonly = GetFileName(filename);
+            var filenameonly = Path.GetFileName(filename);
 
             var url = string.Concat(BlobServiceStorageUrl, filenameonly);
 
@@ -41,6 +44,10 @@ namespace JjOnlineStore.Services.Business
             await blob.UploadFromByteArrayAsync(image, 0, image.Length);
 
             return url.Some<string, Error>();
+
+            // In Case of Local Testing: TODO: If Dev Env Check
+            //File.WriteAllBytes($@"D:\dms\{filename}", image);
+            //return $@"D:\dms\{filename}".Some<string, Error>();
         }
     }
 }

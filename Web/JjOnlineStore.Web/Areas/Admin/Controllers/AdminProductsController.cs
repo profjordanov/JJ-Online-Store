@@ -69,7 +69,7 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Price,Base64Image,IsAvailable,Size,Color,Type,Details,CategoryId")] ProductViewModel product)
+        public async Task<IActionResult> Create([Bind("Name,Description,Price,Base64Image,IsAvailable,Size,Color,Type,Details,CategoryId,FormImages")] ProductViewModel product)
         {
             await _adminProductsService.CreateAsync(product);
             return RedirectToAction(nameof(Index));
