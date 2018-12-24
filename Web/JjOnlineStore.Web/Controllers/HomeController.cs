@@ -1,4 +1,5 @@
-﻿using JjOnlineStore.Common.ViewModels.Home;
+﻿using System.Linq;
+using JjOnlineStore.Common.ViewModels.Home;
 using JjOnlineStore.Services.Core;
 
 using Microsoft.AspNetCore.Mvc;
@@ -22,11 +23,15 @@ namespace JjOnlineStore.Web.Controllers
         /// </summary>
         public async Task<IActionResult> Index()
         {
+            var products = await _productsService.AllWithoutDeletedAsync();
+
+            var productsArr = products.ToArray();
+
             var model = new HomeIndexVm
             {
-                NewItems = await _productsService.AllWithoutDeletedAsync(),
-                OnSaleItems = await _productsService.AllWithoutDeletedAsync(),
-                TopSellingItems = await _productsService.AllWithoutDeletedAsync()
+                NewItems = productsArr.Take(5),
+                OnSaleItems = productsArr.Skip(3).Take(3),
+                TopSellingItems = productsArr.Skip(6).Take(3)
             };
 
             return View(model);
