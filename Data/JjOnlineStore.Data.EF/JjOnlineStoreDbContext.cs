@@ -21,7 +21,7 @@ namespace JjOnlineStore.Data.EF
 		{
 		}
 
-		private IDbContextTransaction currentTransaction;
+		private IDbContextTransaction _currentTransaction;
 
 	    public DbSet<Category> Categories { get; set; }
 
@@ -37,18 +37,20 @@ namespace JjOnlineStore.Data.EF
 
 	    public DbSet<Invoice> Invoices { get; set; }
 
+	    public DbSet<File> Files { get; set; }
+
 	    public DbSet<UserViewedItem> UserViewedItems { get; set; }
 
 	    public DbSet<CartItemOnDeleteReport> CartItemsOnDeleteReport { get; set; }
 
         public virtual void BeginTransaction()
 		{
-			if(currentTransaction != null)
+			if(_currentTransaction != null)
 			{
 				return;
 			}
 
-			currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
+			_currentTransaction = Database.BeginTransaction(IsolationLevel.ReadCommitted);
 		}
 
 		public virtual async Task CommitTransactionAsync()
@@ -57,7 +59,7 @@ namespace JjOnlineStore.Data.EF
 			{
 				await SaveChangesAsync();
 
-				currentTransaction?.Commit();
+				_currentTransaction?.Commit();
 			}
 			catch(Exception ex)
 			{			    
@@ -74,7 +76,7 @@ namespace JjOnlineStore.Data.EF
 		{
 			try
 			{
-				currentTransaction?.Rollback();
+				_currentTransaction?.Rollback();
 			}
 			finally
 			{
@@ -84,12 +86,12 @@ namespace JjOnlineStore.Data.EF
 
 	    private void DisposeTransaction()
 	    {
-	        if (currentTransaction == null)
+	        if (_currentTransaction == null)
 	        {
                 return;
 	        }
-	        currentTransaction.Dispose();
-	        currentTransaction = null;
+	        _currentTransaction.Dispose();
+	        _currentTransaction = null;
 	    }
 
 
