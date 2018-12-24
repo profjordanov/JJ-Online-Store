@@ -52,6 +52,10 @@ namespace JjOnlineStore.Services.Business.Admin
                 .ProjectTo<ProductViewModel>(Mapper.ConfigurationProvider)
                 .ToListAsync();
 
+        /// <summary>
+        /// Creates new product and save it's images.
+        /// </summary>
+        /// <param name="model">Product Model</param>
         public async Task CreateAsync(ProductViewModel model)
         {
             var saveImageFilesTask = _fileService.SaveImageFilesAsync(model.FormImages);
@@ -61,10 +65,6 @@ namespace JjOnlineStore.Services.Business.Admin
             await _productImagesService.SaveImagesByProductAsync(
                 product, 
                 await saveImageFilesTask);
-        }
-
-
-
-        
+        }       
     }
 }

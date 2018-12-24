@@ -16,11 +16,10 @@ namespace JjOnlineStore.Services.Business
         }
 
         /// <summary>
-        /// 
+        /// Adds new records to `ProductImages` database table.
         /// </summary>
-        /// <param name="product"></param>
-        /// <param name="images"></param>
-        /// <returns></returns>
+        /// <param name="product">Current product.</param>
+        /// <param name="images">Image paths.</param>
         public async Task SaveImagesByProductAsync(
             Product product,
             IEnumerable<File> images)

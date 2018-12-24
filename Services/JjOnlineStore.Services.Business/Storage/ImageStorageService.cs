@@ -29,25 +29,25 @@ namespace JjOnlineStore.Services.Business.Storage
         /// <returns>Either file url to Azure or Error.</returns>
         public async Task<Option<string, Error>> StoreImageAsync(string filename, byte[] image)
         {
-            //var filenameonly = Path.GetFileName(filename);
+            var filenameonly = Path.GetFileName(filename);
 
-            //var url = string.Concat(BlobServiceStorageUrl, filenameonly);
+            var url = string.Concat(BlobServiceStorageUrl, filenameonly);
 
-            //var credentials = new StorageCredentials(BlobStorageAccount, BlobStorageKey);
-            //var blob = new CloudBlockBlob(new Uri(url), credentials);
+            var credentials = new StorageCredentials(BlobStorageAccount, BlobStorageKey);
+            var blob = new CloudBlockBlob(new Uri(url), credentials);
 
-            //if (await blob.ExistsAsync())
-            //{
-            //    return Option.None<string, Error>("This image has already been submitted".ToError());
-            //}
+            if (await blob.ExistsAsync())
+            {
+                return Option.None<string, Error>("This image has already been submitted".ToError());
+            }
 
-            //await blob.UploadFromByteArrayAsync(image, 0, image.Length);
+            await blob.UploadFromByteArrayAsync(image, 0, image.Length);
 
-            //return url.Some<string, Error>();
+            return url.Some<string, Error>();
 
             // In Case of Local Testing: TODO: If Dev Env Check
-            File.WriteAllBytes($@"D:\dms\{filename}", image);
-            return $@"D:\dms\{filename}".Some<string, Error>();
+            //File.WriteAllBytes($@"D:\dms\{filename}", image);
+            //return $@"D:\dms\{filename}".Some<string, Error>();
         }
     }
 }

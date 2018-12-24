@@ -27,10 +27,10 @@ namespace JjOnlineStore.Services.Business
         }
 
         /// <summary>
-        /// 
+        /// Stores image files and adds data to the database.
         /// </summary>
         /// <param name="files"></param>
-        /// <returns></returns>
+        /// <returns>Newly files entities.</returns>
         public async Task<IEnumerable<File>> SaveImageFilesAsync(IEnumerable<IFormFile> files)
         {
             var imagePaths = await StoreImagesAsync(files);
@@ -48,7 +48,7 @@ namespace JjOnlineStore.Services.Business
             {
                 if (formFile.Length <= 0)
                 {
-                    resultCollection.Add(Option.None<string, Error>("Empty file.".ToError()));
+                    continue;
                 }
 
                 using (var memoryStream = new MemoryStream())
@@ -58,7 +58,6 @@ namespace JjOnlineStore.Services.Business
                         await _imageStorageService.StoreImageAsync(
                             formFile.FileName,
                             memoryStream.ToArray()));
-
                 }
             }
 
