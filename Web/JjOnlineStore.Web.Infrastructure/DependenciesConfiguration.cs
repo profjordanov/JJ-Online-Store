@@ -4,6 +4,7 @@ using JjOnlineStore.Services.Business;
 using JjOnlineStore.Services.Business.Admin;
 using JjOnlineStore.Services.Core;
 using JjOnlineStore.Services.Core.Admin;
+using JjOnlineStore.Services.Business.Storage;
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -65,6 +66,8 @@ namespace JjOnlineStore.Web.Infrastructure
 	        services.AddTransient<IUserViewedItemsService, UserViewedItemsService>();
 	        services.AddTransient<IManageService, ManageService>();
 	        services.AddTransient<IImageStorageService, ImageStorageService>();
+	        services.AddTransient<IFileService, FileService>();
+	        services.AddTransient<IProductImagesService, ProductImagesService>();
 	    }
     }
 }

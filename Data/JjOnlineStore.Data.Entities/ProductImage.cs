@@ -4,6 +4,12 @@ namespace JjOnlineStore.Data.Entities
 {
     public class ProductImage : BaseDeletableModel<long>
     {
+        public ProductImage(long fileId, long productId)
+        {
+            FileId = fileId;
+            ProductId = productId;
+        }
+
         public long FileId { get; set; }
         public File File { get; set; }
 

@@ -1,6 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-using JjOnlineStore.Common.Enumeration;
+﻿using JjOnlineStore.Common.Enumeration;
 using JjOnlineStore.Common.ViewModels.Admin.Categories;
+
+using Microsoft.AspNetCore.Http;
+
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JjOnlineStore.Common.ViewModels.Products
 {
@@ -21,8 +25,9 @@ namespace JjOnlineStore.Common.ViewModels.Products
         [Range(0.01, double.MaxValue, ErrorMessage = "Please, enter a positive price.")]
         public decimal Price { get; set; }
 
-        [Required]
         public string Base64Image { get; set; }
+
+        public IList<IFormFile> FormImages { get; set; }
 
         public bool IsAvailable { get; set; }
 
