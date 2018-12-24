@@ -67,6 +67,7 @@ namespace JjOnlineStore.Web.Infrastructure
 	        services.AddTransient<IManageService, ManageService>();
 	        services.AddTransient<IImageStorageService, ImageStorageService>();
 	        services.AddTransient<IFileService, FileService>();
+	        services.AddTransient<IProductImagesService, ProductImagesService>();
 	    }
     }
 }

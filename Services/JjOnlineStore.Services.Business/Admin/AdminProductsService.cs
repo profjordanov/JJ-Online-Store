@@ -27,19 +27,19 @@ namespace JjOnlineStore.Services.Business.Admin
 {
     public class AdminProductsService : BaseService, IAdminProductsService
     {
-        private readonly IImageStorageService _imageStorageService;
         private readonly IFileService _fileService;
+        private readonly IProductImagesService _productImagesService;
 
         public AdminProductsService(
             JjOnlineStoreDbContext dbContext,
             IMapper mapper, 
-            IImageStorageService imageStorageService, 
-            IFileService fileService) 
+            IFileService fileService, 
+            IProductImagesService productImagesService) 
             : base(dbContext)
         {
             Mapper = mapper;
-            _imageStorageService = imageStorageService;
             _fileService = fileService;
+            _productImagesService = productImagesService;
         }
 
         protected IMapper Mapper { get; }
@@ -54,57 +54,17 @@ namespace JjOnlineStore.Services.Business.Admin
 
         public async Task CreateAsync(ProductViewModel model)
         {
+            var saveImageFilesTask = _fileService.SaveImageFilesAsync(model.FormImages);
             var product = Mapper.Map<Product>(model);
             await DbContext.Products.AddAsync(product);
             await DbContext.SaveChangesAsync();
-            await SaveImagesForCurrentProductAsync(product, await SaveImageFilesAsync(model.FormImages));
+            await _productImagesService.SaveImagesByProductAsync(
+                product, 
+                await saveImageFilesTask);
         }
 
-        private async Task SaveImagesForCurrentProductAsync(
-            Product product,
-            IEnumerable<File> images)
-        {
-            var productImages = images
-                .Select(imgFile => new ProductImage(
-                    fileId: imgFile.Id,
-                    productId: product.Id));
 
-            await DbContext.ProductImages.AddRangeAsync(productImages);
-            await DbContext.SaveChangesAsync();
-        }
 
-        private async Task<IEnumerable<File>> SaveImageFilesAsync(IEnumerable<IFormFile> files)
-        {
-            var imagePaths = await StoreImagesAsync(files);
-            var storedImages = imagePaths.Select(imgPath => new File(imgPath, GetExtension(imgPath)))
-                .ToArray();
-            await DbContext.Files.AddRangeAsync(storedImages);
-            await DbContext.SaveChangesAsync();
-            return storedImages;
-        }
-
-        private async Task<string[]> StoreImagesAsync(IEnumerable<IFormFile> files)
-        {
-            var resultCollection = new List<Option<string, Error>>();
-            foreach (var formFile in files)
-            {
-                if (formFile.Length <= 0)
-                {
-                    resultCollection.Add(Option.None<string, Error>("Empty file.".ToError()));
-                }
-
-                using (var memoryStream = new MemoryStream())
-                {
-                    await formFile.CopyToAsync(memoryStream);
-                    resultCollection.Add(
-                        await _imageStorageService.StoreImageAsync(
-                            formFile.FileName, 
-                            memoryStream.ToArray()));
-
-                }
-            }
-
-            return resultCollection.Values().ToArray();
-        }
+        
     }
 }

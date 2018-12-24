@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using JjOnlineStore.Data.Entities;
-using Microsoft.AspNetCore.Http;
 
 namespace JjOnlineStore.Services.Core
 {
-    public interface IFileService
+    public interface IProductImagesService
     {
-        Task<IEnumerable<File>> SaveImageFilesAsync(IEnumerable<IFormFile> files);
+        Task SaveImagesByProductAsync(Product product, IEnumerable<File> images);
     }
 }
