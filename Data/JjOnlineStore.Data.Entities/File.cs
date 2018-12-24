@@ -1,4 +1,5 @@
-﻿using JjOnlineStore.Data.Entities.Base;
+﻿using System.Collections.Generic;
+using JjOnlineStore.Data.Entities.Base;
 
 namespace JjOnlineStore.Data.Entities
 {
@@ -7,5 +8,7 @@ namespace JjOnlineStore.Data.Entities
         public string Path { get; set; }
 
         public string Extension { get; set; }
+
+        public virtual ICollection<ProductImage> ProductImages { get; set; } = new HashSet<ProductImage>();
     }
 }

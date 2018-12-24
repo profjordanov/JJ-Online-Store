@@ -124,6 +124,7 @@ namespace JjOnlineStore.Data.EF
 		    ConfigureOrderItemRelations(builder);
 		    ConfigureInvoiceOrderRelations(builder);
 		    ConfigureUserViewedItemsRelations(builder);
+		    ConfigureProductFileRelations(builder);
 
             var entityTypes = builder.Model.GetEntityTypes().ToList();
 
@@ -149,7 +150,23 @@ namespace JjOnlineStore.Data.EF
 		    }
         }
 
-	    private static void ConfigureUserViewedItemsRelations(ModelBuilder builder)
+	    private static void ConfigureProductFileRelations(ModelBuilder builder)
+	    {
+	        builder
+	            .Entity<ProductImage>()
+	            .HasOne(pi => pi.Product)
+	            .WithMany(p => p.ProductImages)
+	            .HasForeignKey(pi => pi.ProductId);
+
+	        builder
+	            .Entity<ProductImage>()
+	            .HasOne(pi => pi.File)
+	            .WithMany(p => p.ProductImages)
+	            .HasForeignKey(pi => pi.FileId);
+	    }
+
+
+        private static void ConfigureUserViewedItemsRelations(ModelBuilder builder)
 	    {
 	        builder
 	            .Entity<UserViewedItem>()
