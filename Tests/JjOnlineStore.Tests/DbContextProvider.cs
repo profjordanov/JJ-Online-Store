@@ -1,4 +1,5 @@
-﻿using JjOnlineStore.Data.EF;
+﻿using System;
+using JjOnlineStore.Data.EF;
 using Microsoft.EntityFrameworkCore;
 
 namespace JjOnlineStore.Tests
@@ -7,6 +8,6 @@ namespace JjOnlineStore.Tests
     {
         public static JjOnlineStoreDbContext GetInMemoryDbContext()
             => new JjOnlineStoreDbContext(new DbContextOptionsBuilder<JjOnlineStoreDbContext>()
-                .UseInMemoryDatabase("Tests").Options);
+                .UseInMemoryDatabase($"Tests-{Guid.NewGuid().ToString()}").Options);
     }
 }
