@@ -41,7 +41,12 @@ namespace JjOnlineStore.Services.Business
             return storedImages;
         }
 
-        private async Task<string[]> StoreImagesAsync(IEnumerable<IFormFile> files)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="files"></param>
+        /// <returns></returns>
+        public async Task<string[]> StoreImagesAsync(IEnumerable<IFormFile> files)
         {
             var resultCollection = new List<Option<string, Error>>();
             foreach (var formFile in files)

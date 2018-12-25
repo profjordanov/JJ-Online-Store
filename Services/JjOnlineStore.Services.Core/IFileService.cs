@@ -8,5 +8,6 @@ namespace JjOnlineStore.Services.Core
     public interface IFileService
     {
         Task<IEnumerable<File>> SaveImageFilesAsync(IEnumerable<IFormFile> files);
+        Task<string[]> StoreImagesAsync(IEnumerable<IFormFile> files);
     }
 }
