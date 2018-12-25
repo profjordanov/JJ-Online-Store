@@ -28,7 +28,7 @@ namespace JjOnlineStore.Common.ViewModels.Products
 
         public string Base64Image { get; set; }
 
-        public IList<IFormFile> FormImages { get; set; }
+        public IEnumerable<IFormFile> FormImages { get; set; }
 
         public bool IsAvailable { get; set; }
 

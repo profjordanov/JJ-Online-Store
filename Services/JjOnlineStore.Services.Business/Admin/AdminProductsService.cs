@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using JjOnlineStore.Common.ViewModels;
 using JjOnlineStore.Common.ViewModels.Products;
 using JjOnlineStore.Data.EF;
 using JjOnlineStore.Data.Entities;
 using JjOnlineStore.Extensions;
 using JjOnlineStore.Services.Business._Base;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-
-using Optional;
-using Optional.Collections;
-
 using JjOnlineStore.Services.Core;
 using JjOnlineStore.Services.Core.Admin;
-
-using File = JjOnlineStore.Data.Entities.File;
-using static System.IO.Path;
 
 namespace JjOnlineStore.Services.Business.Admin
 {
@@ -58,13 +47,14 @@ namespace JjOnlineStore.Services.Business.Admin
         /// <param name="model">Product Model</param>
         public async Task CreateAsync(ProductViewModel model)
         {
-            var saveImageFilesTask = _fileService.SaveImageFilesAsync(model.FormImages);
             var product = Mapper.Map<Product>(model);
             await DbContext.Products.AddAsync(product);
             await DbContext.SaveChangesAsync();
-            await _productImagesService.SaveImagesByProductAsync(
-                product, 
-                await saveImageFilesTask);
+            if (!model.FormImages.IsNullOrEmpty())
+            {
+                var savedImageFiles = await _fileService.SaveImageFilesAsync(model.FormImages);
+                await _productImagesService.SaveImagesByProductAsync(product,savedImageFiles);
+            }          
         }       
     }
 }
