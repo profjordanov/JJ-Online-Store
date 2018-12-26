@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using JjOnlineStore.Common.Enumeration;
 
 namespace JjOnlineStore.Common.ViewModels.Admin.Categories
 {
@@ -11,5 +12,7 @@ namespace JjOnlineStore.Common.ViewModels.Admin.Categories
         [MaxLength(100, ErrorMessage = "Name can not be longer than 100 characters.")]
         [Display(Name = nameof(Name))]
         public string Name { get; set; }
+
+        public MainStoreCategories StoreCategory { get; set; }
     }
 }
