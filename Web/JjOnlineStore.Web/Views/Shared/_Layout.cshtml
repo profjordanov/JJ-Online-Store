@@ -19,10 +19,23 @@
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+              asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              asp-fallback-href="~/lib/bootstrap/css/bootstrap-theme.min.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute"
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+              crossorigin="anonymous">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/jquery.fancybox.css">
+        <link href="~/css/list-products.min.css" rel="stylesheet" />
+        <link href="~/css/index-css.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/lib/jquery-ui.css" />
     </environment>
+
     @RenderSection("Styles", required: false)
 
     <script type="text/javascript">
@@ -289,7 +302,14 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
+        <script src="~/lib/jquery-ui.min.js"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/jquery.fancybox.pack.js"></script>
+        <script src="~/js/index-script.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/encode.query.data.js"></script>
+        <script src="~/js/Business/search.entire.store.js"></script>
+        <script src="~/js/Business/direct.add.to.shopping.cart.js"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)
