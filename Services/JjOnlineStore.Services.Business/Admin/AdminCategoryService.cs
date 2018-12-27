@@ -29,22 +29,17 @@ namespace JjOnlineStore.Services.Business.Admin
         public async Task<IEnumerable<CategoryViewModel>> AllAsync()
             => await DbContext
                 .Categories
-                .ProjectTo<CategoryViewModel>(Mapper.ConfigurationProvider) //TODO: Without deleted
+                .ProjectTo<CategoryViewModel>(Mapper.ConfigurationProvider) 
                 .ToListAsync();
 
-        public async Task<Option<CategoryViewModel, Error>> CreateCategoryAsync(string name)
-            => await ExistsByNameAsync(name)
-                ? None<CategoryViewModel, Error>(new Error($"Category '{name}' already exists."))
-                : (await CreateByNameAsync(name)).Some<CategoryViewModel, Error>();
+        public async Task<Option<CategoryViewModel, Error>> CreateCategoryAsync(CategoryViewModel model)
+            => await ExistsByNameAsync(model.Name)
+                ? None<CategoryViewModel, Error>(new Error($"Category '{model.Name}' already exists."))
+                : (await CreateByViewModelAsync(model)).Some<CategoryViewModel, Error>();
 
-        private async Task<CategoryViewModel> CreateByNameAsync(string name)
+        private async Task<CategoryViewModel> CreateByViewModelAsync(CategoryViewModel model)
         {
-            var category = new Category
-            {
-                Name = name,
-                IsDeleted = false
-            };
-
+            var category = Mapper.Map<CategoryViewModel, Category>(model);
             await DbContext.Categories.AddAsync(category);
             await DbContext.SaveChangesAsync();
 

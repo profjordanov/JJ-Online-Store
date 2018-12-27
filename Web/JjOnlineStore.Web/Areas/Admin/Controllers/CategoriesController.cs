@@ -37,7 +37,7 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
         /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create(CategoryViewModel model)
-            => (await _adminCategoryService.CreateCategoryAsync(model.Name))
+            => (await _adminCategoryService.CreateCategoryAsync(model))
                 .Match(RedirectToCategoryLocal, ErrorCreate);
 
         [HttpDelete]

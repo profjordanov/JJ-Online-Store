@@ -10,6 +10,6 @@ namespace JjOnlineStore.Services.Core.Admin
     {
         Task<IEnumerable<CategoryViewModel>> AllAsync();
 
-        Task<Option<CategoryViewModel, Error>> CreateCategoryAsync(string name);
+        Task<Option<CategoryViewModel, Error>> CreateCategoryAsync(CategoryViewModel model);
     }
 }
