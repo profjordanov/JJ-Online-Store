@@ -9,7 +9,7 @@ namespace JjOnlineStore.Web.Infrastructure.Mappings
         public CategoryMapping()
         {
             CreateMap<Category, CategoryViewModel>(MemberList.Destination);
-            CreateMap<CategoryViewModel, Category>(MemberList.Source);
+            CreateMap<CategoryViewModel, Category>(MemberList.Destination);
         }
     }
 }
