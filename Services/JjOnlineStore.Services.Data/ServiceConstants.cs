@@ -2,9 +2,9 @@
 {
     public static class ServiceConstants
     {
-        public const string BlobServiceStorageUrl = "";
-        public const string BlobStorageAccount = "";
-        public const string BlobStorageKey = "";
+        public const string BlobServiceStorageUrl = "https://softunikum.blob.core.windows.net/images/";
+        public const string BlobStorageAccount = "softunikum";
+        public const string BlobStorageKey = "pv5LgrqCyAwggPVlNbdy9ZPFBmVygQv79J4NGc6nUhBQ1/BNfSRL5yWZUegflm8wi3VrTmnIwmK0S09ByI4Wig==";
 
         public const string CartItemExistsErrMsg = "The product has already been added to the cart.";
         public const string OrderConfirmationErrMsg = "Something happened and we " +
