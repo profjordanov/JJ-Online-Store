@@ -11,6 +11,6 @@ namespace JjOnlineStore.Services.Core
     public interface IImageStorageService
     {
         Task<Option<string, Error>> StoreImageAsync(string filename, byte[] image);
-        Task<Option<HttpFile, Error>> GetImageAsync(string filepath);
+        Task<Option<HttpFile, Error>> GetImageHttpFileAsync(string filepath);
     }
 }
