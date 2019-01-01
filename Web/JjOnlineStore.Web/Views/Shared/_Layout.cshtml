@@ -71,7 +71,11 @@
             <div class="col-md-8">
                 <ul>
                     @await Html.PartialAsync("_LoginPartial")
-                    <li><a class="fancybox" href="#location">Store Location</a></li>
+                    <li>
+                        <a asp-controller="CustomerService" asp-action="Index">
+                            Customer Service
+                        </a>
+                    </li>
                     <li><a class="fancybox" href="#faq">FAQ</a></li>
                     <li><a class="fancybox" href="#newsletter">Newsletter</a></li>
                     <li>
