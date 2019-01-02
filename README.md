@@ -23,7 +23,6 @@ You can read more about **Maybe** and **Either** [here](https://devadventures.ne
 ## Architecture:
 - [x] AutoMapper
 - [x] EntityFramework Core with SQL Server and ASP.NET Identity
-- [x] Integration with Azure Blob Storage
 - [x] File logging with Serilog
 - [x] Neat folder structure
 
@@ -59,6 +58,7 @@ public async Task<IActionResult> Login(CredentialsModel model)
 
 - [x] Database Transactions
 - [x] Database Triggers
+- [x] Using Azure Websites and Azure Blob Storage
 
 ### User Interface and User Experience (UI & UX)
 - [x] Using custom web design 
