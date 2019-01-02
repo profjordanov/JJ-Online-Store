@@ -9,6 +9,7 @@
     <title>@ViewData["Title"] - JJ Online Shop</title>
 
     <environment include="Development">
+        <link rel="stylesheet" href="~/css/loader.css" />
         <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap-theme.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -16,8 +17,12 @@
         <link rel="stylesheet" href="~/css/list-products.css">
         <link rel="stylesheet" href="~/css/index-css.css">
         <link rel="stylesheet" href="~/lib/jquery-ui.css" />
+
+        <script src="~/lib/jquery-3.1.1.min.js"></script>
+        <script async src="~/js/loader.js"></script>
     </environment>
     <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/loader.min.css" />
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position"
@@ -30,10 +35,18 @@
               integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
               crossorigin="anonymous">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/jquery.fancybox.css">
-        <link href="~/css/list-products.min.css" rel="stylesheet" />
-        <link href="~/css/index-css.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/jquery.fancybox.css" />
+        <link rel="stylesheet" href="~/css/list-products.min.css" />
+        <link rel="stylesheet" href="~/css/index-css.min.css" />
         <link rel="stylesheet" href="~/lib/jquery-ui.css" />
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script async src="~/js/loader.js"></script>
     </environment>
 
     @RenderSection("Styles", required: false)
@@ -41,8 +54,14 @@
     <script type="text/javascript">
         var createCartItemUrl = "@Url.Action("Create", "CartItems")";
     </script>
+
 </head>
 <body>
+
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
     <header>
         <section class="row upper-nav">
             @if (User.IsInRole(AdministratorRoleName))
@@ -127,13 +146,13 @@
                     <option value="@((int) MainStoreCategories.Shirts)">
                         T-Shirts
                     </option>
-                    <option value="@((int)MainStoreCategories.Hats)">
+                    <option value="@((int) MainStoreCategories.Hats)">
                         Hats
                     </option>
-                    <option value="@((int)MainStoreCategories.KeyRings)">
+                    <option value="@((int) MainStoreCategories.KeyRings)">
                         Key Rings
                     </option>
-                    <option value="@((int)MainStoreCategories.RandomStuffs)">
+                    <option value="@((int) MainStoreCategories.RandomStuffs)">
                         Random
                     </option>
                 </select>
@@ -208,7 +227,7 @@
                     <p>Support: no-reply@softunikum.com</p>
                     <p>
                         <a href="https://jigsaw.w3.org/css-validator/check/referer">
-                            <img style="border:0;width:88px;height:31px"
+                            <img style="border: 0; width: 88px; height: 31px"
                                  src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
                                  alt="Valid CSS!" />
                         </a>
@@ -280,11 +299,10 @@
     </div>
 
     <script type="text/javascript">
-        var searchUrl = "@Url.Action("SearchByCategoryAndWord", "Products")";
+    var searchUrl = "@Url.Action("SearchByCategoryAndWord", "Products")";
     </script>
 
     <environment include="Development">
-        <script src="~/lib/jquery-3.1.1.min.js"></script>
         <script src="~/lib/jquery-ui.min.js"></script>
         <script src="~/js/jquery.fancybox.pack.js"></script>
         <script src="~/js/index-script.js"></script>
@@ -294,12 +312,6 @@
         <script src="~/js/Business/direct.add.to.shopping.cart.js"></script>
     </environment>
     <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
         <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
