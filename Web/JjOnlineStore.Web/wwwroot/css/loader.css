@@ -26,7 +26,7 @@ body.loaded #preloader {
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #24b662;
+    border-top-color: #0188cc;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
@@ -40,7 +40,7 @@ body.loaded #preloader {
         bottom: 5px;
         border-radius: 50%;
         border: 3px solid transparent;
-        border-top-color: #24b662;
+        border-top-color: #0188cc;
         -webkit-animation: spin 3s linear infinite;
         animation: spin 3s linear infinite;
     }
@@ -54,7 +54,7 @@ body.loaded #preloader {
         bottom: 15px;
         border-radius: 50%;
         border: 3px solid transparent;
-        border-top-color: #24b662;
+        border-top-color: #0188cc;
         -webkit-animation: spin 1.5s linear infinite;
         animation: spin 1.5s linear infinite;
     }
