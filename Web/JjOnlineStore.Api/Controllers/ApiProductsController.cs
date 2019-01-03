@@ -12,6 +12,7 @@ namespace JjOnlineStore.Api.Controllers
 {
     [Produces("application/json")]
     [Route("api/products/[action]")]
+    [ApiController]
     public class ApiProductsController : ApiController
     {
         private readonly IProductsService _productsService;
