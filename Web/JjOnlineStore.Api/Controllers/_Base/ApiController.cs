@@ -1,5 +1,5 @@
-﻿using JjOnlineStore.Common.ViewModels;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using JjOnlineStore.Common.ViewModels;
 
 namespace JjOnlineStore.Api.Controllers._Base
 {
