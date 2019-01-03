@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  jjonlinestore.api:
+    image: ${DOCKER_REGISTRY}jjonlinestoreapi
+    build:
+      context: .
+      dockerfile: Web/JjOnlineStore.Api/Dockerfile
