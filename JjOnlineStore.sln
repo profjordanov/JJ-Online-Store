@@ -31,7 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{77EBA002
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Tests", "Tests\JjOnlineStore.Tests\JjOnlineStore.Tests.csproj", "{CEE2CA3F-B93E-401F-954E-874B3F9EE044}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Extensions", "JjOnlineStore.Extensions\JjOnlineStore.Extensions.csproj", "{DDEE406C-15AA-4EC4-8190-B0E3820832E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JjOnlineStore.Extensions", "JjOnlineStore.Extensions\JjOnlineStore.Extensions.csproj", "{DDEE406C-15AA-4EC4-8190-B0E3820832E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JjOnlineStore.Api", "Web\JjOnlineStore.Api\JjOnlineStore.Api.csproj", "{36DFF728-785D-42A4-A4E0-A6ED0DD4DCE1}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{B4820C2E-9407-4E36-9C5E-509103680C9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,14 @@ Global
 		{DDEE406C-15AA-4EC4-8190-B0E3820832E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDEE406C-15AA-4EC4-8190-B0E3820832E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDEE406C-15AA-4EC4-8190-B0E3820832E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36DFF728-785D-42A4-A4E0-A6ED0DD4DCE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36DFF728-785D-42A4-A4E0-A6ED0DD4DCE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36DFF728-785D-42A4-A4E0-A6ED0DD4DCE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36DFF728-785D-42A4-A4E0-A6ED0DD4DCE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4820C2E-9407-4E36-9C5E-509103680C9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4820C2E-9407-4E36-9C5E-509103680C9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4820C2E-9407-4E36-9C5E-509103680C9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4820C2E-9407-4E36-9C5E-509103680C9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +109,7 @@ Global
 		{BA34AC7D-4245-43DC-89D3-11D266E5FFCB} = {C272C167-4809-4178-880B-3435B4CF1579}
 		{0310B62A-69E3-446E-87A7-2306A8BBB989} = {C272C167-4809-4178-880B-3435B4CF1579}
 		{CEE2CA3F-B93E-401F-954E-874B3F9EE044} = {77EBA002-F6F9-43F2-A390-4D895074D99C}
+		{36DFF728-785D-42A4-A4E0-A6ED0DD4DCE1} = {2510A053-557B-4570-AA7D-E5FE59DDE22C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3928B1EB-0AD7-445B-8B06-7D4977031027}
