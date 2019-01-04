@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+
+using JjOnlineStore.Api.Configuration;
 using JjOnlineStore.Web.Infrastructure;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,8 +33,11 @@ namespace JjOnlineStore.Api
 
             services.AddAutoMapper();
 
+            services.AddSwagger();
+
             services.AddIdentity();
             services.AddIdentityStores();
+
             services.AddApplicationServices();
 
             services.AddRouting(routing => routing.LowercaseUrls = true);
@@ -49,7 +55,7 @@ namespace JjOnlineStore.Api
             {
                 app.UseHsts();
             }
-
+            app.UseSwagger("SoftUnikum API.");
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseHttpsRedirection();
