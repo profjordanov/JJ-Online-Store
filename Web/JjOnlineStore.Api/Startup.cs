@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using JjOnlineStore.Api.Configuration;
+using JjOnlineStore.Api.Filters;
 using JjOnlineStore.Web.Infrastructure;
 
 using Microsoft.AspNetCore.Builder;
@@ -27,7 +28,11 @@ namespace JjOnlineStore.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options =>
+                {
+                    options.Filters.Add<ApiExceptionFilter>();
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext(Configuration.GetConnectionString("DefaultConnection"));
 
