@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
+
+using JjOnlineStore.Api.Configuration;
+using JjOnlineStore.Api.Filters;
 using JjOnlineStore.Web.Infrastructure;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,14 +28,21 @@ namespace JjOnlineStore.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options =>
+                {
+                    options.Filters.Add<ApiExceptionFilter>();
+                })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext(Configuration.GetConnectionString("DefaultConnection"));
 
             services.AddAutoMapper();
 
+            services.AddSwagger();
+
             services.AddIdentity();
             services.AddIdentityStores();
+
             services.AddApplicationServices();
 
             services.AddRouting(routing => routing.LowercaseUrls = true);
@@ -49,7 +60,7 @@ namespace JjOnlineStore.Api
             {
                 app.UseHsts();
             }
-
+            app.UseSwagger("SoftUnikum API.");
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseHttpsRedirection();

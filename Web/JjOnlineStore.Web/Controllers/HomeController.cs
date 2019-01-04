@@ -5,9 +5,12 @@ using JjOnlineStore.Services.Core;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Threading.Tasks;
+using JjOnlineStore.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JjOnlineStore.Web.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : BaseController
     {
         private readonly IProductsService _productsService;
@@ -36,5 +39,12 @@ namespace JjOnlineStore.Web.Controllers
 
             return View(model);
         }
+
+        /// GET: /Home/Error
+        /// <summary>
+        /// Error page.
+        /// </summary>
+        public IActionResult Error() =>
+            View("Don't worry, we will test it in production!".ToError());
     }
 }
