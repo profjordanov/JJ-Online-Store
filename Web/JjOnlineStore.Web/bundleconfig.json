@@ -1,8 +1,8 @@
 ﻿[
   {
-    "outputFileName": "wwwroot/css/loader.min.css",
+    "outputFileName": "wwwroot/js/Business/send.email.for.subscription.min.js",
     "inputFiles": [
-      "wwwroot/css/loader.css"
+      "wwwroot/js/Business/send.email.for.subscription.js"
     ],
     "minify": {
       "enabled": true,

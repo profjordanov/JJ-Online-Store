@@ -42,6 +42,8 @@
 
     <script type="text/javascript">
         var createCartItemUrl = "@Url.Action("Create", "CartItems")";
+        var searchUrl = "@Url.Action("SearchByCategoryAndWord", "Products")";
+        var subscribeByEmailUrl = "@Url.Action("Subscribe","Subscription")";
     </script>
 
 </head>
@@ -202,10 +204,10 @@
                     <span class="foot-span-right">Get as much <span class="discount-price">spam</span> as possible!</span>
                 </div>
                 <div class="col-md-6">
-                    <form class="subscribe-email">
-                        <input type="email" placeholder="Your email here..." />
-                        <button class="foot-subscribe-btn">Subscribe</button>
-                    </form>
+                    <div class="subscribe-email">
+                        <input type="email" id="subscribe-email" placeholder="Your email here..." />
+                        <button class="foot-subscribe-btn" id="subscribeBtn">Subscribe</button>
+                    </div>
                 </div>
             </section>
             <section class="row foot-bottom">
@@ -287,10 +289,6 @@
         </footer>
     </div>
 
-    <script type="text/javascript">
-    var searchUrl = "@Url.Action("SearchByCategoryAndWord", "Products")";
-    </script>
-
     <environment include="Development">
         <script src="~/lib/jquery-3.1.1.min.js"></script>
         <script src="~/lib/jquery-ui.min.js"></script>
@@ -300,6 +298,7 @@
         <script src="~/js/encode.query.data.js"></script>
         <script src="~/js/Business/search.entire.store.js"></script>
         <script src="~/js/Business/direct.add.to.shopping.cart.js"></script>
+        <script src="~/js/Business/send.email.for.subscription.js"></script>
         <script src="~/js/loader.js"></script>
     </environment>
     <environment exclude="Development">
@@ -323,6 +322,7 @@
         <script src="~/js/encode.query.data.js"></script>
         <script src="~/js/Business/search.entire.store.js"></script>
         <script src="~/js/Business/direct.add.to.shopping.cart.js"></script>
+        <script src="~/js/Business/send.email.for.subscription.min.js"></script>
         <script src="~/js/loader.js"></script>
     </environment>
 
