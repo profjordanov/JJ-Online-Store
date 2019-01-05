@@ -22,10 +22,10 @@ namespace JjOnlineStore.Web.Controllers
 
         /// POST: /Subscription/Subscribe
         /// <summary>
-        /// 
+        /// Send a subscription email.
         /// </summary>
         /// <param name="model"></param>
-        /// <returns></returns>
+        /// <response code="200"></response>
         [HttpPost]
         public async Task<IActionResult> Subscribe([FromBody] EmailBm model)
         {

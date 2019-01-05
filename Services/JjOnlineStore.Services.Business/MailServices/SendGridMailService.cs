@@ -13,7 +13,7 @@ using JjOnlineStore.Services.Core;
 namespace JjOnlineStore.Services.Business.MailServices
 {
     /// <summary>
-    /// 
+    /// Implements Azure SendGrid email service.
     /// </summary>
     public class SendGridMailService : IMailService
     {
@@ -26,12 +26,12 @@ namespace JjOnlineStore.Services.Business.MailServices
 
 
         /// <summary>
-        /// 
+        /// Sends email.
         /// </summary>
         /// <param name="emailAddress"></param>
         /// <param name="subject"></param>
         /// <param name="content"></param>
-        /// <returns></returns>
+        /// <returns>Result Status Code</returns>
         public async Task<HttpStatusCode> SendEmailAsync(
             string emailAddress,
             string subject,

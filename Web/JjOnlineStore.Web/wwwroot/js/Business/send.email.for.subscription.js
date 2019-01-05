@@ -3,6 +3,11 @@
         $("#subscribeBtn").click(function() {
             const $emailVal = $("#subscribe-email").val();
 
+            if (!validateEmail($emailVal)) {
+                $.fancybox("Invalid email address!");
+                return false;
+            }
+
             const emailBindingModel = {
                 email: $emailVal
             };
@@ -15,16 +20,12 @@
                 data: JSON.stringify(emailBindingModel)
             };
 
-            $.ajax(request)
-                .then(displaySubscriptionSuccessMessage);
+            $.ajax(request);
 
+            $.fancybox("Mail successfully sent.");
         });
     });
 })(subscribeByEmailUrl);
-
-function displaySubscriptionSuccessMessage() {
-    $.fancybox("Mail successfully sent.");
-}
 
 function validateEmail(email) {
     const  regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
