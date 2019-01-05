@@ -39,7 +39,10 @@ namespace JjOnlineStore.Web
 
             services.AddIdentity();
 		    services.AddIdentityStores();
+
 		    services.AddApplicationServices();
+
+            services.AddSettings(Configuration);
 
 		    services.AddSerilogServices(new LoggerConfiguration());
 
@@ -60,12 +63,10 @@ namespace JjOnlineStore.Web
 
             services.AddRouting(routing => routing.LowercaseUrls = true);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
 		    services.AddMvc(options =>
 		    {
 		        options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
-            });
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.Configure<CookiePolicyOptions>(options =>
             {

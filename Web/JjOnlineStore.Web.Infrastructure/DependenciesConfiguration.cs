@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 using System;
+using JjOnlineStore.Services.Business.MailServices;
 
 namespace JjOnlineStore.Web.Infrastructure
 {
@@ -68,6 +69,7 @@ namespace JjOnlineStore.Web.Infrastructure
 	        services.AddTransient<IImageStorageService, ImageStorageService>();
 	        services.AddTransient<IFileService, FileService>();
 	        services.AddTransient<IProductImagesService, ProductImagesService>();
+	        services.AddTransient<IMailService, SendGridMailService>();
 	    }
     }
 }
