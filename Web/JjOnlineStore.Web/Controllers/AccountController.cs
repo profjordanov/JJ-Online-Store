@@ -14,6 +14,9 @@ using static JjOnlineStore.Common.GlobalConstants;
 
 namespace JjOnlineStore.Web.Controllers
 {
+    /// <summary>
+    /// User logging and registration .
+    /// </summary>
     [Route("[controller]/[action]")]
     public class AccountController : BaseController
     {

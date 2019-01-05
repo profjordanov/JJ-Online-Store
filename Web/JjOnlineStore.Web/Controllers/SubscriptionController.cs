@@ -1,11 +1,11 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using JjOnlineStore.Common.AppSettings.Sections;
+﻿using System;
 using JjOnlineStore.Common.BindingModels.Emails;
 using JjOnlineStore.Services.Core;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
+
+using System.Threading.Tasks;
 
 namespace JjOnlineStore.Web.Controllers
 {
@@ -22,11 +22,12 @@ namespace JjOnlineStore.Web.Controllers
 
         /// POST: /Subscription/Subscribe
         /// <summary>
-        /// Send a subscription email.
+        /// Sends a subscription email.
         /// </summary>
         /// <param name="model"></param>
         /// <response code="200"></response>
         [HttpPost]
+        [Produces("application/json")]
         public async Task<IActionResult> Subscribe([FromBody] EmailBm model)
         {
             await _mailService.SendEmailAsync(
@@ -34,7 +35,7 @@ namespace JjOnlineStore.Web.Controllers
                 subject: "Welcome to my store!",
                 content: "Do you want spam! Its not a problem for me, but it is a problem for you!");
 
-            return Ok();
+            return Ok(new object()); 
         }
     }
 }
