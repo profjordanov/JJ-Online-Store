@@ -59,6 +59,8 @@ public async Task<IActionResult> Login(CredentialsModel model)
 - [x] Database Transactions
 - [x] Database Triggers
 - [x] Using Azure Websites and Azure Blob Storage
+- [x] Integrated Azure Enterprise Productivity Chatbot
+- [x] Integrated Azure SendGrid Email Service
 
 ### User Interface and User Experience (UI & UX)
 - [x] Mobile-First Responsive Design
