@@ -373,11 +373,4 @@
     <ProjectReference Include="..\JjOnlineStore.Web.Infrastructure\JjOnlineStore.Web.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Blog\Controllers\" />
-    <Folder Include="Areas\Blog\Data\" />
-    <Folder Include="Areas\Blog\Models\" />
-    <Folder Include="Areas\Blog\Views\" />
-  </ItemGroup>
-
 </Project>
