@@ -61,6 +61,7 @@ public async Task<IActionResult> Login(CredentialsModel model)
 - [x] Using Azure Websites and Azure Blob Storage
 - [x] Integrated Azure Enterprise Productivity Chatbot
 - [x] Integrated Azure SendGrid Email Service
+![alt text](https://raw.githubusercontent.com/profjordanov/JJ-Online-Store/master/Resources/azure-poratal.PNG)
 
 ### User Interface and User Experience (UI & UX)
 - [x] Mobile-First Responsive Design
