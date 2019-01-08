@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using JjOnlineStore.Common.ViewModels.Home;
 using JjOnlineStore.Services.Core;
 
@@ -24,6 +25,7 @@ namespace JjOnlineStore.Web.Controllers
         /// <summary>
         /// Home Page.
         /// </summary>
+        [ResponseCache(Duration = 3600)]
         public async Task<IActionResult> Index()
         {
             var products = await _productsService.AllWithoutDeletedAsync();
