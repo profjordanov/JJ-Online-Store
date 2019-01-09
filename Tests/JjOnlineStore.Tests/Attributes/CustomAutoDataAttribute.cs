@@ -17,8 +17,6 @@ namespace JjOnlineStore.Tests.Attributes
             public void Customize(IFixture fixture)
             {
                 fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-                fixture.Customize<ApplicationUser>(composer =>
-                    composer.With(u => u.Id, Guid.NewGuid().ToString()));
             }
         }
     }
