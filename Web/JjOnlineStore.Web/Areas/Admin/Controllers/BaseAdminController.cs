@@ -13,10 +13,10 @@ namespace JjOnlineStore.Web.Areas.Admin.Controllers
     [Authorize(Roles = AdministratorRoleName)]
     public class BaseAdminController : Controller
     {
-        public IActionResult BaseIndex()
-        {
-            return View();
-        }
+        /// <summary>
+        /// Admin Dashboard.
+        /// </summary>
+        public IActionResult BaseIndex() => View();
 
         /// <summary>
         /// Redirects to /Admin/Categories/All

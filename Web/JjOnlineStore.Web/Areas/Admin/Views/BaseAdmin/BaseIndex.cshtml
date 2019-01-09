@@ -29,27 +29,21 @@
         </li>
         <li class="parent ">
             <a data-toggle="collapse" href="#sub-item-1">
-                <em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                <em class="fa fa-navicon">&nbsp;</em> More Functionalities <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
             </a>
             <ul class="children collapse" id="sub-item-1">
                 <li>
-                    <a class="" href="#">
-                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
-                    </a>
-                </li>
-                <li>
-                    <a class="" href="#">
-                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
-                    </a>
-                </li>
-                <li>
-                    <a class="" href="#">
-                        <span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+                    <a class="" asp-area="Blog" asp-controller="Articles" asp-action="Index">
+                        <span class="fa fa-arrow-right">&nbsp;</span> Blog Articles
                     </a>
                 </li>
             </ul>
         </li>
-        <li><a href="login.html"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        <li>
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                <em class="fa fa-power-off">&nbsp;</em> Go To Store
+            </a>
+        </li>
     </ul>
 </div><!--/.sidebar-->
 
