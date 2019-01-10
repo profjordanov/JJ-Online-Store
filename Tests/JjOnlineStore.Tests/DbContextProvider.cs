@@ -8,6 +8,8 @@ namespace JjOnlineStore.Tests
     {
         public static JjOnlineStoreDbContext GetInMemoryDbContext()
             => new JjOnlineStoreDbContext(new DbContextOptionsBuilder<JjOnlineStoreDbContext>()
-                .UseInMemoryDatabase($"Tests-{Guid.NewGuid().ToString()}").Options);
+                .UseInMemoryDatabase($"Tests-{Guid.NewGuid().ToString()}")
+                .EnableSensitiveDataLogging()
+                .Options);
     }
 }
