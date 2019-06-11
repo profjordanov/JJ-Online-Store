@@ -83,4 +83,4 @@ public async Task<IActionResult> Login(CredentialsModel model)
 
 - Excellent grade in C# MVC Frameworks - ASP.NET Core course with trainer : Nikolai Kostov.
 
-![alt text](https://raw.githubusercontent.com/profjordanov/JJ-Online-Store/master/Resources/C# MVC Frameworks - ASP.NET Core - November 2018 - Certificate.jpeg)
+![alt text](https://raw.githubusercontent.com/profjordanov/JJ-Online-Store/master/Resources/Softuni_Certificate.jpeg)
