@@ -1,4 +1,5 @@
 # JJ Online Store
+A product catalog website with custom design.
 
 # Features
 
